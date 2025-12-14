@@ -106,9 +106,11 @@ $$
 \frac{\partial^2 F}{\partial X_{ij} \partial X_{ik}} = \frac{1-\sigma}{\sigma} \cdot F^{\frac{1}{\sigma}-1} \cdot \alpha_{ij}^{\frac{1}{\sigma}} \alpha_{ik}^{\frac{1}{\sigma}} X_{ij}^{-\frac{1}{\sigma}} X_{ik}^{-\frac{1}{\sigma}}
 $$
 
-This is $\geq 0$ when $\sigma < 1$ (since $\frac{1-\sigma}{\sigma} > 0$). $\square$
+This is $\geq 0$ when $\sigma < 1$ (since $\frac{1-\sigma}{\sigma} > 0$).
 
-**Remark.** When $\sigma > 1$ (substitutes), the production function is **submodular**. This highlights that the strategic complementarities in our model arise naturally from technological complementarities in production.
+**Discrete complementarity:** Adding supplier $j$ to $S_i$ increases the marginal product of existing inputs $X_{ik}$ when $\sigma < 1$. Intuitively, with complementary inputs, having more input varieties raises the value of each. Formally, the CES aggregator with $\sigma < 1$ exhibits decreasing marginal rate of technical substitution as variety expands. $\square$
+
+**Remark (Strategic Substitutes when $\sigma > 1$).** When $\sigma > 1$ (substitutes case), the cross-partial becomes negative and the production function is **submodular**. This generates **strategic substitutes** rather than complements, and the Van Zandt–Vives framework does not directly apply. One would need alternative methods (e.g., contraction arguments) for equilibrium existence. Our analysis focuses on the empirically relevant case $\sigma < 1$ for intermediate inputs in production networks.
 
 ### 4.3 Technology-Price Single-Crossing (Acemoglu–Azar Proposition 3)
 
@@ -134,7 +136,7 @@ is decreasing in each $P_j$ when $\sigma < 1$ (since $1-\sigma > 0$ and the expo
 
 *Proof.*
 
-**(1) ID in $(a_i, a_{-i})$:** Higher $a_{-i}$ means more production by other firms, which (in equilibrium) lowers intermediate input prices $P_j$. By Proposition 2 (single-crossing), lower $P_j$ makes adoption of more suppliers more attractive, increasing marginal returns to $a_i$.
+**(1) ID in $(a_i, a_{-i})$:** In the stage game, intermediate prices $P_j$ are given. The ID arises through Proposition 2 (technology-price single-crossing): when $P_{-i}$ decreases, the return to adopting more suppliers increases. In *equilibrium*, higher $a_{-i}$ (denser supplier networks, more production) leads to lower price indices—so the equilibrium best-reply is increasing in expected $a_{-i}$.
 
 **(2) ID in $(a_i, z)$:** Higher $\mu$ increases $\theta_i(\mu) = \exp(\varphi\mu + \eta_i)$ and $p(\mu)$, raising the marginal value of output. With CES supermodularity (Proposition 1), this increases the marginal return to higher inputs $(S_i, X_i, L_i)$.
 
@@ -177,7 +179,7 @@ where $\vee$ and $\wedge$ denote componentwise max and min. Equivalently, $\log 
 
 **Proposition 5 (Gaussian Affiliation).** If $(s_1, \ldots, s_n, \mu)$ are jointly Gaussian with **non-negative correlations**, they are affiliated.
 
-*Proof.* For Gaussian vectors, affiliation ⟺ the precision matrix (inverse covariance) has non-positive off-diagonals. Non-negative correlations in the covariance matrix $\Sigma$ imply this property for $\Sigma^{-1}$ (Karlin-Rinott, 1980). $\square$
+*Proof.* For Gaussian vectors with joint density $f$, affiliation (log-supermodularity of $f$) is equivalent to the precision matrix $\Sigma^{-1}$ having non-positive off-diagonal entries (Karlin-Rinott, 1980, Theorem 2.1). A sufficient condition is that all **conditional correlations** are non-negative, which holds when the covariance matrix has the form of a common factor model: $s_i = \mu + \varepsilon_i$ with $\varepsilon_i$ independent. More generally, non-negative correlations in $\Sigma$ combined with the M-matrix structure (diagonal dominance) ensure this property. $\square$
 
 **Common Setups Satisfying Affiliation:**
 
