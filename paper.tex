@@ -222,7 +222,7 @@ Suppose \cref{ass:technology} holds. Fix $S$ and $\mu$. Then there exists a uniq
 \end{proposition}
 
 \begin{proof}
-Define the price mapping $T: P \mapsto P'$ by $P'_i = (1+\tau_i) \theta_i(\mu)^{-1} K_i(S_i, A_i(S_i), P)$. Labor essentiality implies that the cost share of intermediates is strictly below one: for some $\kappa < 1$, the mapping $T$ is a contraction. By Banach's fixed point theorem, $T$ has a unique fixed point.
+The log-price system \cref{eq:log_price_system} defines a mapping $\Phi(p) = p - k(S, a(S), p) - b$. Labor essentiality implies that the Jacobian $I - \nabla_p k$ has row sums bounded strictly below one. By the Gale-Nikaido univalence theorem \citep{acemoglu2020endogenous}, $\Phi$ is a global homeomorphism, so the system has a unique solution.
 \end{proof}
 
 \subsection{Monotone price response}
