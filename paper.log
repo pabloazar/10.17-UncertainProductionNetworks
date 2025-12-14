@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 17:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -617,24 +617,31 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 11.40997pt on input line 64.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 8.33606pt on input line 64.
-LaTeX Font Info:    Trying to load font information for U+fplmbb on input line 
-77.
 
-(/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ufplmbb.fd
+[2]
+LaTeX Font Info:    Trying to load font information for U+fplmbb on input line 
+83.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
-) [2] [3]
-[4] [5] [6] [7] (./paper.bbl) [8] (./paper.aux)
+) [3]
+[4] [5] [6] [7] (./paper.bbl [8] [9]
+Overfull \hbox (0.999pt too wide) in paragraph at lines 140--143
+[]\T1/ppl/b/n/10.95 (-20) Jones, Charles I\T1/ppl/m/n/10.95 (-20) , ``Intermedi
+ate Goods and Weak Links in the Theory of Economic Development,''
+ []
+
+[10]) [11] (./paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 3E813D0E44E66518FE02E597BEADB4D1;2934.
  ) 
 Here is how much of TeX's memory you used:
- 14542 strings out of 478994
- 229240 string characters out of 5858184
+ 14754 strings out of 478994
+ 233449 string characters out of 5858184
  576583 words of memory out of 5000000
- 31384 multiletter control sequences out of 15000+600000
- 469689 words of font info for 351 fonts, out of 8000000 for 9000
+ 31486 multiletter control sequences out of 15000+600000
+ 472869 words of font info for 399 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,11n,74p,974b,444s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,11n,74p,974b,520s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -646,10 +653,10 @@ xmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2021/texmf-
 dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/urw/palatino/uplri8a.pfb>
-Output written on paper.pdf (8 pages, 147821 bytes).
+Output written on paper.pdf (11 pages, 160384 bytes).
 PDF statistics:
- 265 PDF objects out of 1000 (max. 8388607)
- 242 compressed objects within 3 object streams
- 74 named destinations out of 1000 (max. 500000)
+ 392 PDF objects out of 1000 (max. 8388607)
+ 365 compressed objects within 4 object streams
+ 112 named destinations out of 1000 (max. 500000)
  88713 words of extra memory for PDF output out of 89155 (max. 10000000)
 
