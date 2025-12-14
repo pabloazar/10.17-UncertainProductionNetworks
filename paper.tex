@@ -23,6 +23,19 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{assumption}{Assumption}
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}
+
+% ===== Convenient Macros =====
+\usepackage{bbm}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\1}{\mathbbm{1}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\Sset}{\mathcal{S}}
+\newcommand{\Pcal}{\mathcal{P}}
+\newcommand{\BR}{\mathrm{BR}}
+\DeclareMathOperator*{\argmax}{arg\,max}
 
 % ===== Document Metadata =====
 \title{\textbf{Sentiment and Supply Chains:\\ How Beliefs Shape Production Networks}}
@@ -453,6 +466,61 @@ The aggregate best-response map $BR: \Sigma \to \Sigma$ is well-defined (best re
 By \citet{tarski1955lattice}'s Fixed Point Theorem, an isotone map on a complete lattice has a non-empty set of fixed points that forms a complete lattice. In particular, there exist greatest and least fixed points $\bar{\sigma}$ and $\underline{\sigma}$.
 
 These are monotone Bayesian Nash equilibria. \qed
+
+\subsection{CES Duality and Cost Minimization}\label{app:ces_dual}
+
+This subsection derives the unit cost dual to the CES production function for fixed supplier set $S_i$.
+
+\begin{proposition}[CES Unit Cost and Hicksian Demands]\label{prop:ces_cost}
+Fix supplier set $S_i$, input prices $P$, and wage normalized to 1. Let $\rho \equiv (\sigma-1)/\sigma$. For any target output $y > 0$, the cost-minimization problem
+\[
+\min_{L_i \geq 0, X_{ij} \geq 0} \left\{ L_i + \sum_{j \in S_i} P_j X_{ij} : F_i(S_i, L_i, X_i) \geq y \right\}
+\]
+has value $C_i(y \mid S_i, P) = y \cdot c_i(S_i, P)$, where the unit cost index is
+\[
+c_i(S_i, P) = A_i^{-1} \left[ \omega_{iL}(S_i) + \sum_{j \in S_i} \omega_{ij} P_j^{1-\sigma} \right]^{\frac{1}{1-\sigma}}.
+\]
+The cost-minimizing input bundle satisfies Hicksian demands:
+\[
+X_{ij}^H = y \cdot \omega_{ij} \left( \frac{P_j}{c_i(S_i, P)} \right)^{-\sigma}, \quad L_i^H = \frac{y}{A_i} \cdot \omega_{iL}(S_i) \left( \frac{1}{c_i(S_i, P)} \right)^{-\sigma}.
+\]
+\end{proposition}
+
+\begin{proof}
+Standard CES duality. Write the Lagrangian and derive FOCs; taking ratios yields relative demands proportional to price ratios raised to the power $-\sigma$. Substitution back gives the cost index.
+\end{proof}
+
+\subsection{Microfoundation for Monotone Prices}\label{app:microfoundation}
+
+This appendix provides a standard downstream structure that implies Assumption~\ref{ass:supermod} (that prices are antitone in aggregate expansion).
+
+\begin{assumption}[CES Demand and Constant Markup]\label{ass:ces_demand}
+Final demand for each good is isoelastic with elasticity $\varepsilon > 1$. Each firm sets a constant markup $\kappa \equiv \varepsilon / (\varepsilon - 1)$ over marginal cost.
+\end{assumption}
+
+Under Assumption~\ref{ass:ces_demand}, equilibrium prices satisfy:
+\[
+P_i = \kappa \cdot \theta_i(\mu)^{-1} c_i(S_i, P).
+\]
+This is a fixed-point system. By Tarski's theorem, it has a least and greatest fixed point. When suppliers expand (adding links, increasing inputs), unit costs $c_i$ fall, inducing lower equilibrium prices---the antitone property.
+
+\subsection{Gaussian Common Factor Model}\label{app:gaussian}
+
+\begin{proposition}[Gaussian Affiliation]\label{prop:gaussian_affil}
+Suppose $\mu \sim \mathcal{N}(\bar{\mu}, \sigma_\mu^2)$ and $s_i = \mu + \varepsilon_i$ with i.i.d.\ $\varepsilon_i \sim \mathcal{N}(0, \sigma_\varepsilon^2)$. Then $(\mu, s_1, \ldots, s_n)$ are affiliated.
+\end{proposition}
+
+\begin{proof}
+In the common factor model, $\mathrm{Cov}(s_i, s_j) = \sigma_\mu^2 \geq 0$ for $i \neq j$. Multivariate normal distributions with nonnegative correlations are MTP$_2$ (log-supermodular), hence affiliated \citep{milgrom1982theory}.
+\end{proof}
+
+\begin{remark}[Posterior Updating]
+Under the Gaussian model, firm $i$'s posterior about $\mu$ given signal $s_i$ is:
+\[
+\mu \mid s_i \sim \mathcal{N}\left( \frac{\sigma_\mu^2 s_i + \sigma_\varepsilon^2 \bar{\mu}}{\sigma_\mu^2 + \sigma_\varepsilon^2}, \frac{\sigma_\mu^2 \sigma_\varepsilon^2}{\sigma_\mu^2 + \sigma_\varepsilon^2} \right).
+\]
+Higher $s_i$ shifts the posterior mean upward---the FOSD property central to Lemma~\ref{lem:info}.
+\end{remark}
 
 
 %========================================
