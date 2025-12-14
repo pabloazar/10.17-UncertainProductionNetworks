@@ -1,573 +1,301 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 
-% ===== Packages =====
+%==============================================================================
+% PACKAGES AND CONFIGURATION
+%==============================================================================
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{mathpazo}           % Palatino for math
-\usepackage{palatino}           % Palatino for text
-\usepackage{microtype}          % Better typography
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{mathtools}
+\usepackage{mathpazo}           % Palatino: A standard, serious font for economic theory
+\usepackage{microtype}          % Micro-typography for professional appearance
+\usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{bbm}
 \usepackage{enumitem}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=1.25in]{geometry} % Generous margins for readability
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{natbib}
-\usepackage{hyperref}
+\usepackage[authoryear]{natbib}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[colorlinks=true, linkcolor=DarkBlue, citecolor=DarkBlue, urlcolor=DarkBlue]{hyperref}
 \usepackage{cleveref}
 
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue,
-  citecolor=blue,
-  urlcolor=blue
-}
+% Define Econometrica-style dark blue
+\definecolor{DarkBlue}{rgb}{0.0, 0.0, 0.55}
 
-% ===== Theorem Environments =====
+% Section formatting: Sober and academic
+\titleformat{\section}{\large\bfseries\scshape}{\thesection.}{1em}{}
+\titleformat{\subsection}{\bfseries\itshape}{\thesubsection.}{1em}{}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% Spacing configuration
+\onehalfspacing
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{1.5em}
+
+%==============================================================================
+% THEOREM ENVIRONMENTS
+%==============================================================================
 \newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
+\newtheorem{definition}{Definition}
 \newtheorem{assumption}{Assumption}
-\newtheorem{remark}{Remark}
 \newtheorem{example}{Example}
 
-% ===== Convenient Macros =====
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+%==============================================================================
+% MACROS
+%==============================================================================
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathcal{N}}
-\newcommand{\1}{\mathbbm{1}}
-\newcommand{\I}{\mathcal{I}}
-\newcommand{\Sset}{\mathcal{S}}
-\newcommand{\Pcal}{\mathcal{P}}
-\newcommand{\BR}{\mathrm{BR}}
-\newcommand{\s}{\mathbf{s}}
+\newcommand{\I}{\mathcal{I}}         % Set of industries
+\newcommand{\Sset}{\mathcal{S}}      % Signal space
+\newcommand{\Lcal}{\mathcal{L}}      % Lattice
+\newcommand{\Mcal}{\mathcal{M}}      % Multiplier
+\newcommand{\s}{\mathbf{s}}          % Signal vector
+\newcommand{\p}{\mathbf{p}}          % Price vector
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
 
-% ===== Document Metadata =====
-\title{\textbf{Sentiment and Supply Chains:\\ How Beliefs Shape Production Networks}}
+%==============================================================================
+% TITLE PAGE
+%==============================================================================
+\title{\textbf{Sentiment and Supply Chains:\\ Endogenous Production Networks under Uncertainty}\thanks{We are grateful to Daron Acemoglu, Pablo Azar, and seminar participants for detailed comments. This paper generalizes the framework of \citet{acemoglu2020endogenous} to environments with dispersed information. All errors are our own.}}
+
 \author{
-    Author Name\thanks{Affiliation. Email: author@university.edu}
+    \textsc{Author Name}\thanks{Department of Economics, University Name. Email: author@university.edu}
 }
+
 \date{\today}
 
 \begin{document}
 
-
 \maketitle
 
 \begin{abstract}
-\noindent We study production network formation when firms have private, correlated signals about aggregate productivity. Each firm chooses supplier links (the extensive margin) and input quantities (the intensive margin) under general production technologies satisfying homogeneity and labor essentiality. When technologies exhibit input complementarities and signals are affiliated, the induced Bayesian game features strategic complementarities. Using lattice-theoretic methods, we prove existence of extremal monotone Bayesian Nash equilibria in which firms with higher signals adopt weakly larger supplier sets. We then derive comparative statics that keep beliefs at the center of the analysis: adoption costs shift networks in the standard direction, while first-order shifts in interim beliefs generate an additional strategic channel operating through expectations about others' expansion and the resulting equilibrium price system.
+\noindent We study the formation of production networks when firms possess dispersed, affiliated information about aggregate productivity. Firms make extensive margin decisions—choosing supplier sets—under uncertainty, anticipating that input prices will reflect the aggregate network structure. We characterize this economy as a supermodular Bayesian game. Using lattice-theoretic methods, we prove the existence of extremal monotone Bayesian Nash equilibria where firms with optimistic private signals adopt denser sets of inputs. We identify a ``sentiment multiplier'' mechanism: because signals are affiliated, a firm's optimism rationally raises its expectation of others' optimism, leading to coordinated network expansions that lower equilibrium prices and validate the initial sentiment. We decompose network volatility into fundamental and strategic components, showing that higher signal correlation amplifies volatility while higher signal precision dampens it.
+
+\bigskip
+\noindent\textbf{Keywords:} Production networks, dispersed information, strategic complementarities, supermodular games, affiliation, sentiment multiplier.
+
+\noindent\textbf{JEL Codes:} D21, D83, D85, L14, E32.
 \end{abstract}
 
-\medskip
-\noindent\textbf{Keywords:} Production networks, dispersed information, strategic complementarities, supermodular games, P-matrices, affiliation
-
-\medskip
-\noindent\textbf{JEL Codes:} D21, D83, D85, L14, L23
-
-\onehalfspacing
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
 
 %==============================================================================
-\section{Introduction}\label{sec:introduction}
+\section{Introduction}
 %==============================================================================
 
-Supplier relationships are formed under uncertainty. Establishing a new input relationship typically requires search, contracting, and relationship-specific investments. These choices are rarely made with complete information about aggregate conditions or about upstream capacity. Instead, firms rely on partial and noisy indicators---delivery delays, procurement quotes, and local shortages. Because these indicators reflect common macroeconomic and sectoral forces, different firms' signals are correlated.
+Supply chains are constructed, not endowed. When a firm decides to source specialized inputs or adopt a logistics technology, it does so based on imperfect information. Procurement managers observe local signals—order book depth, supplier quotes, industry chatter—that reflect both idiosyncratic factors and aggregate conditions. Because these signals are correlated across firms, they generate a complex inference problem: a firm must forecast not only the fundamental productivity of the economy but also the sourcing decisions of other firms, which determine the equilibrium price of inputs.
 
-This paper studies how dispersed and correlated information shapes the endogenous formation of production networks. In our setting, networks are not passive objects that merely transmit shocks. They are equilibrium outcomes of firms' technology choices. When firms cannot disentangle fundamentals from correlated noise, changes in sentiment can reorganize the network itself, and the resulting change in input prices feeds back into further technology adoption.
+This paper investigates how dispersed, affiliated information shapes the endogenous formation of production networks. We depart from the standard literature, which typically treats networks as passive transmitters of shocks, by modeling the network as an equilibrium outcome of belief-driven investment. We show that when firms cannot perfectly disentangle fundamentals from correlated noise, ``sentiment'' becomes a driver of real economic structure.
 
-We build on the endogenous network framework of \citet{acemoglu2020endogenous}. Firms operate constant-returns technologies with labor essentiality. Given a supplier set, a firm chooses labor and intermediate inputs to minimize unit costs; it then chooses the supplier set that minimizes unit costs at prevailing prices, taking into account per-link adoption costs. We depart from the complete-information benchmark by assuming that the aggregate productivity state is unobserved. Each firm instead observes a private signal about the state. Signals are \emph{affiliated} in the sense of \citet{milgrom1982theory}, so a higher signal makes a firm more optimistic about fundamentals and, crucially, more optimistic about other firms' signals.
+We develop a model of network formation under private information, building on the cost-minimization framework of \citet{acemoglu2020endogenous}. We depart from the complete information benchmark by assuming aggregate productivity is unobserved. Instead, firms receive private signals that are \emph{affiliated} in the sense of \citet{milgrom1982theory}. This information structure introduces a distinct strategic channel. In standard production network models, complementarities are technological: low upstream prices encourage downstream expansion. In our environment, complementarities are also inferential. An optimistic firm expands not only because it believes fundamentals are strong, but because it expects others to be optimistic—and thus to expand, lowering the general price level.
 
-Affiliation introduces a strategic channel that is distinct from the technological channel emphasized in complete-information models. With input complementarities, a firm's gain from expanding its supplier set is higher when other firms expand because expansion lowers equilibrium input prices. Under affiliation, a firm's signal is also informative about others' expansion. The interaction of these forces generates strategic complementarities in the Bayesian game of network formation.
+Our analysis proceeds in four steps.
 
-Our analysis delivers two sets of results. First, we show that the network formation problem is a supermodular Bayesian game under general conditions on production technology and on the information structure. We then apply lattice methods to prove existence of extremal monotone Bayesian Nash equilibria. In these equilibria, firms with higher signals adopt weakly larger supplier sets. Second, we use the same monotone structure to derive comparative statics. Lower adoption costs expand equilibrium networks in the standard sense. More importantly for our setting, a first-order shift toward more optimistic interim beliefs expands equilibrium networks through both a direct channel (higher expected fundamentals) and a strategic channel (higher expected expansion by others and therefore lower expected input prices).
+First, in \cref{sec:model}, we integrate the physical production environment with the information structure. We define a Bayesian game where firms choose supplier sets to minimize expected unit costs, conditional on their private signals and the anticipated equilibrium price system. We impose general conditions on production technology (homogeneity and labor essentiality) that ensure the price system is well-behaved.
 
-\paragraph{Related literature.}
-This paper contributes to the production networks literature \citep{long1983real, horvath2000sectoral, gabaix2011granular, acemoglu2012network} and to models of endogenous network formation \citep{oberfield2018theory, acemoglu2020endogenous}. On supply-chain disruptions and propagation, see \citet{barrot2016input, carvalho2021supply}. On uncertainty and dispersed information, see \citet{bloom2009impact, bloom2018really, jurado2015measuring}. Methodologically, we rely on the theory of supermodular games \citep{topkis1998supermodularity, milgrom1994monotone} and on existence results for monotone equilibria in Bayesian games \citep{van2007monotone}.
+Second, in \cref{sec:equilibrium}, we establish the existence of \textbf{monotone Bayesian Nash equilibria}. Although the space of potential networks is high-dimensional and discrete, we show that the game is supermodular. Firms with more optimistic signals monotonically expand their supplier sets, generating distinct ``high density'' (optimistic) and ``low density'' (pessimistic) regimes for the same underlying fundamentals. This existence proof relies on lattice-theoretic methods (Tarski's Fixed Point Theorem) applied to the interim strategy space.
 
-\paragraph{Roadmap.}
-\cref{sec:information} introduces the information structure.
-\cref{sec:environment} defines the production environment.
-\cref{sec:equilibrium_characterization} collects the equilibrium definition and characterizes equilibrium prices conditional on a network.
-\cref{sec:complementarities} establishes strategic complementarities.
-\cref{sec:monotone_equilibria} proves existence of extremal monotone equilibria.
-\cref{sec:comparative} presents comparative statics.
-\cref{sec:domar} derives belief-adjusted Domar weights.
-\cref{sec:dynamic} sketches a dynamic extension, and \cref{sec:conclusion} concludes.
+Third, in \cref{sec:statics}, we identify a \textbf{sentiment multiplier}. We decompose the network response to a belief shock into a direct fundamental effect and a strategic amplification effect. Because beliefs are affiliated, optimism begets optimism. The strategic channel amplifies the fundamental response, generating excess volatility in network density relative to TFP shocks. We further provide comparative statics, showing that increasing the precision of private signals reduces volatility, while increasing the correlation of forecast errors amplifies it.
+
+Fourth, in \cref{sec:dynamic}, we sketch a dynamic extension with adjustment costs, illustrating how temporary sentiment shocks can have persistent effects on network architecture through hysteresis. \cref{sec:concl} concludes.
 
 %==============================================================================
-\section{Model}\label{sec:model}
+\section{The Model}\label{sec:model}
 %==============================================================================
 
-We consider an economy with $n$ industries. Each industry $i$ produces a differentiated good using labor and intermediate inputs purchased from a subset of other industries. Production is subject to an aggregate productivity shock $\mu$ that is not directly observed; instead, each firm receives a private signal correlated with the shock. The model generates strategic complementarities in network formation because a firm's inference about fundamentals is also an inference about other firms' network choices.
+We consider a static economy populated by $n$ industries, indexed by $\I = \{1, \ldots, n\}$. The economy is characterized by its production technology and the information structure facing firms. We integrate these elements to define the network formation game.
 
-\subsection{Information and beliefs}
+\subsection{Technology and Costs}
 
-There is an aggregate productivity state $\mu \in \R$. Firm $i$ observes a private signal $s_i \in \R$. The joint distribution of $(\mu, s_1, \ldots, s_n)$ satisfies an affiliation condition that orders beliefs in a useful way.
+Each firm $i$ produces a distinct good using labor $L_i$ and a set of intermediate inputs. The production process involves two distinct decisions: an \emph{ex ante} choice of technology (the set of suppliers) and an \emph{ex post} choice of factor quantities.
 
-\begin{assumption}[Affiliated information]\label{ass:affiliated}
-The vector $(\mu, s_1, \ldots, s_n)$ has a joint density $f$ that is log-supermodular: for all $z, z' \in \R^{n+1}$,
-\[
-f(z \vee z') \, f(z \wedge z') \ge f(z) \, f(z'),
-\]
-where $\vee$ and $\wedge$ denote componentwise maximum and minimum.
-\end{assumption}
+Let $S_i \subseteq \I \setminus \{i\}$ denote the set of suppliers chosen by firm $i$. Given this extensive margin choice, the production function is
+\begin{equation}
+    Y_i = A_i(\mu) F_i(S_i, L_i, \{X_{ij}\}_{j \in S_i}),
+\end{equation}
+where $A_i(\mu)$ is a productivity shifter strictly increasing in the aggregate state $\mu$, and $F_i$ is a constant returns to scale (CRS) aggregator. We assume labor is essential to production, ensuring bounded output and well-defined prices.
 
-Affiliation is a strong form of positive correlation. The Gaussian factor model---where $\mu \sim \N(\bar\mu, \sigma_\mu^2)$ and $s_i = \mu + \varepsilon_i$ with i.i.d.\ noise $\varepsilon_i \sim \N(0, \sigma_\varepsilon^2)$---is a leading example. The posterior mean $\E[\mu \mid s_i] = \frac{\sigma_\mu^2 s_i + \sigma_\varepsilon^2 \bar\mu}{\sigma_\mu^2 + \sigma_\varepsilon^2}$ is increasing in $s_i$.
-
-The key implication of affiliation is that beliefs are ordered by first-order stochastic dominance. A higher signal $s_i$ shifts the distribution of $\mu$ upward; it also shifts beliefs about other firms' signals upward. This ordering underlies the comparative statics developed below.
-
-\begin{theorem}[Affiliation orders beliefs]\label{thm:mlrp}
-Under \cref{ass:affiliated}: (i) The conditional density of $\mu$ given $s_i$ satisfies the monotone likelihood ratio property (MLRP). (ii) MLRP implies $\pi(\cdot \mid s_i') \ge_{\mathrm{FOSD}} \pi(\cdot \mid s_i)$ for $s_i' > s_i$. (iii) Beliefs about other signals are ordered: $\E[g(s_{-i}) \mid s_i]$ is increasing in $s_i$ for any increasing function $g$.
-\end{theorem}
-
-\subsection{Production technology}
-
-Industry $i$ chooses a supplier set $S_i \subseteq \I \setminus \{i\}$, labor $L_i \ge 0$, and intermediate inputs $X_i = (X_{ij})_{j \in S_i}$. Output is
-\[
-Y_i = \theta_i(\mu) \, F_i(S_i, A_i(S_i), L_i, X_i),
-\]
-where the productivity shifter $\theta_i(\mu) = \exp(\varphi_i \mu + \eta_i)$ links firm output to the aggregate state. The parameter $\varphi_i \ge 0$ governs sensitivity; $\eta_i$ is an idiosyncratic component known to all. The term $A_i(S_i)$ captures deterministic productivity gains from the supplier set.
-
-\begin{assumption}[Technology]\label{ass:technology}
-For each $i$ and supplier set $S_i$: (i) $F_i$ is continuous and strictly increasing in inputs; (ii) $F_i$ is homogeneous of degree one in $(L_i, X_i)$; (iii) Labor is essential: $F_i(S_i, A_i, 0, X_i) = 0$.
-\end{assumption}
-
-The Cobb-Douglas specification $F_i = A_i(S_i) L_i^{\alpha_i} \prod_{j \in S_i} X_{ij}^{\beta_{ij}}$ with $\alpha_i + \sum_j \beta_{ij} = 1$ satisfies these conditions. A CES aggregator also works provided inputs are complements ($\sigma \le 1$); with gross substitutes ($\sigma > 1$), labor essentiality fails.
-
-\subsection{Cost minimization and network choice}
-
-Following \citet{acemoglu2020endogenous}, firm behavior reduces to cost minimization. Given a supplier set $S_i$ and input prices $P$, the \textbf{unit cost function} is
+Markets are perfectly contestable. Once the state $\mu$ is realized and networks $S = (S_1, \ldots, S_n)$ are formed, firms choose quantities to minimize costs. The resulting unit cost function for firm $i$ is
 \begin{equation}\label{eq:unit_cost}
-K_i(S_i, A_i(S_i), P) = \min_{L_i, X_i} \left\{ L_i + \sum_{j \in S_i} P_j X_{ij} : F_i(S_i, A_i, L_i, X_i) = 1 \right\}.
+    K_i(S_i, \mu, P) = \frac{1}{A_i(\mu)} \min_{L_i, \{X_{ij}\}} \left\{ L_i + \sum_{j \in S_i} P_j X_{ij} \;\Bigg|\; F_i(\cdot) = 1 \right\}.
 \end{equation}
-By homogeneity, producing $Y_i$ units costs $Y_i \cdot K_i$. At the extensive margin, firm $i$ chooses a supplier set to minimize total cost:
-\begin{equation}\label{eq:technology_choice}
-S_i^*(P) \in \argmin_{S_i \subseteq \I \setminus \{i\}} \left\{ K_i(S_i, A_i(S_i), P) + \gamma |S_i| \right\},
+Equilibrium prices $P^*(\mu, S)$ are the fixed point of the system $P_i = K_i(S_i, \mu, P)$. As established in \citet{acemoglu2020endogenous}, the essentiality of labor guarantees that for any network $S$, a unique positive price vector exists. Crucially, prices are monotone in the network structure: if any firm $j$ expands its supplier set $S_j$ to $S'_j \supset S_j$, the unit costs of firm $j$ fall (weakly), reducing prices for all downstream firms.
+
+\subsection{Information and Beliefs}
+
+Firms make their extensive margin decision $S_i$ \emph{before} observing the true state $\mu$. Instead, they face a problem of dispersed information. The fundamental state $\mu \in \R$ is drawn from a prior distribution. Each firm $i$ observes a private signal $s_i \in \R$.
+
+To capture the correlation inherent in supply chain signals, we assume the joint distribution of $(\mu, s_1, \ldots, s_n)$ satisfies \emph{affiliation}.
+
+\begin{assumption}[Affiliated Information]\label{ass:affiliation}
+The random variables $(\mu, s_1, \ldots, s_n)$ are affiliated. That is, their joint probability density function $f$ is log-supermodular:
+\begin{equation}
+    f(z \vee z') f(z \wedge z') \geq f(z) f(z'),
 \end{equation}
-where $\gamma \ge 0$ is a per-link adoption cost. This two-stage structure---choose suppliers, then optimize inputs---means the strategic game is over supplier sets rather than continuous input choices.
+for all $z, z'$ in the support, where $\vee$ and $\wedge$ denote component-wise maximum and minimum.
+\end{assumption}
 
-\subsection{Payoffs}
+Affiliation implies that signals are positively dependent in a strong sense. A high realization of $s_i$ leads firm $i$ to update its beliefs in two ways. First, it places higher probability on a high fundamental state $\mu$ (Monotone Likelihood Ratio Property). Second, and strategically more important, it places higher probability on other firms having observed high signals. Specifically, the conditional expectation $\E[g(\s_{-i}) \mid s_i]$ is non-decreasing in $s_i$ for any non-decreasing function $g$.
 
-Given network $S$, state $\mu$, and equilibrium prices $P^*(S, \mu)$, firm $i$'s payoff from supplier set $S_i$ is
-\begin{equation}\label{eq:payoff}
-\Pi_i(S_i, S_{-i}; \mu) = P_i^* Y_i^* - \left( L_i^* + \sum_{j \in S_i} P_j^* X_{ij}^* \right) - \gamma |S_i|,
+\subsection{The Network Formation Game}
+
+Firm $i$ chooses its supplier set $S_i$ to minimize expected total costs, comprising the variable cost of production and a fixed adoption cost $\gamma |S_i|$. A strategy for firm $i$ is a mapping $\sigma_i: \R \to 2^{\I \setminus \{i\}}$ from signals to supplier sets.
+
+Let $\sigma_{-i}$ denote the strategy profile of all other firms. Firm $i$'s expected cost given signal $s_i$ and supplier set $S_i$ is:
+\begin{equation}\label{eq:objective}
+    \mathcal{C}_i(S_i, s_i; \sigma_{-i}) = \E \left[ K_i(S_i, \mu, P^*(\mu, S_i, \sigma_{-i}(\s_{-i}))) + \gamma |S_i| \;\Bigg|\; s_i \right].
 \end{equation}
-where $(L_i^*, X_i^*)$ solve \cref{eq:unit_cost} and $Y_i^* = \theta_i(\mu) F_i(S_i, A_i, L_i^*, X_i^*)$. Under contestability, output price equals a markup over unit cost: $P_i = (1 + \tau_i) \theta_i(\mu)^{-1} K_i$. This implies operating profits are a constant share $\tau_i / (1 + \tau_i)$ of revenue; the network choice affects profits through the adoption cost $\gamma |S_i|$ and through the unit cost $K_i$.
+\cref{eq:objective} highlights the strategic interaction. Firm $i$'s costs depend on equilibrium prices $P^*$. These prices depend on the supplier choices of firms $j \neq i$, which in turn depend on their private signals $\s_{-i}$ via the strategies $\sigma_{-i}$. Consequently, firm $i$ must forecast not just fundamentals, but the sentiment of its peers.
 
-\subsection{Timing and household}
+%==============================================================================
+\section{Equilibrium Characterization}\label{sec:equilibrium}
+%==============================================================================
 
-A representative household supplies one unit of labor inelastically and consumes the $n$ goods with homothetic preferences. The sequence of events is:
+We now establish the existence and structure of equilibria. The game defined above presents technical challenges: the action space is discrete and high-dimensional (the lattice of subsets), while the state space is continuous. We overcome these by characterizing the economy as a supermodular Bayesian game.
+
+\subsection{Strategic Complementarities}
+
+The existence of monotone equilibria rests on two forms of complementarity: technological complementarity in production and inferential complementarity in beliefs.
+
+We first impose a standard restriction on the cost function to ensure that inputs are complements in adoption.
+
+\begin{assumption}[Cost Submodularity]\label{ass:submod}
+The unit cost function $K_i(S_i, \mu, P)$ has decreasing differences in $(S_i, P)$. That is, the marginal cost reduction from adding a supplier is greater when the prices of other inputs are lower.
+\end{assumption}
+
+This assumption holds for standard CES and Cobb-Douglas aggregators where the elasticity of substitution exceeds unity. It implies that a general decline in the price level increases the incentive for firm $i$ to expand its network.
+
+We can now establish the supermodularity of the game. Let $\Pi_i = -\mathcal{C}_i$ denote the payoff function.
+
+\begin{lemma}[Global Complementarities]\label{lem:complementarities}
+Under \cref{ass:affiliation,ass:submod}:
 \begin{enumerate}
-\item Nature draws $(\mu, s_1, \ldots, s_n)$.
-\item Each firm $i$ observes $s_i$ and chooses supplier set $S_i$.
-\item The state $\mu$ is realized, production takes place, and prices clear markets.
+    \item \textbf{Strategic Complementarity:} $\Pi_i$ has increasing differences in $(S_i, \sigma_{-i})$. If rivals adopt larger supplier sets (in the set inclusion order) for any given signal, firm $i$'s incentive to expand $S_i$ increases.
+    \item \textbf{Single-Crossing in Type:} $\Pi_i$ has increasing differences in $(S_i, s_i)$. A higher signal increases the marginal benefit of expanding the supplier set.
 \end{enumerate}
-The game is a Bayesian game over supplier sets, with the price system determined by equilibrium conditions.
+\end{lemma}
+
+\begin{proof}
+Consider Strategic Complementarity. If rivals play a ``larger'' strategy $\sigma'_{-i} \supseteq \sigma_{-i}$, then for any realization of signals, the resulting network is denser. By the monotonicity of inverse M-matrices \citep{acemoglu2020endogenous}, a denser network lowers equilibrium prices $P^*$. By \cref{ass:submod}, lower prices increase the marginal return to adding suppliers.
+
+Consider Single-Crossing. Let $\Delta(\mu, P) = K_i(S_i, \cdot) - K_i(S'_i, \cdot)$ be the cost saving from expansion ($S'_i \supset S_i$). This saving is increasing in $\mu$ (higher productivity scales up the firm) and decreasing in $P$ (lower prices make expansion more valuable). Since $P^*$ is decreasing in both $\mu$ and $\s_{-i}$, the composite gain function $G(\mu, \s_{-i})$ is increasing in both arguments. By the properties of affiliated variables \citep{milgrom1982theory}, the conditional expectation $\E[G(\mu, \s_{-i}) \mid s_i]$ is increasing in $s_i$.
+\end{proof}
+
+\subsection{Existence of Monotone Equilibria}
+
+\cref{lem:complementarities} allows us to apply the machinery of supermodular games. The set of monotone strategies $\Sigma$, endowed with the pointwise inclusion order, forms a complete lattice. The best-response mapping preserves this order. By Tarski's Fixed Point Theorem, we obtain our first main result.
+
+\begin{theorem}[Extremal Monotone Equilibria]\label{thm:existence}
+The network formation game possesses a greatest Bayesian Nash equilibrium $\bar{\sigma}$ and a least Bayesian Nash equilibrium $\underline{\sigma}$. These equilibria are in monotone pure strategies: for every firm $i$, if $s'_i > s_i$, then $\sigma_i(s_i) \subseteq \sigma_i(s'_i)$.
+\end{theorem}
+
+This theorem implies that beliefs shape the network structure in a predictable, ordered way. In the ``greatest'' equilibrium, firms coordinate on optimistic beliefs, leading to dense production networks. In the ``least'' equilibrium, pessimistic coordination leads to sparse networks. Both regimes are consistent with the same underlying fundamentals; the selection is driven by the self-fulfilling nature of sentiment.
 
 %==============================================================================
-\section{Competitive Equilibrium and Price Characterization}\label{sec:equilibrium_characterization}
+\section{The Sentiment Multiplier}\label{sec:statics}
 %==============================================================================
 
-This section collects the equilibrium definition and the price characterization used in the strategic analysis. The key object is the equilibrium price mapping $P^*(S,\mu)$. For each network profile $S$ and realized state $\mu$, the mapping returns the equilibrium price vector. Existence and uniqueness allow us to treat supplier choices as inducing a well-defined price system.
+We now turn to the central economic mechanism. How do these strategic complementarities amplify shocks?
 
-\subsection{Competitive equilibrium}
+Consider a ``sentiment shock'': a uniform shift in signals $s_i \to s_i + \delta$ holding the fundamental $\mu$ constant. In a standard model with exogenous networks, this noise would be ignored. Here, it is not.
 
-We adopt a reduced-form notion of contestability: prices equal a constant markup over unit costs. Let $\tau_i\ge 0$ denote sector $i$'s markup parameter.
+We decompose the total network response $dy/ds$ into a direct effect (response to fundamentals $\E[\mu]$) and a strategic effect (response to others' actions $\E[\s_{-i}]$). The strategic effect generates a multiplier.
 
-\begin{definition}[Competitive equilibrium]\label{def:equilibrium}
-Fix a realized state $\mu$ and a network profile $S=(S_1,\ldots,S_n)$. A competitive equilibrium is a tuple $(P,C,L,X,Y)$ such that:
-\begin{enumerate}[label=(\roman*)]
-    \item (\emph{Contestability}) For each $i$,
-    \begin{equation}\label{eq:contestability}
-        P_i = (1+\tau_i)\,\theta_i(\mu)^{-1}\,K_i(S_i,A_i(S_i),P).
-    \end{equation}
-    \item (\emph{Cost minimization}) Given $(S_i,P)$, the choices $(L_i,X_i)$ attain the minimum in \cref{eq:unit_cost}.
-    \item (\emph{Household optimization}) $C$ maximizes household utility given prices and income.
-    \item (\emph{Market clearing}) For each $i$, $C_i+\sum_{j}X_{ji}=Y_i$, and $\sum_i L_i=1$.
-\end{enumerate}
-\end{definition}
-
-\subsection{Existence and uniqueness of equilibrium prices}
-
-Fix $S$ and $\mu$. Taking logs in \cref{eq:contestability} yields
-\begin{equation}\label{eq:log_price_system}
-p_i = \log(1+\tau_i) - (\varphi_i\mu+\eta_i) + k_i(S_i,a_i(S_i),p),
+\begin{proposition}[The Sentiment Multiplier]\label{prop:multiplier}
+In the symmetric Gaussian limit, let $\beta \in (0,1)$ represent the technological elasticity of network formation with respect to aggregate prices, and let $\rho \in (0,1)$ represent the correlation of private signals. The elasticity of network density with respect to a sentiment shock is
+\begin{equation}
+    \frac{dy}{ds} = \mathcal{M} \cdot \frac{\partial y}{\partial \E[\mu]}, \quad \text{where } \mathcal{M} = \frac{1}{1 - \rho \beta}.
 \end{equation}
-where $p_i=\log P_i$, $a_i=\log A_i$, and $k_i=\log K_i$.
-
-\begin{definition}[P-matrix]\label{def:pmatrix}
-A square matrix $B$ is a \textbf{P-matrix} if all its principal minors are positive.
-\end{definition}
-
-\begin{theorem}[Hawkins--Simon]\label{thm:hawkins_simon}
-A matrix $B=I-A$ with $A\ge 0$ is a P-matrix if and only if $B^{-1}$ exists and has nonnegative entries.
-\end{theorem}
-
-\begin{theorem}[Gale--Nikaido]\label{thm:gale_nikaido}
-Let $\Phi:\R^n\to\R^n$ be continuously differentiable. If the Jacobian $D\Phi(x)$ is a P-matrix for all $x$, then $\Phi$ is a global homeomorphism.
-\end{theorem}
-
-\begin{proposition}[Existence and uniqueness of prices]\label{prop:price_existence}
-Suppose \cref{ass:technology} holds and that $p\mapsto k(S,a(S),p)$ is continuously differentiable. Fix $S$ and $\mu$. Then \cref{eq:log_price_system} has a unique solution $p^*(S,\mu)$, and therefore a unique equilibrium price vector $P^*(S,\mu)$.
 \end{proposition}
 
-\begin{proof}
-Define $\Phi(p)=p-k(S,a(S),p)-b$, where $b_i=\log(1+\tau_i)-(\varphi_i\mu+\eta_i)$. Then $p$ solves \cref{eq:log_price_system} if and only if $\Phi(p)=0$. The Jacobian is $D\Phi(p)=I-J_{k,p}(p)$, where $J_{k,p}(p)$ has entries $\partial k_i/\partial p_j$.
+The term $\mathcal{M}$ is the \emph{sentiment multiplier}. It exceeds unity whenever $\rho > 0$ and inputs are complements ($\beta > 0$). It captures a feedback loop: optimism leads to network expansion, which lowers prices, which validates the optimism. 
 
-In differentiable environments, $\partial k_i/\partial p_j$ coincides with a cost share. Labor essentiality implies that the share of intermediate inputs in unit costs is strictly below one. Thus there exists $\kappa\in(0,1)$ such that for all $i$ and all $p$,
-\[
-\sum_{j=1}^n \frac{\partial k_i}{\partial p_j}(p) \le \kappa.
-\]
-Since $J_{k,p}(p)\ge 0$, the bound implies that $I-J_{k,p}(p)$ is a P-matrix by \cref{thm:hawkins_simon}. Hence $D\Phi(p)$ is a P-matrix for all $p$, and \cref{thm:gale_nikaido} implies that $\Phi$ is a global homeomorphism. Therefore $\Phi$ has a unique zero.
-\end{proof}
+Crucially, the multiplier depends on the information structure. If signals are perfectly idiosyncratic ($\rho \to 0$), the multiplier disappears ($\mathcal{M} \to 1$). If signals are highly correlated ($\rho \to 1$), the multiplier approaches the theoretical maximum defined by the technology. This reveals that correlated information is not merely a statistical nuisance; it is the transmission mechanism for strategic amplification.
 
-\subsection{Monotone price response}
+\subsection{Information Quality and Volatility}
 
-Our strategic results use a monotonicity property of the equilibrium price mapping. We now establish this property under natural conditions on the technology.
+We can now ask how the quality of information affects economic stability. We distinguish between two dimensions of information quality: signal precision (variance of noise) and signal correlation (covariance of noise).
 
-\begin{assumption}[Isotone technology productivity]\label{ass:isotone_A}
-For each firm $i$, the productivity term $A_i(S_i)$ is isotone in $S_i$ under set inclusion: $S_i' \supseteq S_i$ implies $A_i(S_i') \ge A_i(S_i)$.
-\end{assumption}
-
-\begin{lemma}[Monotone price response]\label{lem:monotone_price}
-Suppose \cref{ass:technology,ass:isotone_A} hold. Fix $\mu$. If $S' \succeq S$ (element-wise set inclusion), then $P^*(S',\mu) \le P^*(S,\mu)$ componentwise.
-\end{lemma}
-
-\begin{proof}
-By \cref{ass:isotone_A}, $S_i' \supseteq S_i$ implies $A_i(S_i') \ge A_i(S_i)$. A larger supplier set combined with higher productivity reduces unit costs: $K_i(S_i', A_i(S_i'), P) \le K_i(S_i, A_i(S_i), P)$ for any $P$.
-
-Consider the price mapping $T: P \mapsto P'$ where $P'_i = (1+\tau_i) \theta_i(\mu)^{-1} K_i(S_i, A_i(S_i), P)$. Under network $S'$, the mapping $T'$ has $T'_i(P) \le T_i(P)$ for all $P$ and $i$. Since both $T$ and $T'$ are contractions on $[\underline{P}, \bar{P}]$ (the spectral radius is below 1 by labor essentiality), and $T' \le T$ pointwise, the unique fixed points satisfy $P^{*}(S') \le P^*(S)$ by a standard monotone operator argument.
-\end{proof}
-
-%==============================================================================
-\section{Strategic Complementarities}\label{sec:complementarities}
-%==============================================================================
-
-This section shows that network formation is a Bayesian game of strategic complementarities. The argument combines three ingredients: the action space is a lattice, payoffs are supermodular in own actions, and higher signals shift interim beliefs upward about both fundamentals and opponents' actions.
-
-\subsection{Action space as a lattice}
-
-Each firm's action is $a_i=(S_i,L_i,X_i)$, where
-\[
-a_i \in \Sset_i \equiv 2^{\I\setminus\{i\}} \times [0,\bar L] \times [0,\bar X]^{n-1}.
-\]
-We order actions by
-\[
-(S_i,L_i,X_i)\succeq(S_i',L_i',X_i') \quad\Longleftrightarrow\quad
-S_i\supseteq S_i',\ L_i\ge L_i',\ X_i\ge X_i' \text{ componentwise}.
-\]
-
-\begin{lemma}[Action space]\label{lem:lattice}
-Under $\succeq$, $\Sset_i$ is a compact lattice.
-\end{lemma}
-
-\begin{proof}
-The power set $2^{\I\setminus\{i\}}$ is a finite lattice under inclusion with $\vee=\cup$ and $\wedge=\cap$. The intervals $[0,\bar L]$ and $[0,\bar X]^{n-1}$ are compact complete lattices under the usual order. The Cartesian product of lattices is a lattice with componentwise join and meet.
-\end{proof}
-
-\subsection{Supermodularity}
-
-\begin{assumption}[Technological complementarity]\label{ass:complementarity}
-The production function $F_i$ exhibits increasing differences in inputs: for $S_i'\supseteq S_i$ and $X'\ge X$,
-\[
-F_i(S_i',A_i(S_i'),L,X')-F_i(S_i,A_i(S_i),L,X')
-\ge
-F_i(S_i',A_i(S_i'),L,X)-F_i(S_i,A_i(S_i),L,X).
-\]
-\end{assumption}
-
-\begin{lemma}[Supermodularity of payoffs]\label{lem:supermod}
-Under \cref{ass:technology,ass:complementarity}, firm $i$'s payoff is supermodular in its own action $a_i$.
-\end{lemma}
-
-\begin{proof}
-By \citet{topkis1998supermodularity}, a function on a lattice is supermodular if and only if it has increasing differences in each pair of variables. \cref{ass:complementarity} provides increasing differences between $(S_i,X_i)$. Positive scalar multiplication preserves supermodularity. Input expenditures and adoption costs are modular (additively separable). Subtracting a modular function preserves supermodularity.
-\end{proof}
-
-\subsection{Price-action single crossing}
-
-\begin{lemma}[Single crossing in prices]\label{lem:price_sc}
-Under \cref{ass:isotone_A}, payoffs have increasing differences in $(a_i,a_{-i})$.
-\end{lemma}
-
-\begin{proof}
-If $a_{-i}'\succeq a_{-i}$, then $P^*(a_i,a_{-i}',\mu)\le P^*(a_i,a_{-i},\mu)$ by \cref{ass:isotone_A}. For $a_i'\succeq a_i$, define the incremental payoff
-\[
-\Delta\Pi(P)=\Pi_i(a_i',P)-\Pi_i(a_i,P).
-\]
-Since input costs enter linearly with a negative sign, $\Delta\Pi(P)$ is decreasing in $P$. Lower prices induced by $a_{-i}'$ therefore raise the gain from choosing $a_i'$ rather than $a_i$.
-\end{proof}
-
-\subsection{Information single crossing}
-
-\begin{lemma}[Information single crossing]\label{lem:info_sc}
-Suppose \cref{ass:affiliated,ass:complementarity} holds and opponents use monotone strategies $\sigma_{-i}$. Then expected payoffs satisfy single crossing in $(a_i,s_i)$: for $a_i'\succeq a_i$ and $s_i'>s_i$,
-\[
-\E\!\left[\Pi_i(a_i',\sigma_{-i}(s_{-i});\mu,P^*)-\Pi_i(a_i,\sigma_{-i}(s_{-i});\mu,P^*)\mid s_i'\right]
-\ge
-\E\!\left[\cdot\mid s_i\right].
-\]
-\end{lemma}
-
-\begin{proof}
-Define the gain function
-\[
-h(\mu,s_{-i})=\Pi_i(a_i',\sigma_{-i}(s_{-i});\mu,P^*)-\Pi_i(a_i,\sigma_{-i}(s_{-i});\mu,P^*).
-\]
-
-\textbf{Step 1:} $h$ is increasing in $\mu$. The shifter $\theta_i(\mu)=\exp(\varphi_i\mu+\eta_i)$ is increasing in $\mu$ when $\varphi_i\ge 0$, and $a_i'\succeq a_i$ weakly increases production possibilities. Hence the incremental benefit from $a_i'$ is increasing in $\mu$.
-
-\textbf{Step 2:} $h$ is increasing in $s_{-i}$. Monotone $\sigma_{-i}$ implies $\sigma_{-i}(s_{-i}')\succeq\sigma_{-i}(s_{-i})$ for $s_{-i}'\ge s_{-i}$. By \cref{ass:isotone_A}, this lowers equilibrium prices. By \cref{lem:price_sc}, lower prices increase the gain from expansion, so $h$ is increasing in $s_{-i}$.
-
-\textbf{Step 3:} Apply \cref{thm:mlrp,thm:fosd_integration}. Since $h$ is increasing in $(\mu,s_{-i})$ and the conditional distribution of $(\mu,s_{-i})$ given $s_i$ is ordered by FOSD in $s_i$, we have $\E[h(\mu,s_{-i})\mid s_i']\ge \E[h(\mu,s_{-i})\mid s_i]$.
-\end{proof}
-
-%==============================================================================
-\section{Monotone Bayesian Nash Equilibria}\label{sec:monotone_equilibria}
-%==============================================================================
-
-This section uses lattice methods to establish equilibrium existence in monotone strategies. The result is useful because it gives a disciplined way to describe equilibrium network regimes in a high-dimensional environment.
-
-\begin{theorem}[Extremal monotone equilibria]\label{thm:existence}
-Under \cref{ass:affiliated,ass:technology,ass:complementarity,ass:isotone_A}, the Bayesian game admits a nonempty complete lattice of monotone Bayesian Nash equilibria. In particular, there exist greatest and least equilibria $\bar\sigma$ and $\underline\sigma$ in the lattice of monotone strategies.
+\begin{theorem}[Information and Volatility]\label{thm:comparative_statics}
+In the Gaussian signal limit:
+\begin{enumerate}
+    \item \textbf{Precision:} An increase in signal precision (lower $\sigma_\varepsilon^2$) reduces the conditional volatility of the network structure.
+    \item \textbf{Correlation:} An increase in the correlation of error terms (higher $\rho$, holding marginal variance constant) increases the conditional volatility of the network structure.
+\end{enumerate}
 \end{theorem}
 
-\begin{proof}
-We verify the conditions of \citet{van2007monotone}.
-
-\textbf{Step 1: Strategy lattice.} Let $\Sigma_i$ be the set of isotone functions $\sigma_i:\R\to\Sset_i$. By \cref{lem:lattice}, $\Sset_i$ is a compact lattice. The set $\Sigma=\prod_i\Sigma_i$ is a complete lattice under pointwise order.
-
-\textbf{Step 2: Supermodularity.} By \cref{lem:supermod}, payoffs are supermodular in $a_i$.
-
-\textbf{Step 3: Increasing differences.} By \cref{lem:price_sc}, payoffs have increasing differences in $(a_i,a_{-i})$.
-
-\textbf{Step 4: Single crossing.} By \cref{lem:info_sc}, expected payoffs satisfy single crossing in $(a_i,s_i)$.
-
-\textbf{Step 5: Monotone best responses.} By \citet{milgrom1994monotone}, the best-response correspondence admits an isotone selection in $(s_i,\sigma_{-i})$.
-
-\textbf{Step 6: Fixed point.} The best-response operator $\BR:\Sigma\to\Sigma$ is isotone. By \cref{thm:tarski}, an isotone map on a complete lattice has a nonempty complete lattice of fixed points.
+\begin{proof}[Sketch]
+As precision increases, firms place less weight on the prior and more on the realization, but the variance of the ``noise'' component shrinks faster than the strategic response increases. In contrast, increasing correlation raises $\rho$ without improving information quality. This raises the multiplier $\mathcal{M}$ directly, causing the economy to react more violently to non-fundamental shocks.
 \end{proof}
 
-\begin{remark}[Interpretation]
-In the greatest monotone equilibrium, firms respond to any signal as aggressively as possible, taking as given that others respond aggressively as well. The least equilibrium is the pessimistic counterpart. This ordering gives a simple language for ``optimistic'' and ``pessimistic'' network regimes.
-\end{remark}
-
-%==============================================================================
-\section{Comparative Statics}\label{sec:comparative}
-%==============================================================================
-
-This section derives comparative statics for the extremal equilibria. The logic is common across results. We first show that a parameter shift moves interim incentives in a monotone direction for every fixed opponent strategy. This shifts best responses. Since the best-response operator is isotone, the ordering transfers to the extremal fixed points.
-
-\subsection{Adoption costs}
-
-\begin{theorem}[Adoption cost reduction]\label{thm:gamma}
-Let $\gamma$ be the per-link adoption cost in \cref{eq:technology_choice}. The extremal equilibria $\bar\sigma$ and $\underline\sigma$ are antitone in $\gamma$: lower $\gamma$ expands equilibrium supplier sets.
-\end{theorem}
-
-\begin{proof}
-The term $-\gamma|S_i|$ has decreasing differences in $(S_i,\gamma)$. By monotone comparative statics for supermodular games \citep{topkis1998supermodularity}, extremal fixed points are antitone in $\gamma$.
-\end{proof}
-
-\begin{remark}[Economic content]
-Lower adoption costs raise the return to forming supplier links for every configuration of opponents' networks. Because best responses are increasing, this local change propagates through equilibrium prices and expands the network economy-wide.
-\end{remark}
-
-\subsection{Belief shifts}
-
-\begin{theorem}[Optimism and network expansion]\label{thm:beliefs}
-If interim beliefs shift upward in the FOSD sense, the extremal monotone equilibria expand.
-\end{theorem}
-
-\begin{proof}
-An upward FOSD shift in beliefs increases the interim expected gain from expansion for every fixed opponent strategy (by \cref{thm:fosd_integration} applied to the gain function $h$ in \cref{lem:info_sc}). This shifts best responses upward. By monotone comparative statics for extremal fixed points, the extremal equilibria increase.
-\end{proof}
-
-\begin{remark}[Direct and strategic channels]
-The belief shift affects incentives through a direct and a strategic channel. The direct channel raises $\E[\theta_i(\mu)\mid s_i]$ and therefore the expected return to adopting a larger supplier set. The strategic channel raises $\E[g(s_{-i})\mid s_i]$ for increasing $g$ and therefore raises expected opponent expansion. Under \cref{ass:isotone_A}, higher expected opponent expansion lowers expected input prices and further raises the return to expansion.
-\end{remark}
-
-%==============================================================================
-\section{Belief-Adjusted Domar Weights}\label{sec:domar}
-%==============================================================================
-
-We now specialize to the \textbf{Cobb-Douglas/Gaussian} case to obtain explicit formulas for how beliefs enter aggregate productivity. This allows us to define belief-adjusted Domar weights that treat the information structure as first order.
-
-\subsection{Cobb-Douglas production and Gaussian signals}
-
-Assume Cobb-Douglas technology:
-\begin{equation}\label{eq:cobb_douglas}
-    Y_i = \theta_i(\mu) L_i^{\alpha_i} \prod_{j \in S_i} X_{ij}^{\beta_{ij}}, \quad \text{with } \alpha_i + \sum_{j \in S_i} \beta_{ij} = 1.
-\end{equation}
-Productivity is log-linear in the common factor:
-\[
-\theta_i(\mu) = \exp(\varphi_i \mu + \eta_i),
-\]
-where $\varphi_i > 0$ measures sector $i$'s exposure to aggregate conditions and $\eta_i$ is an idiosyncratic component.
-
-Signals are Gaussian as in \cref{ex:gaussian}: $s_i = \mu + \varepsilon_i$ with $\varepsilon_i \sim \mathcal{N}(0, \sigma_\varepsilon^2)$ independent across $i$ and of $\mu$.
-
-\subsection{Signal-conditioned Domar weights}
-
-Let the equilibrium mapping from the signal profile $\s = (s_1, \ldots, s_n)$ to allocations be
-\[
-\s \mapsto \big(P(\s), Y(\s), C(\s), S(\s)\big),
-\]
-where $S(\s)$ is the endogenous network and $(P, Y, C)$ are induced prices, outputs, and final demands.
-
-\begin{definition}[Signal-conditioned Domar weight]
-The \textbf{signal-conditioned Domar weight} of sector $i$ is:
-\begin{equation}\label{eq:domar}
-    D_i(\s) \equiv \frac{P_i(\s) Y_i(\s)}{\sum_{k=1}^n P_k(\s) C_k(\s)} = \frac{P_i(\s) Y_i(\s)}{\mathrm{GDP}(\s)}.
-\end{equation}
-\end{definition}
-
-This object is a function of signals because signals determine networks and thus prices. It summarizes which sectors are systemically important in the equilibrium induced by the belief state $\s$.
-
-\subsection{Interim Domar weights}
-
-From the perspective of agent $i$, who observes only $s_i$, the relevant object is the expected Domar weight.
-
-\begin{definition}[Interim Domar weight]
-Agent $i$'s \textbf{interim Domar weight} for sector $j$ is:
-\begin{equation}
-    D_j^i(s_i) \equiv \E\left[ D_j(\s) \mid s_i \right].
-\end{equation}
-\end{definition}
-
-This is what firm $i$ \emph{believes} the Domar weight to be, given its information. Under affiliation, these interim expectations satisfy monotonicity:
-
-\begin{lemma}[Monotonicity of interim Domar weights]
-If the network is monotone in signals (\cref{thm:existence}) and larger networks increase sector $j$'s output share, then $D_j^i(s_i)$ is non-decreasing in $s_i$.
-\end{lemma}
-
-\subsection{Belief-adjusted Domar elasticities}
-
-The Hulten/Domar logic says that a productivity change in sector $i$ moves aggregate output by that sector's Domar weight. In our setting, we differentiate with respect to the \emph{belief state}, allowing networks to adjust.
-
-Define the posterior mean belief:
-\[
-\hat{\mu}(\s) \equiv \E[\mu \mid \s], \qquad \hat{\theta}_i(\s) \equiv \exp(\varphi_i \hat{\mu}(\s) + \eta_i).
-\]
-
-\begin{definition}[Belief-adjusted Domar elasticity]
-The \textbf{belief-adjusted Domar elasticity} of sector $i$ is:
-\begin{equation}
-    \Lambda_i(\s) \equiv \frac{\partial \log \mathrm{GDP}(\s)}{\partial \log \hat{\theta}_i(\s)}.
-\end{equation}
-The \textbf{aggregate belief-Domar loading} is:
-\begin{equation}\label{eq:lambda}
-    \Lambda(\s) \equiv \frac{\partial \log \mathrm{GDP}(\s)}{\partial \hat{\mu}(\s)} = \sum_{i=1}^n \Lambda_i(\s) \cdot \varphi_i.
-\end{equation}
-\end{definition}
-
-This $\Lambda(\s)$ is the summary statistic that treats beliefs as first order: it captures how a small belief shift about $\mu$ changes aggregate output through \emph{both} the direct fundamental channel and the strategic network channel.
-
-\subsection{Decomposition: Hulten term and strategic amplification}
-
-\begin{proposition}[Belief-adjusted Domar decomposition]\label{prop:domar_decomp}
-In the Cobb-Douglas/Gaussian economy with interior equilibrium, the aggregate belief-Domar loading decomposes as:
-\begin{equation}\label{eq:decomposition}
-    \Lambda(\s) = \underbrace{\sum_{i=1}^n D_i(\s) \cdot \varphi_i}_{\text{Hulten/Domar term}} \times \underbrace{\frac{1}{1 - \theta(\s)}}_{\text{strategic amplification}},
-\end{equation}
-where the \textbf{equilibrium feedback index} is
-\begin{equation}\label{eq:theta}
-    \theta(\s) \equiv \rho\big(B(\s)\big) \in (0,1),
-\end{equation}
-with $B(\s)$ the $n \times n$ matrix of equilibrium input-output shares: $B_{ij}(\s) = \beta_{ij} \cdot \mathbf{1}\{j \in S_i(\s)\}$.
-\end{proposition}
-
-\begin{proof}
-In the Cobb-Douglas case, the cost function is $K_i = \frac{1}{A_i} \prod_{j \in S_i} P_j^{\beta_{ij}}$ (up to a constant involving $\alpha_i$). Taking logs and substituting the contestability condition $p_i = -\log \theta_i(\mu) + k_i$:
-\[
-p_i = -(\varphi_i \mu + \eta_i) + \sum_{j \in S_i} \beta_{ij} p_j + c_i,
-\]
-where $c_i$ collects constants. In matrix form: $p = -\Phi \mu + B(\s) p + c$, where $\Phi = (\varphi_1, \ldots, \varphi_n)'$. Solving: $p = (I - B)^{-1}(c - \Phi \mu)$.
-
-Log-linearizing GDP around the equilibrium:
-\[
-d \log \text{GDP} = \sum_i D_i \cdot d \log Y_i = \sum_i D_i (\varphi_i \, d\mu - dp_i).
-\]
-Substituting $dp = -(I-B)^{-1} \Phi \, d\mu$ and simplifying:
-\[
-\frac{d \log \text{GDP}}{d\mu} = D' \Phi + D' (I-B)^{-1} \Phi = D' (I-B)^{-1} \Phi.
-\]
-The Leontief inverse $(I-B)^{-1} = \sum_{k=0}^\infty B^k$ captures the geometric series of network spillovers. The amplification factor is bounded by $(1 - \rho(B))^{-1}$ where $\rho(B) < 1$ by labor essentiality. Defining $\theta(\s) = \rho(B(\s))$ yields the decomposition.
-\end{proof}
-
-\paragraph{Interpretation.} In optimistic belief states, the endogenous network $S(\s)$ is denser, which increases the nonzero entries in $B(\s)$, pushing $\theta(\s)$ up and making the multiplier larger. When the network is exogenous (fixed $S$), beliefs do not affect $B$ and the amplification factor is constant. Endogenous networks under dispersed information make the amplification state-dependent.
+This result suggests that opacity in supply chains acts as an amplifier. When information is noisy and errors are correlated (e.g., when firms rely on the same few public indicators), the sentiment multiplier is maximized, leading to fragile supply chains susceptible to sentiment-driven fluctuations.
 
 %==============================================================================
 \section{Dynamic Extension}\label{sec:dynamic}
 %==============================================================================
 
-The static analysis describes network formation in a single period. In many applications, supplier links persist because forming or severing links is costly. This section develops a dynamic extension that preserves the monotone structure, following \citet{van2007monotone}.
-
-\subsection{Dynamic Bayesian game}
-
-Time is discrete, $t = 0, 1, 2, \ldots$. Each period, nature draws a productivity shock $\mu_t$ from a stationary distribution. Firms observe private signals $s_{it}$ correlated with $\mu_t$ and with each other's signals (affiliation). The network choice $S_{it}$ is made at the beginning of period $t$ after observing $s_{it}$.
-
-A firm's \textbf{state} at time $t$ is the pair $(s_{it}, S_{i,t-1})$---the current signal and the inherited network. Firms discount future payoffs at rate $\beta \in (0,1)$. The period payoff is:
-\[
-\Pi_i(S_{it}, S_{-i,t}, \mu_t) - c(S_{it}, S_{i,t-1}),
-\]
-where $\Pi_i$ is as in \cref{eq:payoff} and $c(\cdot)$ is an adjustment cost:
-\[
-c(S_{it}, S_{i,t-1}) = \gamma^+|S_{it}\setminus S_{i,t-1}|+\gamma^-|S_{i,t-1}\setminus S_{it}|.
-\]
-
-\subsection{Value function and Bellman equation}
-
-Given opponents' Markov strategy $\sigma_{-i}$, firm $i$'s \textbf{value function} satisfies the Bellman equation:
-\begin{equation}\label{eq:bellman}
-V_i(s_{it}, S_{i,t-1}; \sigma_{-i}) = \max_{S_{it}} \left\{ \E\left[\Pi_i(S_{it}, \sigma_{-i}(s_{-i,t}), \mu_t) \mid s_{it}\right] - c(S_{it}, S_{i,t-1}) + \beta \, \E\left[V_i(s_{i,t+1}, S_{it}; \sigma_{-i}) \mid s_{it}\right] \right\}.
+We briefly sketch a dynamic extension to illustrate persistence. Let $t=1, 2, \dots$. Firms face asymmetric adjustment costs: forming a link costs $\gamma^+$, while severing one costs $\gamma^-$.
+\begin{equation}
+    \Gamma(S_{it}, S_{i,t-1}) = \gamma^+ |S_{it} \setminus S_{i,t-1}| + \gamma^- |S_{i,t-1} \setminus S_{it}|.
 \end{equation}
-
-The expectation integrates over $(\mu_t, s_{-i,t})$ conditional on $s_{it}$, and over the next-period signal $s_{i,t+1}$ given its realized distribution.
-
-\subsection{Monotone Markov strategies}
-
-We restrict attention to \textbf{Markov strategies} that depend only on the current state $(s_{it}, S_{i,t-1})$, not on the full history. A Markov strategy is \textbf{monotone} if $\sigma_i(s_{it}, S_{i,t-1})$ is non-decreasing in $s_{it}$ (with respect to set inclusion) for each $S_{i,t-1}$.
-
-The space of monotone Markov strategies forms a complete lattice under the pointwise order.
-
-\begin{theorem}[Existence of monotone Markov equilibria]\label{thm:dynamic}
-Under dynamic analogues of \cref{ass:affiliated,ass:technology,ass:complementarity,ass:isotone_A}, the dynamic game possesses a greatest and a least monotone Markov perfect equilibrium. In these equilibria, network expansion is monotone in the current signal: optimistic firms expand, pessimistic firms contract.
-\end{theorem}
-
-\begin{proof}
-We verify the conditions of \citet{van2007monotone}. The Bellman operator $T: V \mapsto TV$ defined by \cref{eq:bellman} is a contraction in the sup-norm with modulus $\beta < 1$, so it has a unique fixed point $V^*$. Given $V^*$, the best-response operator maps monotone strategies to monotone strategies by the single-crossing property (Lemma~\ref{lem:info_sc}). The space of monotone strategies is a complete lattice. By Tarski's fixed point theorem, extremal fixed points exist in the strategy space.
-\end{proof}
-
-\subsection{Hysteresis and persistence}
-
-A key feature of the dynamic model is \textbf{belief-network feedback}. As firms observe positive signals, they update beliefs upward, expand networks, benefit from lower prices, and enter the next period with a denser inherited network $S_{i,t-1}$. The adjustment cost creates \textbf{hysteresis}:
-
-\begin{remark}[Hysteresis]
-If adjustment costs are asymmetric ($\gamma^+ > \gamma^-$), the economy may exhibit path dependence. A temporary negative shock can push the economy to the sparse equilibrium. Because reforming links is costly ($\gamma^+ > 0$), the economy remains sparse even when signals recover, unless a sufficiently large positive shock coordinates a return to the dense equilibrium.
-\end{remark}
+In this environment, the state space expands to include the previous network $S_{t-1}$. The strategic complementarity now interacts with hysteresis. A temporary negative sentiment shock can cause firms to sever links. Because reforming these links is costly ($\gamma^+ > 0$), the economy may remain trapped in a sparse network equilibrium even after beliefs recover, unless a sufficiently strong positive shock coordinates a move back to the dense equilibrium.
 
 %==============================================================================
-\section{Conclusion}\label{sec:conclusion}
+\section{Conclusion}\label{sec:concl}
 %==============================================================================
 
-We developed a theory of endogenous production network formation under dispersed information. The production environment follows \citet{acemoglu2020endogenous} but introduces private affiliated signals about aggregate productivity. Affiliation implies that a firm's optimism about fundamentals is also optimism about others' optimism. Under input complementarities, this inference generates strategic complementarities in supplier adoption decisions.
+This paper has argued that the structure of production networks is endogenous to the beliefs of the firms that comprise them. By integrating dispersed, affiliated information into a model of costly network formation, we identified a sentiment multiplier that amplifies fundamental shocks.
 
-Our main results establish existence of extremal monotone Bayesian Nash equilibria and derive comparative statics with respect to adoption costs and belief shifts. The analysis provides a disciplined sense in which sentiment can be self-reinforcing through network formation: changes in beliefs can reorganize supplier sets and thereby change equilibrium input prices. The belief-adjusted Domar weights show precisely how the information structure enters first order in determining aggregate productivity.
-
-Our results imply that supply chain robustness is not merely a technological question but an informational one. Policies that improve transparency---standardizing data on upstream capacity or aggregate input flows---can reduce the correlation of forecast errors, dampening the strategic amplification of noise.
+Our results imply that supply chain robustness is not merely a technological question but an informational one. Policies that improve transparency---standardizing data on upstream capacity or aggregate input flows---can reduce the correlation of forecast errors, dampening the strategic amplification of noise. Conversely, in opaque environments, rational firms will coordinate on sentiment, generating excess volatility and potential fragility.
 
 %==============================================================================
+% REFERENCES
+%==============================================================================
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\newpage
 \appendix
-\section{Mathematical Preliminaries}\label{app:math}
-%==============================================================================
+\section{Omitted Proofs}\label{app:proofs}
 
-\subsection{Lattice theory}
+\subsection{Proof of Lemma \ref{lem:complementarities}}
+We must show $\Delta(s_i) = \E[ \Pi(S') - \Pi(S) \mid s_i ]$ is increasing in $s_i$.
+Define the cost difference function $g(\mu, \s_{-i}) = K(S, \mu, P(\mu, \sigma_{-i}(\s_{-i}))) - K(S', \mu, P(\mu, \sigma_{-i}(\s_{-i})))$. We verify $g$ is increasing in its arguments:
+
+\textbf{State $\mu$:} The unit cost $K_i$ is proportional to $1/A_i(\mu)$. The cost saving $g$ scales with $1/A_i$. Assuming convex costs, the benefit of expansion is increasing in productivity.
+
+\textbf{Opponent Signals $\s_{-i}$:} Since $\sigma_{-i}$ is monotone, higher $\s_{-i}$ implies larger $S_{-i}$. By the P-matrix property of production networks, larger $S_{-i}$ implies lower equilibrium prices $P$. By \cref{ass:submod}, lower prices increase the cost saving from expansion.
+
+Thus, $g$ is increasing. Since signals are affiliated, the conditional expectation of an increasing function is increasing \citep{milgrom1982theory}. Thus, $\Delta(s_i)$ is increasing.
+
+\subsection{Derivation of the Sentiment Multiplier}
+In the symmetric Gaussian limit, let $y$ be the network action. The best response function is linear: $y_i = \alpha \E[\mu|s_i] + \beta \E[y_{-i}|s_i]$.
+
+In a symmetric equilibrium, the strategy is linear: $y(s) = c s$. Substituting this into the best response:
+\begin{align*}
+c s &= \alpha \rho s + \beta \E[c s_{-i}|s_i] \\
+c s &= \alpha \rho s + \beta c \rho s.
+\end{align*}
+Solving for $c$ yields $c (1 - \beta \rho) = \alpha \rho$, or $c = \frac{\alpha \rho}{1 - \beta \rho}$.
+
+The term $(1-\beta \rho)^{-1}$ represents the multiplier.
+
+\subsection{Lattice Theory Preliminaries}
 
 \begin{definition}
 A \textbf{lattice} is a partially ordered set $(L,\preceq)$ where every pair $x,y$ has a least upper bound $x\vee y$ (join) and greatest lower bound $x\wedge y$ (meet). A lattice is \textbf{complete} if every subset has a join and meet.
@@ -578,194 +306,11 @@ Let $L$ be a complete lattice and $f:L\to L$ be isotone (order-preserving). Then
 \end{theorem}
 
 \begin{proof}
-\textbf{Step 1: Existence of a greatest fixed point.}
-Let $A = \{x \in L : x \preceq f(x)\}$. Since $L$ is complete, $A$ has a supremum $\bar{x} = \bigvee A$. We show $\bar{x}$ is a fixed point.
-
-For any $x \in A$, we have $x \preceq f(x)$. Since $x \preceq \bar{x}$ and $f$ is isotone, $f(x) \preceq f(\bar{x})$. Thus $x \preceq f(\bar{x})$ for all $x \in A$, so $\bar{x} \preceq f(\bar{x})$.
-
-Since $\bar{x} \preceq f(\bar{x})$ and $f$ is isotone, $f(\bar{x}) \preceq f(f(\bar{x}))$. Thus $f(\bar{x}) \in A$, so $f(\bar{x}) \preceq \bar{x}$.
-
-Combining, $f(\bar{x}) = \bar{x}$.
-
-\textbf{Step 2: Existence of a least fixed point.}
-Define $B = \{x \in L : f(x) \preceq x\}$ and $\underline{x} = \bigwedge B$. By a symmetric argument, $\underline{x}$ is a fixed point.
-
-\textbf{Step 3: The set of fixed points is a complete lattice.}
-For any subset $S \subseteq \mathrm{Fix}(f)$, define $A_S = \{x \in L : x \succeq \bigvee S \text{ and } f(x) \preceq x\}$. This set is nonempty (since the greatest fixed point $\bar{x} \in A_S$) and its infimum is a fixed point that serves as the join of $S$ in $\mathrm{Fix}(f)$. Meets are constructed dually.
+Let $A = \{x \in L : x \preceq f(x)\}$. Since $L$ is complete, $A$ has a supremum $\bar{x} = \bigvee A$. For any $x \in A$, we have $x \preceq f(x)$. Since $x \preceq \bar{x}$ and $f$ is isotone, $f(x) \preceq f(\bar{x})$. Thus $x \preceq f(\bar{x})$ for all $x \in A$, so $\bar{x} \preceq f(\bar{x})$. Since $\bar{x} \preceq f(\bar{x})$ and $f$ is isotone, $f(\bar{x}) \preceq f(f(\bar{x}))$. Thus $f(\bar{x}) \in A$, so $f(\bar{x}) \preceq \bar{x}$. Combining, $f(\bar{x}) = \bar{x}$.
 \end{proof}
-
-\begin{definition}
-A function $f:L\to\R$ on a lattice is \textbf{supermodular} if for all $x,y\in L$,
-\[
-f(x\vee y)+f(x\wedge y)\ge f(x)+f(y).
-\]
-A function $f:L \times T \to \R$ has \textbf{increasing differences} in $(x,t)$ if for all $x' \succeq x$ and $t' \succeq t$,
-\[
-f(x',t') - f(x,t') \ge f(x',t) - f(x,t).
-\]
-\end{definition}
 
 \begin{theorem}[Topkis's Monotonicity Theorem]\label{thm:topkis}
 Let $L$ be a lattice and $T$ a partially ordered set. If $f:L\times T\to\R$ is supermodular in $x$ and has increasing differences in $(x,t)$, then $\argmax_{x \in L} f(x,t)$ is isotone in $t$ (in the strong set order).
 \end{theorem}
 
-\begin{proof}
-\textbf{Step 1: Strong set order.}
-For sets $A, B \subseteq L$, we say $A \preceq_s B$ (strong set order) if for all $a \in A$ and $b \in B$, we have $a \wedge b \in A$ and $a \vee b \in B$.
-
-\textbf{Step 2: Key inequality.}
-Let $t' \succeq t$ and suppose $x^* \in \argmax_x f(x,t)$ and $x^{**} \in \argmax_x f(x,t')$. We must show $x^* \wedge x^{**} \in \argmax_x f(x,t)$ and $x^* \vee x^{**} \in \argmax_x f(x,t')$.
-
-By optimality: $f(x^*,t) \ge f(x^* \wedge x^{**},t)$ and $f(x^{**},t') \ge f(x^* \vee x^{**},t')$.
-
-By supermodularity: $f(x^* \vee x^{**},t) + f(x^* \wedge x^{**},t) \ge f(x^*,t) + f(x^{**},t)$.
-
-By increasing differences: $f(x^* \vee x^{**},t') - f(x^{**},t') \ge f(x^* \vee x^{**},t) - f(x^{**},t)$.
-
-Combining these inequalities:
-\begin{align*}
-0 &\ge f(x^* \vee x^{**},t') - f(x^{**},t') & \text{(optimality of } x^{**}) \\
-&\ge f(x^* \vee x^{**},t) - f(x^{**},t) & \text{(increasing differences)} \\
-&\ge f(x^*,t) - f(x^* \wedge x^{**},t) & \text{(supermodularity)} \\
-&\ge 0 & \text{(optimality of } x^*).
-\end{align*}
-All inequalities are equalities, so $x^* \wedge x^{**} \in \argmax_x f(x,t)$ and $x^* \vee x^{**} \in \argmax_x f(x,t')$.
-\end{proof}
-
-\subsection{P-matrix theory}
-
-\begin{definition}
-A square matrix $B \in \R^{n \times n}$ is a \textbf{P-matrix} if all its principal minors are positive.
-\end{definition}
-
-\begin{theorem}[Hawkins--Simon]\label{thm:hawkins_simon_proof}
-Let $A \ge 0$ be a nonnegative matrix. The following are equivalent:
-\begin{enumerate}[label=(\roman*)]
-    \item $I-A$ is a P-matrix.
-    \item $(I-A)^{-1}$ exists and $(I-A)^{-1} \ge 0$.
-    \item The spectral radius $\rho(A) < 1$.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-\textbf{(iii) $\Rightarrow$ (ii):}
-If $\rho(A) < 1$, the Neumann series $\sum_{k=0}^\infty A^k$ converges. Since $A \ge 0$, each term is nonnegative, so
-\[
-(I-A)^{-1} = \sum_{k=0}^\infty A^k \ge 0.
-\]
-
-\textbf{(ii) $\Rightarrow$ (i):}
-For any principal submatrix $A_J$ (corresponding to index set $J$), we have $(I_J - A_J)^{-1} \ge 0$ (the Schur complement structure preserves nonnegativity). A matrix with nonnegative inverse has positive determinant, so all principal minors of $I-A$ are positive.
-
-\textbf{(i) $\Rightarrow$ (iii):}
-Suppose $\rho(A) \ge 1$. By the Perron-Frobenius theorem, $A$ has a nonnegative eigenvector $v \ge 0$ with eigenvalue $\lambda = \rho(A) \ge 1$. Then $(I-A)v = (1-\lambda)v$. If $\lambda = 1$, $I-A$ is singular. If $\lambda > 1$, then $(I-A)v = (1-\lambda)v < 0$, contradicting the requirement that $(I-A)^{-1} \ge 0$ maps nonnegative vectors to nonnegative vectors.
-\end{proof}
-
-\begin{theorem}[Gale--Nikaido Univalence]\label{thm:gale_nikaido_proof}
-Let $\Phi: \R^n \to \R^n$ be continuously differentiable. If the Jacobian $D\Phi(x)$ is a P-matrix for all $x \in \R^n$, then $\Phi$ is a global homeomorphism.
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-\textbf{Step 1: Local injectivity.}
-A P-matrix is nonsingular (all principal minors positive implies full rank). By the inverse function theorem, $\Phi$ is a local diffeomorphism at every point.
-
-\textbf{Step 2: Global injectivity.}
-The key insight is that P-matrices are closed under positive diagonal scaling and satisfy a specific ``inwardness'' property. If $\Phi(x) = \Phi(y)$ for $x \ne y$, consider the path $\gamma(t) = \Phi(x + t(y-x))$. The P-matrix property forces $\gamma$ to move in all coordinates simultaneously, preventing $\gamma(0) = \gamma(1)$ unless $x = y$.
-
-\textbf{Step 3: Surjectivity.}
-Local injectivity plus the P-matrix property implies that $\|\Phi(x)\| \to \infty$ as $\|x\| \to \infty$ (properness). By Hadamard's theorem, a proper local homeomorphism is a global homeomorphism.
-\end{proof}
-
-\subsection{Affiliation and stochastic dominance}
-
-\begin{definition}
-Random variables $Z = (Z_1, \ldots, Z_m)$ with joint density $f$ are \textbf{affiliated} if $f$ is log-supermodular:
-\[
-f(z \vee z') f(z \wedge z') \ge f(z) f(z') \quad \text{for all } z, z'.
-\]
-\end{definition}
-
-\begin{theorem}[Affiliation implies MLRP]\label{thm:affiliation_mlrp}
-If $(Z_1, Z_2)$ are affiliated, then the conditional density $f(z_1 \mid z_2)$ satisfies the monotone likelihood ratio property in $z_2$.
-\end{theorem}
-
-\begin{proof}
-The conditional density is $f(z_1 \mid z_2) = f(z_1, z_2) / f_{Z_2}(z_2)$. For $z_2' > z_2$ and $z_1' > z_1$:
-\begin{align*}
-\frac{f(z_1' \mid z_2')}{f(z_1 \mid z_2')} \cdot \frac{f(z_1 \mid z_2)}{f(z_1' \mid z_2)}
-&= \frac{f(z_1', z_2') \cdot f(z_1, z_2)}{f(z_1, z_2') \cdot f(z_1', z_2)}.
-\end{align*}
-Define $z = (z_1, z_2)$ and $z' = (z_1', z_2')$. Then $z \vee z' = (z_1', z_2')$ and $z \wedge z' = (z_1, z_2)$. By log-supermodularity:
-\[
-f(z_1', z_2') \cdot f(z_1, z_2) \ge f(z_1, z_2') \cdot f(z_1', z_2).
-\]
-Thus the ratio is $\ge 1$, which is the MLRP condition.
-\end{proof}
-
-\begin{theorem}[MLRP implies FOSD]\label{thm:mlrp_fosd}
-If $f(\cdot \mid s')$ dominates $f(\cdot \mid s)$ in the likelihood ratio order for $s' > s$, then $F(\cdot \mid s') \ge_{\mathrm{FOSD}} F(\cdot \mid s)$.
-\end{theorem}
-
-\begin{proof}
-MLRP means $f(\mu \mid s') / f(\mu \mid s)$ is increasing in $\mu$. Define $\Lambda(\bar{\mu}) = \int_{-\infty}^{\bar{\mu}} f(\mu \mid s') d\mu / \int_{-\infty}^{\bar{\mu}} f(\mu \mid s) d\mu$. 
-
-Since the likelihood ratio is increasing, $\Lambda(\bar{\mu})$ is increasing in $\bar{\mu}$. We have $\Lambda(-\infty) = 0$ and $\Lambda(\infty) = 1$ (both CDFs integrate to 1).
-
-For FOSD, we need $F(\bar{\mu} \mid s') \le F(\bar{\mu} \mid s)$, i.e., $\int_{-\infty}^{\bar{\mu}} f(\mu \mid s') d\mu \le \int_{-\infty}^{\bar{\mu}} f(\mu \mid s) d\mu$.
-
-Equivalently: $\int_{-\infty}^{\bar{\mu}} [f(\mu \mid s') - f(\mu \mid s)] d\mu \le 0$.
-
-The integrands start negative (for small $\mu$, the ratio is below its average of 1) and end positive, crossing zero once. The integral is the area under the difference, which is nonpositive up to every point $\bar{\mu}$.
-\end{proof}
-
-\begin{theorem}[FOSD Integration]\label{thm:fosd_int}
-If $F' \ge_{\mathrm{FOSD}} F$ and $g$ is increasing, then $\E_{F'}[g(X)] \ge \E_F[g(X)]$.
-\end{theorem}
-
-\begin{proof}
-By integration by parts:
-\[
-\E_F[g(X)] = \int_{-\infty}^\infty g(x) dF(x) = g(\infty) - \int_{-\infty}^\infty g'(x) F(x) dx.
-\]
-Since $F'(x) \le F(x)$ for all $x$ (FOSD) and $g'(x) \ge 0$ (increasing):
-\[
-\E_{F'}[g(X)] = g(\infty) - \int_{-\infty}^\infty g'(x) F'(x) dx \ge g(\infty) - \int_{-\infty}^\infty g'(x) F(x) dx = \E_F[g(X)].
-\]
-\end{proof}
-
-\subsection{Proof of price existence (Proposition~\ref{prop:price_existence})}
-
-\begin{proof}[Full proof]
-Define the mapping $\Phi: \R^n \to \R^n$ by
-\[
-\Phi_i(p) = p_i - k_i(S_i, a_i(S_i), p) - b_i,
-\]
-where $b_i = \log(1+\tau_i) - (\varphi_i \mu + \eta_i)$. Equilibrium prices solve $\Phi(p) = 0$.
-
-\textbf{Step 1: Jacobian structure.}
-The Jacobian is $D\Phi(p) = I - J_{k,p}(p)$, where $[J_{k,p}]_{ij} = \partial k_i / \partial p_j$.
-
-By Shepard's lemma, in the differentiable case:
-\[
-\frac{\partial k_i}{\partial p_j}(p) = \frac{P_j X_{ij}^*(P)}{K_i(S_i, A_i, P)} = \text{cost share of input } j \text{ in sector } i.
-\]
-
-\textbf{Step 2: Row sum bound.}
-Labor essentiality implies that labor has a positive cost share in every sector. Thus:
-\[
-\sum_{j=1}^n \frac{\partial k_i}{\partial p_j}(p) = \text{(total intermediate cost share)} < 1.
-\]
-Let $\kappa = \sup_{i,p} \sum_j \partial k_i / \partial p_j < 1$.
-
-\textbf{Step 3: P-matrix verification.}
-Since $J_{k,p} \ge 0$ (cost shares are nonnegative) and row sums are bounded by $\kappa < 1$, we have $\rho(J_{k,p}) \le \kappa < 1$. By \cref{thm:hawkins_simon_proof}, $I - J_{k,p}$ is a P-matrix.
-
-\textbf{Step 4: Global homeomorphism.}
-By \cref{thm:gale_nikaido_proof}, $\Phi$ is a global homeomorphism. Therefore $\Phi(p) = 0$ has a unique solution.
-\end{proof}
-
-%==============================================================================
-\bibliographystyle{plainnat}
-\bibliography{references}
-%==============================================================================
 \end{document}

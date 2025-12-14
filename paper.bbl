@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{2}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -10,86 +10,9 @@ Daron Acemoglu and Pablo~D Azar.
 \newblock Endogenous production networks.
 \newblock \emph{Econometrica}, 88\penalty0 (1):\penalty0 33--82, 2020.
 
-\bibitem[Acemoglu et~al.(2012)Acemoglu, Carvalho, Ozdaglar, and
-  Tahbaz-Salehi]{acemoglu2012network}
-Daron Acemoglu, Vasco~M Carvalho, Asuman Ozdaglar, and Alireza Tahbaz-Salehi.
-\newblock The network origins of aggregate fluctuations.
-\newblock \emph{Econometrica}, 80\penalty0 (5):\penalty0 1977--2016, 2012.
-
-\bibitem[Barrot and Sauvagnat(2016)]{barrot2016input}
-Jean-No{\"e}l Barrot and Julien Sauvagnat.
-\newblock Input specificity and the propagation of idiosyncratic shocks in
-  production networks.
-\newblock \emph{Quarterly Journal of Economics}, 131\penalty0 (3):\penalty0
-  1543--1592, 2016.
-
-\bibitem[Bloom(2009)]{bloom2009impact}
-Nicholas Bloom.
-\newblock The impact of uncertainty shocks.
-\newblock \emph{Econometrica}, 77\penalty0 (3):\penalty0 623--685, 2009.
-
-\bibitem[Bloom et~al.(2018)Bloom, Floetotto, Jaimovich, Saporta-Eksten, and
-  Terry]{bloom2018really}
-Nicholas Bloom, Max Floetotto, Nir Jaimovich, Itay Saporta-Eksten, and
-  Stephen~J Terry.
-\newblock Really uncertain business cycles.
-\newblock \emph{Econometrica}, 86\penalty0 (3):\penalty0 1031--1065, 2018.
-
-\bibitem[Carvalho et~al.(2021)Carvalho, Nirei, Saito, and
-  Tahbaz-Salehi]{carvalho2021supply}
-Vasco~M Carvalho, Makoto Nirei, Yukiko~U Saito, and Alireza Tahbaz-Salehi.
-\newblock Supply chain disruptions: Evidence from the great east japan
-  earthquake.
-\newblock \emph{Quarterly Journal of Economics}, 136\penalty0 (2):\penalty0
-  1255--1321, 2021.
-
-\bibitem[Gabaix(2011)]{gabaix2011granular}
-Xavier Gabaix.
-\newblock The granular origins of aggregate fluctuations.
-\newblock \emph{Econometrica}, 79\penalty0 (3):\penalty0 733--772, 2011.
-
-\bibitem[Horvath(2000)]{horvath2000sectoral}
-Michael Horvath.
-\newblock Sectoral shocks and aggregate fluctuations.
-\newblock \emph{Journal of Monetary Economics}, 45\penalty0 (1):\penalty0
-  69--106, 2000.
-
-\bibitem[Jurado et~al.(2015)Jurado, Ludvigson, and Ng]{jurado2015measuring}
-Kyle Jurado, Sydney~C Ludvigson, and Serena Ng.
-\newblock Measuring uncertainty.
-\newblock \emph{American Economic Review}, 105\penalty0 (3):\penalty0
-  1177--1216, 2015.
-
-\bibitem[Long and Plosser(1983)]{long1983real}
-John~B Long and Charles~I Plosser.
-\newblock Real business cycles.
-\newblock \emph{Journal of Political Economy}, 91\penalty0 (1):\penalty0
-  39--69, 1983.
-
-\bibitem[Milgrom and Shannon(1994)]{milgrom1994monotone}
-Paul Milgrom and Chris Shannon.
-\newblock Monotone comparative statics.
-\newblock \emph{Econometrica}, 62\penalty0 (1):\penalty0 157--180, 1994.
-
 \bibitem[Milgrom and Weber(1982)]{milgrom1982theory}
 Paul Milgrom and Robert Weber.
 \newblock A theory of auctions and competitive bidding.
 \newblock \emph{Econometrica}, 50\penalty0 (5):\penalty0 1089--1122, 1982.
-
-\bibitem[Oberfield(2018)]{oberfield2018theory}
-Ezra Oberfield.
-\newblock A theory of input-output architecture.
-\newblock \emph{Econometrica}, 86\penalty0 (2):\penalty0 559--589, 2018.
-
-\bibitem[Topkis(1998)]{topkis1998supermodularity}
-Donald~M Topkis.
-\newblock \emph{Supermodularity and Complementarity}.
-\newblock Princeton University Press, 1998.
-
-\bibitem[Van~Zandt and Vives(2007)]{van2007monotone}
-Timothy Van~Zandt and Xavier Vives.
-\newblock Monotone equilibria in bayesian games of strategic complementarities.
-\newblock \emph{Journal of Economic Theory}, 134\penalty0 (1):\penalty0
-  339--360, 2007.
 
 \end{thebibliography}
