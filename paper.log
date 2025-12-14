@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 19:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 19:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -683,17 +683,17 @@ Package rerunfilecheck Warning: File `paper.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: DD557212D10F46323F0AAEBC4D01B3C9;3842
-(rerunfilecheck)             After:  5449F19FDA2AE0D0735FB5A2CC3F4ACE;3865.
+(rerunfilecheck)             Before: 5449F19FDA2AE0D0735FB5A2CC3F4ACE;3865
+(rerunfilecheck)             After:  6C5B6034EBB0B346BEC7C138AE676516;4311.
  ) 
 Here is how much of TeX's memory you used:
- 14402 strings out of 478994
- 212050 string characters out of 5858184
- 551130 words of memory out of 5000000
+ 14407 strings out of 478994
+ 212105 string characters out of 5858184
+ 551134 words of memory out of 5000000
  31005 multiletter control sequences out of 15000+600000
  482822 words of font info for 465 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,11n,74p,1044b,520s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,11n,74p,1044b,508s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -706,10 +706,10 @@ dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
 pe1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw
 /palatino/uplri8a.pfb>
-Output written on paper.pdf (19 pages, 199608 bytes).
+Output written on paper.pdf (19 pages, 202016 bytes).
 PDF statistics:
- 458 PDF objects out of 1000 (max. 8388607)
- 421 compressed objects within 5 object streams
- 129 named destinations out of 1000 (max. 500000)
+ 466 PDF objects out of 1000 (max. 8388607)
+ 429 compressed objects within 5 object streams
+ 134 named destinations out of 1000 (max. 500000)
  104617 words of extra memory for PDF output out of 106986 (max. 10000000)
 

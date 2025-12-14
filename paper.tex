@@ -379,21 +379,42 @@ The combinatorial nature of network formation means this multiplier operates thr
 \section{Comparative Statics}\label{sec:statics}
 %==============================================================================
 
-We examine how the quality of information affects the real economy.
+We now examine how the information structure affects equilibrium network density. The comparative statics are derived using Topkis's monotone comparative statics theorem, without assuming differentiability.
 
-\begin{theorem}[Signal Precision and Volatility]\label{thm:precision}
-    Consider the Gaussian environment. An increase in signal precision $\tau_\varepsilon = 1/\sigma_\varepsilon^2$ (holding $\tau_\mu$ fixed) reduces the ex-post volatility of the network structure conditional on fundamentals.
-\end{theorem}
-\emph{Intuition:} As $\tau_\varepsilon \to \infty$, $\rho \to 1$, which increases the multiplier $\Mcal$. However, the variance of the ``noise'' component of the signal $\varepsilon$ goes to zero faster than the multiplier increases. Firms track fundamentals more closely and react less to pure noise.
+\subsection{Ordering Information Structures}
 
-\begin{theorem}[Correlation and Instability]\label{thm:correlation}
-    Holding the marginal variance of signals constant, an increase in the correlation between error terms $\varepsilon_i$ increases aggregate network volatility.
+We define an order on information structures based on their induced posteriors.
+
+\begin{definition}[More Informative Signals]
+An information structure $\mathcal{I}'$ is \emph{more optimistic} than $\mathcal{I}$ if, for all $s_i$, the posterior under $\mathcal{I}'$ first-order stochastically dominates the posterior under $\mathcal{I}$: $\pi'(\cdot \mid s_i) \geq_{\text{FOSD}} \pi(\cdot \mid s_i)$.
+\end{definition}
+
+\begin{definition}[More Correlated Signals]
+An information structure $\mathcal{I}'$ has \emph{more correlated signals} than $\mathcal{I}$ if, for all $s_i$, the conditional distribution of others' signals $\s_{-i}$ satisfies $\pi'(\s_{-i} \mid s_i) \geq_{\text{FOSD}} \pi(\s_{-i} \mid s_i)$.
+\end{definition}
+
+\subsection{Main Comparative Statics Results}
+
+\begin{theorem}[Monotonicity in Signal Precision]\label{thm:precision}
+Consider two information structures $\mathcal{I}$ and $\mathcal{I}'$ where signals under $\mathcal{I}'$ are more precise (lower noise variance). If higher precision induces more optimistic posteriors on average, then the greatest equilibrium network $\bar{\sigma}'$ is weakly denser than $\bar{\sigma}$.
 \end{theorem}
+
 \begin{proof}
-    (Sketch) An increase in error correlation increases the strength of higher-order beliefs: when $\rho$ is higher, a firm's signal is more informative about others' signals. By the belief multiplier (Proposition~\ref{prop:multiplier}), this amplifies the strategic channel. A correlated noise shock is magnified because firms expect others to have observed similar signals.
+By Topkis's Monotone Comparative Statics Theorem. Higher signal precision increases $\E[\mu \mid s_i]$ for high signals and decreases it for low signals (signals become more informative about the true $\mu$). For agents with high signals, the expected benefit of network expansion increases (via lower expected unit costs). By the single-crossing property (Lemma~\ref{lem:info_sc}), best responses shift upward for optimistic types. The greatest equilibrium, being the limit of iterated best responses from the maximal strategy, increases.
 \end{proof}
 
-This result suggests that \textbf{opacity} (low precision) combined with \textbf{correlated information sources} (e.g., reliance on a few public indicators or rumors) creates the most volatile supply chains.
+\begin{theorem}[Monotonicity in Signal Correlation]\label{thm:correlation}
+Consider two information structures with identical marginal signal distributions, but $\mathcal{I}'$ has higher correlation between $s_i$ and $\s_{-i}$. Then the greatest equilibrium network $\bar{\sigma}'$ is weakly denser than $\bar{\sigma}$.
+\end{theorem}
+
+\begin{proof}
+Higher correlation means that $\E[\s_{-i} \mid s_i]$ is larger for high $s_i$. By affiliation, this increases the expected network expansion by peers. Since larger peer networks lower expected prices (Proposition~\ref{prop:prices}), and lower prices increase the marginal benefit of own expansion (Assumption~\ref{ass:submod}), the best-response correspondence shifts upward. By Topkis's theorem, the greatest fixed point of the best-response operator increases.
+\end{proof}
+
+\paragraph{Economic Interpretation.}
+These results have a common structure: changes in the information environment that increase the \emph{expected actions of others} lead to denser equilibrium networks. This occurs through the strategic channel---the lattice of supplier sets expands monotonically as firms become more confident that their peers are expanding.
+
+The policy implication is that \textbf{correlated information sources} (e.g., reliance on common public signals) amplify network volatility relative to \textbf{dispersed, idiosyncratic information}. Transparency policies that reduce correlation in forecast errors can stabilize supply chain formation.
 
 %==============================================================================
 \section{Dynamic Extension}\label{sec:dynamic}
