@@ -36,8 +36,10 @@ Each firm $i$ produces a distinct good using labor $L_i$ and a set of intermedia
 
 **The Action Space.** Firm $i$ chooses:
 1.  A **supplier set** $S_i \in \mathcal{A}_i \subseteq 2^{\mathcal{I} \setminus \{i\}}$, where $\mathcal{A}_i$ is a finite menu of feasible supplier configurations.
-2.  **Input quantities** $X_i = (X_{ij})_{j \in S_i} \in \mathbb{R}_+^{|S_i|}$.
-3.  **Labor** $L_i \in \mathbb{R}_+$.
+2.  **Input quantities** $X_i = (X_{ij})_{j \in \mathcal{I} \setminus \{i\}} \in [0, \bar{X}]^{n-1}$, with $X_{ij} = 0$ for $j \notin S_i$.
+3.  **Labor** $L_i \in [0, \bar{L}]$.
+
+The action space is thus $\mathcal{A} = \mathcal{A}_i \times [0, \bar{X}]^{n-1} \times [0, \bar{L}]$, which is a **compact lattice** under the order $(S_i, X_i, L_i) \succeq (S_i', X_i', L_i')$ iff $S_i \supseteq S_i'$, $X_i \geq X_i'$ componentwise, and $L_i \geq L_i'$.
 
 **Production Function.** Technology is given by a CES aggregator with state-dependent productivity:
 $$
@@ -64,9 +66,9 @@ This assumption is critical. It implies that inputs are complements: the margina
 
 **Payoffs.** Firm $i$ maximizes expected profit. Given output price $P_i$ and intermediate input prices $P = (P_1, \ldots, P_n)$, profit is:
 $$
-\Pi_i = P_i \theta_i(\mu) F_i(S_i, L_i, X_i) - L_i - \sum_{j \in S_i} P_j X_{ij}
+\Pi_i = P_i \theta_i(\mu) F_i(S_i, L_i, X_i) - L_i - \sum_{j \in S_i} P_j X_{ij} - \gamma |S_i|
 $$
-(Wage is normalized to 1).
+where $\gamma > 0$ is the **per-link adoption cost**. Wage is normalized to 1.
 
 **Market Clearing.** Prices are determined by market clearing. Good $j$ has demand from final consumers $C_j(P, \mu)$ and intermediate demand from other firms:
 $$
@@ -83,6 +85,31 @@ $$
 \mathcal{P}_i(S_i, P) = \left[ \gamma_{L,i}(S_i) + \sum_{j \in S_i} \alpha_{ij} P_j^{1-\sigma} \right]^{\frac{1}{1-\sigma}}
 $$
 This cost function is derived from the CES dual (see Appendix A.0).
+
+### 2.3 Optimal Input Choice (First-Order Conditions)
+
+Given a supplier set $S_i$ and prices $P$, firm $i$ chooses inputs to maximize profit. The first-order conditions are:
+
+**FOC for $X_{ij}$ (Intensive Margin):**
+$$
+P_i \theta_i(\mu) \frac{\partial F_i}{\partial X_{ij}} = P_j \quad \forall j \in S_i
+$$
+
+**FOC for $L_i$:**
+$$
+P_i \theta_i(\mu) \frac{\partial F_i}{\partial L_i} = 1
+$$
+
+These yield the standard CES input demands:
+$$
+X_{ij}^* = \alpha_{ij} \left( \frac{P_j}{\mathcal{P}_i} \right)^{-\sigma} \frac{Y_i}{\theta_i(\mu)}, \qquad L_i^* = \gamma_{L,i}(S_i) \left( \frac{1}{\mathcal{P}_i} \right)^{-\sigma} \frac{Y_i}{A_i \theta_i(\mu)}
+$$
+
+**Reduced-Form Profit.** Substituting optimal inputs, firm $i$'s profit becomes:
+$$
+\Pi_i^*(S_i, P, \mu) = \left[ P_i \theta_i(\mu) - \mathcal{P}_i(S_i, P) \right] Y_i^* - \gamma |S_i|
+$$
+The extensive-margin choice of $S_i$ trades off reduced unit cost $\mathcal{P}_i(S_i, P)$ against adoption costs $\gamma |S_i|$. This reduced-form game inherits supermodularity from the production function (Lemma 1).
 
 ### 2.2 Information Structure
 
@@ -260,3 +287,27 @@ Since payoffs satisfy ID, $BR$ is an isotone operator (others playing higher mon
 By Tarski's Fixed Point Theorem, the set of fixed points of an isotone map on a complete lattice is a non-empty complete lattice. Thus, extremal equilibria $\bar{\sigma}, \underline{\sigma}$ exist and are monotone.
 
 *(Full proofs provided in the technical supplement)*
+
+---
+
+## References
+
+Acemoglu, Daron, and Pablo D. Azar. 2020. "Endogenous Production Networks." *Econometrica* 88(1): 33–82.
+
+Baqaee, David Rezza, and Emmanuel Farhi. 2019. "The Macroeconomic Impact of Microeconomic Shocks: Beyond Hulten's Theorem." *Econometrica* 87(4): 1155–1203.
+
+Carvalho, Vasco M., Makoto Nirei, Yukiko U. Saito, and Alireza Tahbaz-Salehi. 2021. "Supply Chain Disruptions: Evidence from the Great East Japan Earthquake." *Quarterly Journal of Economics* 136(2): 1255–1321.
+
+Kopytov, Alexandr, Bineet Mishra, Kristoffer P. Nimark, and Mathieu Taschereau-Dumouchel. 2024. "Endogenous Production Networks under Supply Chain Uncertainty." *Econometrica* 92(5).
+
+Milgrom, Paul, and Chris Shannon. 1994. "Monotone Comparative Statics." *Econometrica* 62(1): 157–180.
+
+Milgrom, Paul, and Robert Weber. 1982. "A Theory of Auctions and Competitive Bidding." *Econometrica* 50(5): 1089–1122.
+
+Stokey, Nancy L., Robert E. Lucas, and Edward C. Prescott. 1989. *Recursive Methods in Economic Dynamics*. Harvard University Press.
+
+Tarski, Alfred. 1955. "A Lattice-Theoretical Fixpoint Theorem and its Applications." *Pacific Journal of Mathematics* 5(2): 285–309.
+
+Topkis, Donald M. 1998. *Supermodularity and Complementarity*. Princeton University Press.
+
+Van Zandt, Timothy, and Xavier Vives. 2007. "Monotone Equilibria in Bayesian Games of Strategic Complementarities." *Journal of Economic Theory* 134(1): 339–360.

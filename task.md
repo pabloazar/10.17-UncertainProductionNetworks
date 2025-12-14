@@ -9,13 +9,14 @@
 - [ ] Fix Lemma 1 cross-partial formula or cite standard reference (Claude #4) <!-- id: 104 -->
 - [x] Define p(μ) explicitly - cannot be increasing if aggregate supply increases (Grok para 16) <!-- id: 105 -->
 - [x] Add explicit timing protocol for Bayesian game (Claude #6) <!-- id: 106 -->
-- [ ] Fix lattice structure for variable-dimension action spaces (Claude #7) <!-- id: 107 -->
+- [x] Fix lattice structure for variable-dimension action spaces (Claude #7) <!-- id: 107 -->
 
 ## 🟠 MODERATE Issues
 
-- [ ] Add FOCs for inner optimization (Grok Sec 2) <!-- id: 110 -->
+- [x] Add FOCs for inner optimization (Grok Sec 2) <!-- id: 110 -->
 - [ ] Prove dynamic extension Theorem 4 properly (Claude #8) <!-- id: 111 -->
 - [ ] Strategy notation σ_i conflicts with elasticity σ (Claude minor) <!-- id: 112 -->
+- [x] Add adoption costs γ|S_i| to payoff (Round 2) <!-- id: 113 -->
 
 ## 🟢 MINOR Issues
 
