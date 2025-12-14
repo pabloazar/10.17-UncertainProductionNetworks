@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 19:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 20:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -691,45 +691,33 @@ Overfull \hbox (2.07146pt too wide) in paragraph at lines 545--546
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: 90482C7A7AFA9AE8BAA879B2152577D3;4904
-(rerunfilecheck)             After:  AA0DB59F39D70C1B22A7D5BBC9F2C6B6;6500.
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: AA0DB59F39D70C1B22A7D5BBC9F2C6B6;6500.
  ) 
 Here is how much of TeX's memory you used:
- 14463 strings out of 478994
- 212740 string characters out of 5858184
- 551219 words of memory out of 5000000
- 31018 multiletter control sequences out of 15000+600000
+ 14468 strings out of 478994
+ 212821 string characters out of 5858184
+ 551621 words of memory out of 5000000
+ 31024 multiletter control sequences out of 15000+600000
  483513 words of font info for 476 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,11n,74p,1044b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsection.9.3} has been referenced but does not 
-exist, replaced by a fixed one
-
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
-live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
-ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
-ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
-2021/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2021
-/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2021/texm
-f-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2021/texmf-di
-st/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/font
-s/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type
-1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/p
-alatino/uplri8a.pfb>
-Output written on paper.pdf (24 pages, 217779 bytes).
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2021/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/20
+21/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2021/te
+xmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2021/texmf-
+dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fo
+nts/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
+pe1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw
+/palatino/uplri8a.pfb>
+Output written on paper.pdf (24 pages, 218539 bytes).
 PDF statistics:
- 537 PDF objects out of 1000 (max. 8388607)
- 495 compressed objects within 5 object streams
- 161 named destinations out of 1000 (max. 500000)
- 104657 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 555 PDF objects out of 1000 (max. 8388607)
+ 512 compressed objects within 6 object streams
+ 160 named destinations out of 1000 (max. 500000)
+ 104705 words of extra memory for PDF output out of 106986 (max. 10000000)
 
