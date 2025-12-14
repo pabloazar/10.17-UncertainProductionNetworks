@@ -1,0 +1,18 @@
+
+Here is the LaTeX source of my current paper draft:
+
+=== PAPER START ===
+{paper_content}
+=== PAPER END ===
+
+Your task: **Check the math, identify any fatal mistakes, and suggest specific rewrites.**
+
+Please:
+1. **Check all mathematical derivations** for algebraic correctness (especially in Sections 2 and 3).
+2. **Verify the Equilibrium definition** is complete: Are Preferences, Technology, Information Structure, Budget Constraints, and Market Clearing all explicitly defined?
+3. **Critically evaluate proofs** of Theorem 1 and Propositions 3 & 4. Are there logical gaps or questionable steps?
+4. **Identify any fatal mistakes** that would invalidate the main results. If you find one, mark it clearly as **FATAL ERROR**.
+5. **Suggest specific rewrites** for sections that need clarification or better mathematical exposition, especially the Comparative Statics.
+6. **Flag notation inconsistencies** or undefined variables.
+
+Be strict, frank, and professional—like a top economist giving detailed feedback to a colleague.

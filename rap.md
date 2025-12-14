@@ -26,32 +26,28 @@ When intermediate inputs are complements (elasticity of substitution less than o
 
 ## P: Positioning (The Contribution)
 
-### Context: What We Know
+### Context: The Real World
 
-The study of production networks has advanced on two fronts.
+Modern production is a complex web of varying reliability. As emphasized by **Acemoglu and Azar (2020)**, supply chains have evolved from simple raw materials (wood, steel) to complex, multi-component assemblies (semiconductors, specialized software) where a single missing input can halt production. **Taschereau-Dumouchel et al. (2024)** highlight that in this volatile environment, firms actively manage risk by choosing "safer" suppliers.
 
-First, a growing literature examines *endogenous* production networks—where firms choose their suppliers rather than taking the input-output matrix as given. Acemoglu and Azar (2020) show that when firms face fixed costs of adopting suppliers, the equilibrium network depends on technology parameters and can exhibit discontinuous responses to shocks. Their analysis, however, assumes *complete information*: all firms observe the state perfectly.
+### The Problem: Opaque Supply Chains
 
-Second, the theory of games with strategic complementarities provides powerful tools for analyzing equilibria. Van Zandt and Vives (2007) establish that Bayesian games with complementarities admit extremal equilibria in monotone strategies, even without a common prior. But their analysis is abstract—it provides conditions, not economic content.
+However, these decisions are made in the fog of war. A firm rarely knows the precise productivity or reliability of potential partners. Instead, managers operate on **signals**: industry news, earnings calls, or minor delivery delays that hint at broader upstream troubles. Crucially, these signals are **correlated**—a chip shortage affects all auto manufacturers, but each observes different local symptoms.
 
-### The Gap: What We Don't Know
+### The Gap
 
-*No existing work combines these approaches.* We lack a theory of production network formation when:
-- Firms have private, heterogeneous information about productivity
-- This information is naturally correlated (affiliated) across firms
-- The technology exhibits complementarities
+Existing theory models network formation under two extremes:
+1.  **Complete Information (Acemoglu & Azar, 2020):** Firms perfectly observe everyone's productivity.
+2.  **Known Risk Profiles (Kopytov et al., 2024):** Firms know the variance of suppliers and optimize the trade-off.
 
-This gap matters because real-world supply chain decisions are made under uncertainty. Firms choose suppliers based on imperfect signals about demand conditions, input prices, and their own productivity. Understanding how information shapes network formation is essential for policy—particularly in the context of supply chain resilience.
+Neither accounts for the **inference** problem: how firms use private signals to form beliefs about the economy, and how these beliefs interact with network formation.
 
-### The Contribution: What This Paper Adds
+### The Contribution
 
-We fill this gap by:
-
-1. **Integrating production theory with information economics.** We show that the CES production technology with complementary inputs (σ < 1) naturally generates the strategic complementarities required for Van Zandt-Vives methods.
-
-2. **Deriving, not assuming, the key conditions.** Affiliation of signals and FOSD ordering of beliefs are derived from a Gaussian information structure—not imposed as black-box assumptions.
-
-3. **Establishing substantive economic results.** We prove that extremal equilibria exist, exhibit monotonicity in information, and respond predictably to policy. We extend these results to a dynamic setting with persistent network formation.
+We provide a theory of **production network formation under dispersed information**. By integrating the technological structure of Acemoglu-Azar with the information economics of **Van Zandt and Vives (2007)**, we show:
+1.  **Information is a Complement:** When inputs are complements ($\sigma < 1$), "good news" is super-modular. Optimistic beliefs trigger network expansion, which (due to affiliation) coincides with others expanding, reinforcing the incentive.
+2.  **Opacity Amplifies Shocks:** Because firms react to *signals* of aggregate states, correlated errors in sentiment can generate excessive network contractions (or expansions) disconnected from fundamental productivity.
+3.  **Tractable Equilibrium:** Despite the complexity of inferring millions of states, we derive existence of **extremal monotone equilibria**, allowing for clean comparative statics.
 
 ---
 
