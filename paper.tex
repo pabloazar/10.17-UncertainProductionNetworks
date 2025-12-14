@@ -420,15 +420,39 @@ The policy implication is that \textbf{correlated information sources} (e.g., re
 \section{Dynamic Extension}\label{sec:dynamic}
 %==============================================================================
 
-We briefly sketch a dynamic extension to illustrate persistence. Let $t=1, 2, \dots$. Firms face asymmetric adjustment costs:
-\begin{equation}
-    \Gamma(S_{it}, S_{i,t-1}) = \gamma^+ |S_{it} \setminus S_{i,t-1}| + \gamma^- |S_{i,t-1} \setminus S_{it}|,
-\end{equation}
-where $\gamma^+$ is the cost of forming a link and $\gamma^-$ is the cost of severing one.
+We extend the static model to a dynamic setting following \citet{van2007monotone}. The key insight is that the lattice-theoretic structure of the static game extends naturally to dynamic environments, yielding existence of monotone Markov perfect equilibria.
 
-\begin{proposition}[Hysteresis]\label{prop:hysteresis}
-    In the dynamic game, a temporary negative sentiment shock ($s_t$ low) can cause a permanent simplification of the production network. If the economy shifts to the sparse equilibrium, the cost $\gamma^+$ prevents a return to the dense equilibrium even when beliefs recover, unless a coordinated positive shock occurs.
-\end{proposition}
+\subsection{Dynamic Bayesian Game}
+
+Time is discrete, $t = 0, 1, 2, \ldots$. Each period, nature draws a productivity shock $\mu_t$ from a stationary distribution. Firms observe private signals $s_{it}$ correlated with $\mu_t$ and with each other's signals (affiliation). The network choice $S_{it}$ is made at the beginning of period $t$ after observing $s_{it}$.
+
+A firm's \textbf{state} at time $t$ is its current belief about fundamentals and peers' actions, which we summarize by the pair $(s_{it}, S_{i,t-1})$---the current signal and the inherited network. The payoff is:
+\[
+u_i(S_{it}, S_{-i,t}, \mu_t) - c(S_{it}, S_{i,t-1}),
+\]
+where $u_i$ is the period payoff from production (decreasing in unit cost) and $c(\cdot)$ is an adjustment cost that penalizes changes in the network.
+
+\subsection{Monotone Markov Strategies}
+
+Following \citet{van2007monotone}, we restrict attention to \textbf{Markov strategies} that depend only on the current state $(s_{it}, S_{i,t-1})$, not on the full history. A Markov strategy is \textbf{monotone} if $\sigma_i(s_{it}, S_{i,t-1})$ is non-decreasing in $s_{it}$ (with respect to set inclusion) for each $S_{i,t-1}$.
+
+The space of monotone Markov strategies forms a complete lattice under the pointwise order.
+
+\begin{theorem}[Existence of Monotone Markov Equilibria]\label{thm:dynamic}
+Under Assumptions~\ref{ass:info}--\ref{ass:submod}, the dynamic game possesses a greatest and a least monotone Markov perfect equilibrium. In these equilibria, network expansion is monotone in the current signal: optimistic firms expand, pessimistic firms contract.
+\end{theorem}
+
+\begin{proof}
+(Sketch) The proof follows \citet{van2007monotone}. The best-response operator maps monotone strategies to monotone strategies (by the single-crossing property in the static game). The space of monotone strategies is a complete lattice. By Tarski's fixed point theorem, extremal fixed points exist. Discounting ensures that the dynamic best-response is a contraction in an appropriate metric, guaranteeing uniqueness of the value function for each strategy profile.
+\end{proof}
+
+\subsection{Dynamics of Beliefs and Networks}
+
+A key feature of the dynamic model is \textbf{belief updating}. As firms observe their signals and the evolution of aggregate prices, they update their beliefs about the persistent component of $\mu$. This creates a natural source of persistence: a sequence of positive signals leads to increasingly optimistic beliefs, which leads to denser networks, which lowers prices, which reinforces the expansion.
+
+\begin{remark}[Hysteresis]
+If adjustment costs are asymmetric ($c(S', S) > c(S, S')$ for $S' \supset S$), the economy may exhibit hysteresis. A temporary negative shock can push the economy to the sparse equilibrium, from which it does not return even when signals recover. This is a dynamic manifestation of the equilibrium multiplicity in the static game.
+\end{remark}
 
 %==============================================================================
 \section{Conclusion}\label{sec:concl}
