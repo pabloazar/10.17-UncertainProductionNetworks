@@ -88,21 +88,23 @@ Each firm $i$ produces a distinct good using labor $L_i$ and a set of intermedia
 \end{enumerate}
 The action space is thus $\mathcal{A} = \mathcal{A}_i \times [0, \bar{X}]^{n-1} \times [0, \bar{L}]$, which is a \textbf{compact lattice} under the order $(S_i, X_i, L_i) \succeq (S_i', X_i', L_i')$ iff $S_i \supseteq S_i'$, $X_i \geq X_i'$ componentwise, and $L_i \geq L_i'$.
 
-\paragraph{Production Function.} Technology is given by a CES aggregator with state-dependent productivity:
+\paragraph{Production Function.} Technology is given by a production function with state-dependent productivity:
 \begin{equation}
 Y_i = \theta_i(\mu) F_i(S_i, L_i, X_i)
 \end{equation}
-where $\theta_i(\mu) = e^{\varphi \mu + \eta_i}$ is a productivity shifter increasing in the state $\mu$. The core production function follows \citet{acemoglu2020endogenous}:
+where $\theta_i(\mu) = e^{\varphi \mu + \eta_i}$ is a productivity shifter increasing in the state $\mu$. We require only that the production function exhibits \emph{input complementarities}---that is, the marginal product of each input is increasing in the quantities of other inputs.
+
+\begin{assumption}[Input Complementarity]\label{ass:supermod}
+The production function $F_i(S_i, L_i, X_i)$ is supermodular: for all inputs $j, k$, $\frac{\partial^2 F_i}{\partial X_j \partial X_k} \geq 0$, and adding a supplier raises the marginal product of existing inputs.
+\end{assumption}
+
+This assumption is the key structural requirement. It is satisfied by a broad class of production functions, including CES with low elasticity of substitution, Leontief, and nested CES structures.
+
+\paragraph{Leading Example: CES Production.} A canonical example satisfying Assumption~\ref{ass:supermod} is the CES aggregator of \citet{acemoglu2020endogenous}:
 \begin{equation}\label{eq:production}
 F_i(S_i, L_i, X_i) = \left[ \left(1 - \sum_{j \in S_i} \alpha_{ij}\right)^{\frac{1}{\sigma}} (A_i L_i)^{\frac{\sigma-1}{\sigma}} + \sum_{j \in S_i} \alpha_{ij}^{\frac{1}{\sigma}} X_{ij}^{\frac{\sigma-1}{\sigma}} \right]^{\frac{\sigma}{\sigma-1}}
 \end{equation}
-Here, $\sigma > 0$ is the elasticity of substitution. Parameter $\alpha_{ij} \in (0,1)$ represents the importance of input $j$, and $A_i$ is labor productivity.
-
-\begin{assumption}[Technological Complementarity]\label{ass:sigma}
-The elasticity of substitution satisfies $\sigma < 1$.
-\end{assumption}
-
-This assumption is critical. It implies that inputs are complements: the marginal product of one input increases with the quantity of others. Empirical estimates for intermediate inputs typically support $\sigma < 1$.
+Here, $\sigma > 0$ is the elasticity of substitution, $\alpha_{ij} \in (0,1)$ represents the importance of input $j$, and $A_i$ is labor productivity. When $\sigma < 1$, inputs are complements and Assumption~\ref{ass:supermod} is satisfied. The CES structure provides closed-form cost functions and input demands, but our main results (Theorems~\ref{thm:existence}--\ref{thm:dynamic}) hold for any production function satisfying Assumption~\ref{ass:supermod}.
 
 \begin{assumption}[Share Structure]\label{ass:shares}
 For each firm $i$, there exist fixed share parameters $\{\alpha_{ij}\}_{j \in \mathcal{I} \setminus \{i\}}$ such that $\sum_{j \neq i} \alpha_{ij} < 1$. When firm $i$ adopts supplier set $S_i$, the labor share is $\gamma_{L,i}(S_i) = 1 - \sum_{j \in S_i} \alpha_{ij}$.
@@ -195,11 +197,11 @@ Our goal is to prove the existence of equilibria where ``optimism breeds density
 We establish three auxiliary lemmas that drive the main results.
 
 \begin{lemma}[Supermodularity of Production]\label{lem:supermod}
-Under Assumption~\ref{ass:sigma} ($\sigma < 1$), the production function $F_i$ is supermodular in $(S_i, X_i, L_i)$.
+Under Assumption~\ref{ass:supermod} (Input Complementarity), the production function $F_i$ is supermodular in $(S_i, X_i, L_i)$.
 \end{lemma}
 
 \begin{proof}[Proof Sketch]
-Supermodularity requires positive cross-partials between continuous inputs and discrete increasing differences. For CES with $\sigma < 1$, the cross-partial $\partial^2 F / \partial X_j \partial X_k$ is proportional to $(1-\sigma)/\sigma > 0$. Adding a supplier raises the marginal product of existing inputs. See Appendix~\ref{app:lemma1}.
+Supermodularity follows directly from Assumption~\ref{ass:supermod}: positive cross-partials between continuous inputs and discrete increasing differences (adding a supplier raises the marginal product of existing inputs). For the CES example with $\sigma < 1$, the cross-partial $\partial^2 F / \partial X_j \partial X_k$ is proportional to $(1-\sigma)/\sigma > 0$. See Appendix~\ref{app:lemma1}.
 \end{proof}
 
 \begin{lemma}[Technology-Price Single-Crossing]\label{lem:price_sc}
