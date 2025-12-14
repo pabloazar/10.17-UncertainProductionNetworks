@@ -144,9 +144,9 @@ $$
 $$
 for $a_i' \geq a_i$. This is the Milgrom-Shannon monotone selection criterion. $\square$
 
-## 5. Interim Beliefs and FOSD Ordering (Van Zandt–Vives Approach)
+## 5. Interim Beliefs and FOSD Ordering
 
-The key insight of Van Zandt–Vives (2007) is that **no common prior is needed**. What matters is that interim beliefs are **FOSD-ordered in types**. This ordering can arise from multiple sources.
+The key insight of Van Zandt–Vives (2007) is that **no common prior is needed**. What matters is that interim beliefs are **FOSD-ordered in types**—this is the primitive that enables monotone equilibrium existence.
 
 ### 5.1 The VZV Interim Formulation
 
@@ -155,46 +155,27 @@ $$
 \tau_i \succeq \tau_i' \iff \pi_i(\cdot | \tau_i) \geq_{FOSD} \pi_i(\cdot | \tau_i')
 $$
 
-This is **the** definition of the type order—not an assumption to be verified. Types are their interim beliefs.
+This FOSD ordering is **required** for VZV to work. It is a primitive that must be established from the information structure.
 
-### 5.2 Sources of FOSD Ordering
+### 5.2 Deriving FOSD from Affiliation
 
-The FOSD ordering of interim beliefs can arise from several mechanisms:
-
-#### Source A: Stationarity with Strategic Complementarities (VZV Primary Approach)
-
-**Proposition 4 (VZV Stationarity).** Suppose:
-1. The game has strategic complementarities (ID in $(a_i, a_{-i})$) — verified in Proposition 3
-2. Players use monotone strategies $\sigma_i: \mathcal{T}_i \to \mathcal{S}_i$ (increasing in type)
-3. Higher types expect higher opponent types in equilibrium
-
-Then the **equilibrium belief distribution** over opponents' actions is FOSD-increasing in own type.
-
-*Proof.* This is the core of VZV (2007) Section 3. In any monotone strategy equilibrium, if $\sigma_{-i}$ are increasing in type, then:
-- Higher $\tau_i$ → higher belief over $\tau_{-i}$ (by expectation)
-- Higher $\tau_{-i}$ → higher $a_{-i} = \sigma_{-i}(\tau_{-i})$ (by monotonicity)
-- Therefore: higher $\tau_i$ → FOSD-higher belief over $a_{-i}$
-
-The key point: **FOSD ordering is endogenous to equilibrium**, not a primitive assumption. $\square$
-
-#### Source B: Affiliation (Milgrom-Weber Foundation)
-
-Alternatively, FOSD ordering follows from an **affiliation** structure on signals and fundamentals.
+The standard way to obtain FOSD-ordered beliefs is through **affiliation** of signals and fundamentals.
 
 **Definition (Affiliation).** Random variables $(Z_1, \ldots, Z_m)$ with joint density $f$ are **affiliated** if:
 $$
 f(z \vee z') \cdot f(z \wedge z') \geq f(z) \cdot f(z')
 $$
+where $\vee$ and $\wedge$ denote componentwise max and min. Equivalently, $\log f$ is supermodular.
 
-**Proposition 5 (Affiliation → FOSD).** Under affiliation of signals $(s_1, \ldots, s_n, \mu)$:
+**Proposition 4 (Affiliation → FOSD).** Under affiliation of $(s_1, \ldots, s_n, \mu)$:
 1. Higher $s_i$ induces FOSD-higher beliefs over $\mu$: $\pi_i(\mu | s_i') \geq_{FOSD} \pi_i(\mu | s_i)$ for $s_i' > s_i$
 2. Higher $s_i$ induces FOSD-higher beliefs over $s_{-i}$: $\pi_i(s_{-i} | s_i') \geq_{FOSD} \pi_i(s_{-i} | s_i)$
 
-*Proof.* Milgrom-Weber (1982) Theorem 1 and Lemma 1. Affiliation (log-supermodularity of the joint density) implies monotone likelihood ratio ordering of conditional distributions. $\square$
+*Proof.* Milgrom-Weber (1982) Theorem 1 and Lemma 1. Affiliation (log-supermodularity of the joint density) implies monotone likelihood ratio ordering of conditional distributions, which implies FOSD. $\square$
 
 ### 5.3 Sufficient Conditions for Affiliation
 
-**Proposition 6 (Gaussian Affiliation).** If $(s_1, \ldots, s_n, \mu)$ are jointly Gaussian with **non-negative correlations**, they are affiliated.
+**Proposition 5 (Gaussian Affiliation).** If $(s_1, \ldots, s_n, \mu)$ are jointly Gaussian with **non-negative correlations**, they are affiliated.
 
 *Proof.* For Gaussian vectors, affiliation ⟺ the precision matrix (inverse covariance) has non-positive off-diagonals. Non-negative correlations in the covariance matrix $\Sigma$ imply this property for $\Sigma^{-1}$ (Karlin-Rinott, 1980). $\square$
 
@@ -206,24 +187,32 @@ $$
 | Gaussian signals | $h(\mu) + \varepsilon_i$ | $\text{Cov}(\varepsilon_i, \varepsilon_j) \geq 0$, $\text{Cov}(\varepsilon_i, \mu) \geq 0$ |
 | Order statistics | $\mu_{(k)}$ | Standard order stat properties |
 
-### 5.4 The VZV Insight: Complementarities + Monotone Strategies Suffice
+### 5.4 From FOSD to Monotone Equilibria (VZV)
 
-**Key Point:** Van Zandt–Vives show that in games of strategic complementarities, **we don't need to assume affiliation or any specific information structure**. 
+**Key Logic Chain:**
+1. **Affiliation** (primitive on information structure)
+2. **→ FOSD-ordered interim beliefs** (Proposition 4)
+3. **+ Strategic complementarities** (from CES with $\sigma < 1$, Proposition 3)
+4. **→ Monotone equilibria exist** (VZV Theorem)
 
-If:
-- Actions are complements (ID in $(a_i, a_{-i})$) — from CES with $\sigma < 1$
-- Payoffs have single-crossing in $(a_i, \tau_i)$ — from ID in $(a_i, \mu)$ + belief updating
-
-Then **monotone equilibria exist** and beliefs over opponents' actions are automatically FOSD-ordered in equilibrium.
-
-**Proposition 7 (Belief Propagation in Equilibrium).** In any monotone strategy equilibrium $\sigma^*$:
-
-If $\tau_i' \succeq \tau_i$, then the induced distribution over opponents' actions satisfies:
+**Proposition 6 (Belief Propagation).** Under affiliation, higher own type $\tau_i$ FOSD-shifts beliefs about others' types:
 $$
-\pi_i(\sigma_{-i}^*(\tau_{-i}) | \tau_i') \geq_{FOSD} \pi_i(\sigma_{-i}^*(\tau_{-i}) | \tau_i)
+\tau_i' \succeq \tau_i \implies \pi_i(\tau_{-i} | \tau_i') \geq_{FOSD} \pi_i(\tau_{-i} | \tau_i)
 $$
 
-*Proof.* Monotonicity of $\sigma_{-i}^*$ + any reasonable belief correlation structure gives this. In the VZV framework, this is endogenous to equilibrium construction. $\square$
+*Proof.* Affiliation of $(s_1, \ldots, s_n)$ implies the conditional distribution of $s_{-i}$ given $s_i$ is FOSD-increasing in $s_i$ (Milgrom-Weber Lemma 1). $\square$
+
+**Proposition 7 (VZV Stationarity in Equilibrium).** Given:
+- FOSD-ordered beliefs (from affiliation)
+- Strategic complementarities (from CES)
+- Single-crossing in $(a_i, \tau_i)$
+
+Then in any monotone equilibrium $\sigma^*$, the induced belief over opponents' **actions** is also FOSD-increasing:
+$$
+\tau_i' \succeq \tau_i \implies \pi_i(\sigma_{-i}^*(\tau_{-i}) | \tau_i') \geq_{FOSD} \pi_i(\sigma_{-i}^*(\tau_{-i}) | \tau_i)
+$$
+
+*Proof.* Proposition 6 gives FOSD over types. Monotonicity of $\sigma_{-i}^*$ (types → actions) preserves FOSD. $\square$
 
 ## 6. Verification of Van Zandt–Vives Conditions
 
@@ -385,13 +374,12 @@ F_i = \left[ (1-\sum_{j\in S_i}\alpha_{ij})^{\frac{1}{\sigma}} (A_i L_i)^{\frac{
 $$
 → Implies: Supermodularity (Prop. 1), single-crossing (Prop. 2), ID in $(a_i, a_{-i})$ (Prop. 3)
 
-**(P2) FOSD-Ordered Interim Beliefs (VZV Approach):**
+**(P2) Affiliation → FOSD-Ordered Beliefs:**
 
-Choose **one** of:
-- **(P2a) Stationarity + Complementarities:** In equilibrium with monotone strategies, higher types expect FOSD-higher opponent actions (Prop. 4). No primitives on information structure needed.
-- **(P2b) Affiliation:** Signals $(s_1, \ldots, s_n, \mu)$ affiliated → FOSD beliefs (Props. 5-6). Sufficient: Gaussian with non-negative correlations.
+Signals $(s_1, \ldots, s_n, \mu)$ are **affiliated** (log-supermodular joint density).
+- Sufficient condition: Gaussian with non-negative correlations (Prop. 5)
 
-→ Implies: Single-crossing in $(a_i, \tau_i)$, belief propagation (Prop. 7)
+→ Implies: FOSD-ordered beliefs over $(\mu, \tau_{-i})$ (Prop. 4), belief propagation (Prop. 6), VZV stationarity (Prop. 7)
 
 **(P3) Bounded Action Spaces:**
 $$
@@ -410,9 +398,9 @@ $$
 | Derived Condition | Source |
 |-------------------|--------|
 | Quasisupermodularity in $a_i$ | P1 (CES supermodularity) → Prop. 8 |
-| Single-crossing in $(a_i, \tau_i)$ | P1 + P2 (FOSD beliefs) |
+| FOSD-ordered beliefs | P2 (affiliation) → Prop. 4 |
+| Single-crossing in $(a_i, \tau_i)$ | P1 + P2 |
 | ID in $(a_i, a_{-i})$ | P1 (price single-crossing via A&A) |
-| FOSD-ordered beliefs | P2a (endogenous) or P2b (affiliation) |
 | Compact lattice actions | P3 |
 | Ascending best-reply | Props. 3, 8 → Prop. 9 |
 
