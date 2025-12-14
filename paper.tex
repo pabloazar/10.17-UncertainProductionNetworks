@@ -529,39 +529,60 @@ In the Cobb-Douglas/Gaussian economy with interior equilibrium, the aggregate be
 \begin{equation}\label{eq:decomposition}
     \Lambda(\s) = \underbrace{\sum_{i=1}^n D_i(\s) \cdot \varphi_i}_{\text{Hulten/Domar term}} \times \underbrace{\frac{1}{1 - \theta(\s)}}_{\text{strategic amplification}},
 \end{equation}
-where $\theta(\s) \in (0,1)$ is an equilibrium feedback index measuring the strength of the network spillover.
+where the \textbf{equilibrium feedback index} is
+\begin{equation}\label{eq:theta}
+    \theta(\s) \equiv \rho\big(B(\s)\big) \in (0,1),
+\end{equation}
+with $B(\s)$ the $n \times n$ matrix of equilibrium input-output shares: $B_{ij}(\s) = \beta_{ij} \cdot \mathbf{1}\{j \in S_i(\s)\}$.
 \end{proposition}
 
 \begin{proof}
-(Sketch) The proof follows standard Leontief-inverse algebra. In the Cobb-Douglas case, log-linearizing around the equilibrium yields:
+In the Cobb-Douglas case, the cost function is $K_i = \frac{1}{A_i} \prod_{j \in S_i} P_j^{\beta_{ij}}$ (up to a constant involving $\alpha_i$). Taking logs and substituting the contestability condition $p_i = -\log \theta_i(\mu) + k_i$:
 \[
-d \log \mathrm{GDP} = \sum_i D_i \cdot d \log \theta_i + \text{(price adjustment terms)}.
+p_i = -(\varphi_i \mu + \eta_i) + \sum_{j \in S_i} \beta_{ij} p_j + c_i,
 \]
-The price adjustment terms arise because network expansion lowers input costs, which raises output. Collecting terms, the strategic complementarity contributes a geometric series that sums to $(1 - \theta)^{-1}$, where $\theta$ depends on the spectral radius of the input-output matrix weighted by belief correlations.
+where $c_i$ collects constants. In matrix form: $p = -\Phi \mu + B(\s) p + c$, where $\Phi = (\varphi_1, \ldots, \varphi_n)'$. Solving: $p = (I - B)^{-1}(c - \Phi \mu)$.
+
+Log-linearizing GDP around the equilibrium:
+\[
+d \log \text{GDP} = \sum_i D_i \cdot d \log Y_i = \sum_i D_i (\varphi_i \, d\mu - dp_i).
+\]
+Substituting $dp = -(I-B)^{-1} \Phi \, d\mu$ and simplifying:
+\[
+\frac{d \log \text{GDP}}{d\mu} = D' \Phi + D' (I-B)^{-1} \Phi = D' (I-B)^{-1} \Phi.
+\]
+The Leontief inverse $(I-B)^{-1} = \sum_{k=0}^\infty B^k$ captures the geometric series of network spillovers. The amplification factor is bounded by $(1 - \rho(B))^{-1}$ where $\rho(B) < 1$ by labor essentiality. Defining $\theta(\s) = \rho(B(\s))$ yields the decomposition.
 \end{proof}
 
-\paragraph{Interpretation.} In optimistic belief states, the endogenous network is denser, which pushes $\theta(\s)$ up and makes the multiplier larger. This is precisely the ``belief-adjusted Domar weight'' story: beliefs enter first order not just through the direct productivity channel but through the network channel that amplifies shocks.
-
-When the network is exogenous (fixed $S$), $\theta = 0$ and we recover Hulten's theorem: $\Lambda = \sum_i D_i \varphi_i$. Endogenous networks under dispersed information add the amplification factor.
+\paragraph{Interpretation.} In optimistic belief states, the endogenous network $S(\s)$ is denser, which increases the nonzero entries in $B(\s)$, pushing $\theta(\s)$ up and making the multiplier larger. When the network is exogenous (fixed $S$), beliefs do not affect $B$ and the amplification factor is constant. Endogenous networks under dispersed information make the amplification state-dependent.
 
 %==============================================================================
 \section{Dynamic Extension}\label{sec:dynamic}
 %==============================================================================
 
-The static analysis describes network formation in a single period. In many applications, supplier links persist because forming or severing links is costly. This section sketches a dynamic extension that preserves the monotone structure, following \citet{van2007monotone}.
+The static analysis describes network formation in a single period. In many applications, supplier links persist because forming or severing links is costly. This section develops a dynamic extension that preserves the monotone structure, following \citet{van2007monotone}.
 
 \subsection{Dynamic Bayesian game}
 
 Time is discrete, $t = 0, 1, 2, \ldots$. Each period, nature draws a productivity shock $\mu_t$ from a stationary distribution. Firms observe private signals $s_{it}$ correlated with $\mu_t$ and with each other's signals (affiliation). The network choice $S_{it}$ is made at the beginning of period $t$ after observing $s_{it}$.
 
-A firm's \textbf{state} at time $t$ is its current belief about fundamentals and peers' actions, which we summarize by the pair $(s_{it}, S_{i,t-1})$---the current signal and the inherited network. The payoff is:
+A firm's \textbf{state} at time $t$ is the pair $(s_{it}, S_{i,t-1})$---the current signal and the inherited network. Firms discount future payoffs at rate $\beta \in (0,1)$. The period payoff is:
 \[
-u_i(S_{it}, S_{-i,t}, \mu_t) - c(S_{it}, S_{i,t-1}),
+\Pi_i(S_{it}, S_{-i,t}, \mu_t) - c(S_{it}, S_{i,t-1}),
 \]
-where $u_i$ is the period payoff from production (decreasing in unit cost) and $c(\cdot)$ is an adjustment cost:
+where $\Pi_i$ is as in \cref{eq:payoff} and $c(\cdot)$ is an adjustment cost:
 \[
 c(S_{it}, S_{i,t-1}) = \gamma^+|S_{it}\setminus S_{i,t-1}|+\gamma^-|S_{i,t-1}\setminus S_{it}|.
 \]
+
+\subsection{Value function and Bellman equation}
+
+Given opponents' Markov strategy $\sigma_{-i}$, firm $i$'s \textbf{value function} satisfies the Bellman equation:
+\begin{equation}\label{eq:bellman}
+V_i(s_{it}, S_{i,t-1}; \sigma_{-i}) = \max_{S_{it}} \left\{ \E\left[\Pi_i(S_{it}, \sigma_{-i}(s_{-i,t}), \mu_t) \mid s_{it}\right] - c(S_{it}, S_{i,t-1}) + \beta \, \E\left[V_i(s_{i,t+1}, S_{it}; \sigma_{-i}) \mid s_{it}\right] \right\}.
+\end{equation}
+
+The expectation integrates over $(\mu_t, s_{-i,t})$ conditional on $s_{it}$, and over the next-period signal $s_{i,t+1}$ given its realized distribution.
 
 \subsection{Monotone Markov strategies}
 
@@ -574,15 +595,15 @@ Under dynamic analogues of \cref{ass:affiliated,ass:technology,ass:complementari
 \end{theorem}
 
 \begin{proof}
-(Sketch) The proof follows \citet{van2007monotone}. The best-response operator maps monotone strategies to monotone strategies (by the single-crossing property in the static game). The space of monotone strategies is a complete lattice. By Tarski's fixed point theorem, extremal fixed points exist. Discounting ensures that the dynamic best-response is a contraction in an appropriate metric, guaranteeing uniqueness of the value function for each strategy profile.
+We verify the conditions of \citet{van2007monotone}. The Bellman operator $T: V \mapsto TV$ defined by \cref{eq:bellman} is a contraction in the sup-norm with modulus $\beta < 1$, so it has a unique fixed point $V^*$. Given $V^*$, the best-response operator maps monotone strategies to monotone strategies by the single-crossing property (Lemma~\ref{lem:info_sc}). The space of monotone strategies is a complete lattice. By Tarski's fixed point theorem, extremal fixed points exist in the strategy space.
 \end{proof}
 
-\subsection{Dynamics of beliefs and networks}
+\subsection{Hysteresis and persistence}
 
-A key feature of the dynamic model is \textbf{belief updating}. As firms observe their signals and the evolution of aggregate prices, they update their beliefs about the persistent component of $\mu$. This creates a natural source of persistence: a sequence of positive signals leads to increasingly optimistic beliefs, which leads to denser networks, which lowers prices, which reinforces the expansion.
+A key feature of the dynamic model is \textbf{belief-network feedback}. As firms observe positive signals, they update beliefs upward, expand networks, benefit from lower prices, and enter the next period with a denser inherited network $S_{i,t-1}$. The adjustment cost creates \textbf{hysteresis}:
 
 \begin{remark}[Hysteresis]
-If adjustment costs are asymmetric ($\gamma^+ > \gamma^-$), the economy may exhibit hysteresis. A temporary negative shock can push the economy to the sparse equilibrium, from which it does not return even when signals recover. This is a dynamic manifestation of the equilibrium multiplicity in the static game.
+If adjustment costs are asymmetric ($\gamma^+ > \gamma^-$), the economy may exhibit path dependence. A temporary negative shock can push the economy to the sparse equilibrium. Because reforming links is costly ($\gamma^+ > 0$), the economy remains sparse even when signals recover, unless a sufficiently large positive shock coordinates a return to the dense equilibrium.
 \end{remark}
 
 %==============================================================================
