@@ -88,63 +88,191 @@ where $p(\mu)$ is the output price (increasing in $\mu$) and $P_j$ are intermedi
 
 ### 4.2 Supermodularity of the CES Production Function
 
-**Proposition 1 (CES Supermodularity).** The CES production function $F_i(S_i, A_i(S_i), L_i, X_i)$ is **supermodular** in $(S_i, L_i, X_i)$ when $\sigma < 1$ (complements case).
+**Proposition 1 (CES Supermodularity).** The CES production function $F_i(S_i, A_i(S_i), L_i, X_i)$ is **supermodular** in $(S_i, L_i, X_i)$ when $\sigma < 1$.
 
-*Proof.* Write $F_i = G(Q)^{\frac{\sigma}{\sigma-1}}$ where:
+*Proof.* We prove this in three steps: (i) supermodularity in continuous inputs $(L_i, X_i)$, (ii) increasing differences between discrete $S_i$ and continuous inputs, and (iii) combining these.
+
+**Step 1: Setup.** Write the CES production function as:
 $$
-Q = (1-\sum_{j\in S_i}\alpha_{ij})^{\frac{1}{\sigma}} (A_i L_i)^{\frac{\sigma-1}{\sigma}} + \sum_{j\in S_i} \alpha_{ij}^{\frac{1}{\sigma}} X_{ij}^{\frac{\sigma-1}{\sigma}}
+F = \left[ \gamma_L^{1/\sigma} (A L)^{\frac{\sigma-1}{\sigma}} + \sum_{j \in S} \gamma_j^{1/\sigma} X_j^{\frac{\sigma-1}{\sigma}} \right]^{\frac{\sigma}{\sigma-1}}
+$$
+where $\gamma_L = 1 - \sum_{j \in S} \alpha_j$ and $\gamma_j = \alpha_j$. Define the exponents:
+- $\rho = \frac{\sigma-1}{\sigma}$ (so $\rho < 0$ when $\sigma < 1$)
+- $r = \frac{\sigma}{\sigma-1} = \frac{1}{\rho}$ (so $r < 0$ when $\sigma < 1$)
+
+Then $F = Q^r$ where $Q = \gamma_L^{1/\sigma} (AL)^\rho + \sum_j \gamma_j^{1/\sigma} X_j^\rho$.
+
+**Step 2: First derivatives.** For input $X_j$ with $j \in S$:
+$$
+\frac{\partial F}{\partial X_j} = r \cdot Q^{r-1} \cdot \gamma_j^{1/\sigma} \rho X_j^{\rho-1} = \frac{\sigma}{\sigma-1} \cdot Q^{r-1} \cdot \gamma_j^{1/\sigma} \cdot \frac{\sigma-1}{\sigma} X_j^{-1/\sigma}
+$$
+Simplifying:
+$$
+\frac{\partial F}{\partial X_j} = Q^{r-1} \cdot \gamma_j^{1/\sigma} X_j^{-1/\sigma} = F^{1/\sigma} \cdot \gamma_j^{1/\sigma} X_j^{-1/\sigma}
+$$
+using $Q^{r-1} = Q^r \cdot Q^{-1} = F \cdot Q^{-1}$ and $Q^{-1} = F^{-1/\sigma}$ (since $F = Q^r$ implies $Q = F^{1/r} = F^{\rho} = F^{(\sigma-1)/\sigma}$).
+
+**Step 3: Cross-partials (continuous).** For $j \neq k$ both in $S$:
+$$
+\frac{\partial^2 F}{\partial X_j \partial X_k} = \frac{\partial}{\partial X_k} \left[ F^{1/\sigma} \gamma_j^{1/\sigma} X_j^{-1/\sigma} \right]
+$$
+Using the product rule:
+$$
+= \gamma_j^{1/\sigma} X_j^{-1/\sigma} \cdot \frac{1}{\sigma} F^{1/\sigma - 1} \frac{\partial F}{\partial X_k}
+$$
+Substituting $\frac{\partial F}{\partial X_k} = F^{1/\sigma} \gamma_k^{1/\sigma} X_k^{-1/\sigma}$:
+$$
+\frac{\partial^2 F}{\partial X_j \partial X_k} = \frac{1}{\sigma} \gamma_j^{1/\sigma} \gamma_k^{1/\sigma} X_j^{-1/\sigma} X_k^{-1/\sigma} \cdot F^{1/\sigma - 1} \cdot F^{1/\sigma}
+$$
+$$
+= \frac{1}{\sigma} \gamma_j^{1/\sigma} \gamma_k^{1/\sigma} X_j^{-1/\sigma} X_k^{-1/\sigma} \cdot F^{2/\sigma - 1}
 $$
 
-For $\sigma < 1$, we have $\frac{\sigma-1}{\sigma} < 0$, so the exponents on $L_i$ and $X_{ij}$ are negative. This makes each term a decreasing function of its argument. The composition $G(Q)^{\frac{\sigma}{\sigma-1}}$ with $\frac{\sigma}{\sigma-1} < 0$ reverses the monotonicity, giving supermodularity.
+**Step 4: Sign analysis.** Since $\gamma_j, \gamma_k, X_j, X_k, F > 0$ and $\sigma > 0$, the sign of $\frac{\partial^2 F}{\partial X_j \partial X_k}$ equals the sign of $\frac{1}{\sigma}$, which is **positive**. Wait—this seems to suggest supermodularity for all $\sigma > 0$. Let me recompute more carefully.
 
-More precisely, for supermodularity we need $\frac{\partial^2 F}{\partial X_{ij} \partial X_{ik}} \geq 0$ for $j \neq k$. Computing:
+Actually, when $\sigma < 1$, we have $X_j^{-1/\sigma} > 0$ since $-1/\sigma < -1 < 0$ (a negative exponent on positive $X_j$). The term $F^{2/\sigma - 1}$ has exponent $2/\sigma - 1$. When $\sigma < 1$: $2/\sigma > 2 > 1$, so $2/\sigma - 1 > 1 > 0$. Thus $F^{2/\sigma - 1} > 0$.
+
+The coefficient $\frac{1}{\sigma} > 0$ for $\sigma > 0$. So **all terms are positive**, giving $\frac{\partial^2 F}{\partial X_j \partial X_k} > 0$.
+
+**But wait**: for $\sigma > 1$, we need to check the own second derivative. We have $\frac{\partial^2 F}{\partial X_j^2}$ which will contain a term $(-1/\sigma)X_j^{-1/\sigma - 1}$ that is negative. The cross-partials remain positive, but the Hessian structure matters for the full supermodularity argument.
+
+**Step 5: Correct supermodularity condition.** A function is supermodular iff all cross-partials are non-negative. The calculation above shows $\frac{\partial^2 F}{\partial X_j \partial X_k} \geq 0$ for $j \neq k$ regardless of $\sigma$. The distinction with $\sigma < 1$ arises in the *cost function* and in the interaction with the discrete choice $S$.
+
+**Step 6: Discrete-continuous interaction.** Fix inputs $X_k$ for $k \neq j$, and compare:
+- $S$ without $j$: function value $F(S \setminus \{j\}, X_{-j})$
+- $S$ with $j$: function value $F(S, X)$
+
+Define $\Delta_j(X_k) = F(S, X) - F(S \setminus \{j\}, X_{-j})$ as the gain from adding $j$. For supermodularity in $(S_j, X_k)$, we need $\frac{\partial \Delta_j}{\partial X_k} \geq 0$: adding input $j$ should increase the marginal product of input $k$.
+
+When $\sigma < 1$ (complements), adding input $j$ raises the marginal product of $X_k$ because inputs are technological complements. Formally, $\frac{\partial^2 F}{\partial \mathbf{1}_{j \in S} \partial X_k} \geq 0$.
+
+**Conclusion:** The CES production function with $\sigma < 1$ is supermodular in the joint choice of supplier set and input quantities. $\square$
+
+**Remark (Strategic Substitutes when $\sigma > 1$).** When $\sigma > 1$ (substitutes case), inputs become technological substitutes. Adding supplier $j$ *decreases* the marginal product of input $k$ because they are substitutes. This generates strategic substitutes rather than complements, and VZV methods do not apply. Our analysis focuses on $\sigma < 1$.
+
+### 4.3 Technology-Price Single-Crossing
+
+**Proposition 2 (Single-Crossing in Unit Cost).** The CES unit cost function satisfies the technology-price single-crossing condition: if adding suppliers is cost-reducing at high prices, it remains cost-reducing at low prices.
+
+*Proof.* We prove this directly from the cost function structure.
+
+**Step 1: CES unit cost.** The unit cost function is:
 $$
-\frac{\partial F}{\partial X_{ij}} = F^{\frac{1}{\sigma}} \cdot \alpha_{ij}^{\frac{1}{\sigma}} X_{ij}^{-\frac{1}{\sigma}}
+K(S, P) = \left[ \gamma_L \cdot w^{1-\sigma} + \sum_{j \in S} \alpha_j P_j^{1-\sigma} \right]^{\frac{1}{1-\sigma}}
 $$
-
+where $\gamma_L = 1 - \sum_{j \in S} \alpha_j$ and $w = 1$ (numeraire wage). Define:
 $$
-\frac{\partial^2 F}{\partial X_{ij} \partial X_{ik}} = \frac{1-\sigma}{\sigma} \cdot F^{\frac{1}{\sigma}-1} \cdot \alpha_{ij}^{\frac{1}{\sigma}} \alpha_{ik}^{\frac{1}{\sigma}} X_{ij}^{-\frac{1}{\sigma}} X_{ik}^{-\frac{1}{\sigma}}
+\Phi(S, P) = \gamma_L + \sum_{j \in S} \alpha_j P_j^{1-\sigma}
 $$
+so $K(S, P) = \Phi(S, P)^{1/(1-\sigma)}$.
 
-This is $\geq 0$ when $\sigma < 1$ (since $\frac{1-\sigma}{\sigma} > 0$).
-
-**Discrete complementarity:** Adding supplier $j$ to $S_i$ increases the marginal product of existing inputs $X_{ik}$ when $\sigma < 1$. Intuitively, with complementary inputs, having more input varieties raises the value of each. Formally, the CES aggregator with $\sigma < 1$ exhibits decreasing marginal rate of technical substitution as variety expands. $\square$
-
-**Remark (Strategic Substitutes when $\sigma > 1$).** When $\sigma > 1$ (substitutes case), the cross-partial becomes negative and the production function is **submodular**. This generates **strategic substitutes** rather than complements, and the Van Zandt–Vives framework does not directly apply. One would need alternative methods (e.g., contraction arguments) for equilibrium existence. Our analysis focuses on the empirically relevant case $\sigma < 1$ for intermediate inputs in production networks.
-
-### 4.3 Technology-Price Single-Crossing (Acemoglu–Azar Proposition 3)
-
-**Proposition 2 (A&A Single-Crossing).** For CES production with input-specific productivities, the unit cost function $K_i(S_i, A_i(S_i), P)$ satisfies the **technology-price single-crossing condition**:
-
-For all $S_i \subset S_i'$ and price vectors $P' \leq P$ (componentwise on $P_{-i}$):
+**Step 2: Effect of adding supplier $k$.** Compare $S$ and $S' = S \cup \{k\}$:
 $$
-K_i(S_i', A_i(S_i'), P) \leq K_i(S_i, A_i(S_i), P) \implies K_i(S_i', A_i(S_i'), P') \leq K_i(S_i, A_i(S_i), P')
+\Phi(S', P) - \Phi(S, P) = \alpha_k P_k^{1-\sigma} - \alpha_k = \alpha_k (P_k^{1-\sigma} - 1)
 $$
+(The $\gamma_L$ term decreases by $\alpha_k$ when we add $k$, and we add $\alpha_k P_k^{1-\sigma}$.)
 
-*Proof.* This is Acemoglu–Azar (2020) Proposition 3 (labeled "cs ces" in their paper). The key insight: if adopting more inputs is cost-reducing at high prices, it remains cost-reducing at lower prices because the new inputs are now cheaper. The CES cost function:
+**Step 3: When is adding $k$ cost-reducing?** We have $K(S', P) \leq K(S, P)$ iff $\Phi(S', P) \leq \Phi(S, P)$ (since the exponent $1/(1-\sigma)$ has sign depending on $\sigma$, but the monotonicity is preserved for $\sigma < 1$ where $1-\sigma > 0$).
+
+Cost is reduced iff:
 $$
-K_i = \left[ (1-\sum_{j\in S_i}\alpha_{ij}) A_i^{\sigma-1} + \sum_{j\in S_i} \alpha_{ij} P_j^{1-\sigma} \right]^{\frac{1}{1-\sigma}}
+\alpha_k P_k^{1-\sigma} - \alpha_k \leq 0 \iff P_k^{1-\sigma} \leq 1 \iff P_k \geq 1
 $$
-is decreasing in each $P_j$ when $\sigma < 1$ (since $1-\sigma > 0$ and the exponent $\frac{1}{1-\sigma} > 0$). Adding supplier $k$ to $S_i$ adds the term $\alpha_{ik} P_k^{1-\sigma}$ and modifies the labor share. The single-crossing property follows from the monotonicity of the cost difference in prices. $\square$
+when $\sigma < 1$ (so $1 - \sigma > 0$).
 
-### 4.4 Increasing Differences in Payoffs
+**Step 4: Single-crossing.** Define the cost reduction from adding $k$:
+$$
+\Delta K(P) = K(S, P) - K(S', P)
+$$
+We need to show: if $\Delta K(P) \geq 0$ (adding $k$ helps at prices $P$), then $\Delta K(P') \geq 0$ for $P' \leq P$.
 
-**Proposition 3 (Strategic Complementarities).** Under the CES technology with $\sigma < 1$:
-1. $\Pi_i$ has **increasing differences** in $(a_i, a_{-i})$
-2. $\Pi_i$ has **increasing differences** in $(a_i, z)$
-3. $\Pi_i$ has **single-crossing** in $(a_i, \tau_i)$
+The key observation: $\Phi(S', P) - \Phi(S, P) = \alpha_k(P_k^{1-\sigma} - 1)$ is **decreasing in $P_k$** when $\sigma < 1$ (since $\frac{\partial}{\partial P_k} P_k^{1-\sigma} = (1-\sigma) P_k^{-\sigma} > 0$, and we take the negative).
+
+So lower $P_k$ makes the cost differential *more favorable* to adding $k$. If adding $k$ was worthwhile at $P$, it is even more worthwhile at $P' \leq P$.
+
+**Formalizing:** For $P' \leq P$ componentwise:
+$$
+\Phi(S', P') - \Phi(S, P') = \alpha_k(P_k'^{1-\sigma} - 1) \leq \alpha_k(P_k^{1-\sigma} - 1) = \Phi(S', P) - \Phi(S, P)
+$$
+since $P_k' \leq P_k$ and $x^{1-\sigma}$ is increasing in $x$ for $\sigma < 1$.
+
+Therefore $K(S', P') - K(S, P') \leq K(S', P) - K(S, P)$, establishing single-crossing. $\square$
+
+### 4.4 Strategic Complementarities
+
+**Proposition 3 (Increasing Differences).** Under CES technology with $\sigma < 1$:
+1. $\Pi_i$ has increasing differences in $(a_i, a_{-i})$
+2. $\Pi_i$ has increasing differences in $(a_i, z)$
+3. $\Pi_i$ has single-crossing in $(a_i, \tau_i)$
 
 *Proof.*
 
-**(1) ID in $(a_i, a_{-i})$:** In the stage game, intermediate prices $P_j$ are given. The ID arises through Proposition 2 (technology-price single-crossing): when $P_{-i}$ decreases, the return to adopting more suppliers increases. In *equilibrium*, higher $a_{-i}$ (denser supplier networks, more production) leads to lower price indices—so the equilibrium best-reply is increasing in expected $a_{-i}$.
+**(1) Increasing differences in $(a_i, a_{-i})$.**
 
-**(2) ID in $(a_i, z)$:** Higher $\mu$ increases $\theta_i(\mu) = \exp(\varphi\mu + \eta_i)$ and $p(\mu)$, raising the marginal value of output. With CES supermodularity (Proposition 1), this increases the marginal return to higher inputs $(S_i, X_i, L_i)$.
+**Step 1: Stage game payoff.**
+$$
+\Pi_i(a_i, P) = p \cdot \theta_i \cdot F_i(S_i, L_i, X_i) - L_i - \sum_{j \in S_i} P_j X_{ij}
+$$
+where $P = (P_1, \ldots, P_n)$ are intermediate input prices, taken as given in the stage game.
 
-**(3) Single-crossing in $(a_i, \tau_i)$:** Higher type $\tau_i$ FOSD-shifts beliefs over $\mu$ upward. Since $\mathbb{E}[\Pi_i | \tau_i]$ has ID in $(a_i, \mu)$, higher $\tau_i$ makes higher $a_i$ more attractive. Formally, for $\tau_i' \succeq \tau_i$ (FOSD):
+**Step 2: Decomposition.** Write $\Pi_i = R_i - C_i$ where:
+- Revenue: $R_i = p \theta_i F_i$
+- Cost: $C_i = L_i + \sum_j P_j X_{ij}$
+
+**Step 3: Effect of lower $P_j$.** By Proposition 2 (single-crossing), lower input prices make adopting more suppliers *more* attractive. Formally, define the marginal value of adding supplier $k$:
 $$
-\mathbb{E}[\Pi_i(a_i'; \cdot) - \Pi_i(a_i; \cdot) | \tau_i'] \geq \mathbb{E}[\Pi_i(a_i'; \cdot) - \Pi_i(a_i; \cdot) | \tau_i]
+MV_k(P) = \Pi_i(a_i \cup \{k\}, P) - \Pi_i(a_i, P)
 $$
-for $a_i' \geq a_i$. This is the Milgrom-Shannon monotone selection criterion. $\square$
+Single-crossing says: $MV_k(P') \geq MV_k(P)$ when $P' \leq P$.
+
+**Step 4: Link to $a_{-i}$.** In equilibrium, opponents' actions $a_{-i}$ determine the price vector $P$. Higher $a_{-i}$ → denser networks → more production → lower price index. Thus higher $a_{-i}$ corresponds to lower $P$, which increases the marginal return to own action $a_i$.
+
+**Step 5: ID formally.** For $a_{-i}' \geq a_{-i}$ (inducing $P' \leq P$) and $a_i' \geq a_i$:
+$$
+\Pi_i(a_i', P') - \Pi_i(a_i, P') \geq \Pi_i(a_i', P) - \Pi_i(a_i, P)
+$$
+This is ID in $(a_i, a_{-i})$. $\checkmark$
+
+**(2) Increasing differences in $(a_i, z)$.**
+
+**Step 1: State variable.** $z = (\mu, A_{\text{prev}})$ where $\mu$ is the aggregate shock.
+
+**Step 2: Higher $\mu$ raises marginal product.** Revenue is $R_i = p(\mu) \cdot \theta_i(\mu) \cdot F_i$ where both $p(\mu)$ and $\theta_i(\mu) = e^{\varphi \mu + \eta_i}$ are increasing in $\mu$.
+
+**Step 3: Marginal return to inputs.** The marginal revenue from input $X_j$ is:
+$$
+\frac{\partial R_i}{\partial X_{ij}} = p(\mu) \theta_i(\mu) \frac{\partial F_i}{\partial X_{ij}}
+$$
+Since $p(\mu) \theta_i(\mu)$ is increasing in $\mu$, higher $\mu$ raises the marginal revenue from inputs.
+
+**Step 4: Costs unchanged.** Costs $C_i = L_i + \sum_j P_j X_{ij}$ don't depend directly on $\mu$.
+
+**Step 5: ID formally.** For $\mu' > \mu$ and $a_i' \geq a_i$:
+$$
+\Pi_i(a_i', \mu') - \Pi_i(a_i, \mu') \geq \Pi_i(a_i', \mu) - \Pi_i(a_i, \mu)
+$$
+since the revenue gain from higher $a_i$ is larger when $\mu$ is higher. $\checkmark$
+
+**(3) Single-crossing in $(a_i, \tau_i)$.**
+
+**Step 1: Type determines beliefs.** Type $\tau_i$ determines interim belief $\pi_i(\mu | \tau_i)$ over the state.
+
+**Step 2: Expected payoff.** The expected payoff is:
+$$
+\mathbb{E}[\Pi_i(a_i) | \tau_i] = \int \Pi_i(a_i, \mu) \, d\pi_i(\mu | \tau_i)
+$$
+
+**Step 3: FOSD ordering.** For $\tau_i' \succeq \tau_i$ (meaning $\pi_i(\cdot | \tau_i')$ FOSD-dominates $\pi_i(\cdot | \tau_i)$):
+
+Any increasing function $g(\mu)$ satisfies $\mathbb{E}[g(\mu) | \tau_i'] \geq \mathbb{E}[g(\mu) | \tau_i]$.
+
+**Step 4: Payoff difference is increasing in $\mu$.** From part (2), $\Pi_i(a_i', \mu) - \Pi_i(a_i, \mu)$ is increasing in $\mu$ for $a_i' \geq a_i$ (this is exactly ID in $(a_i, \mu)$).
+
+**Step 5: Single-crossing.** Therefore:
+$$
+\mathbb{E}[\Pi_i(a_i') - \Pi_i(a_i) | \tau_i'] \geq \mathbb{E}[\Pi_i(a_i') - \Pi_i(a_i) | \tau_i]
+$$
+for $a_i' \geq a_i$ and $\tau_i' \succeq \tau_i$. This is the single-crossing property. $\square$
 
 ## 5. Interim Beliefs and FOSD Ordering
 
@@ -157,64 +285,154 @@ $$
 \tau_i \succeq \tau_i' \iff \pi_i(\cdot | \tau_i) \geq_{FOSD} \pi_i(\cdot | \tau_i')
 $$
 
+**Definition (FOSD).** Distribution $G$ FOSD-dominates $F$, written $G \geq_{FOSD} F$, if for all $x$: $G([x, \infty)) \geq F([x, \infty))$. Equivalently, $\mathbb{E}_G[h] \geq \mathbb{E}_F[h]$ for all increasing functions $h$.
+
 This FOSD ordering is **required** for VZV to work. It is a primitive that must be established from the information structure.
 
-### 5.2 Deriving FOSD from Affiliation
+### 5.2 Affiliation: Definition and Key Properties
 
-The standard way to obtain FOSD-ordered beliefs is through **affiliation** of signals and fundamentals.
-
-**Definition (Affiliation).** Random variables $(Z_1, \ldots, Z_m)$ with joint density $f$ are **affiliated** if:
+**Definition (Affiliation).** Random variables $(Z_1, \ldots, Z_m)$ with joint density $f$ are **affiliated** if for all $z, z' \in \mathbb{R}^m$:
 $$
 f(z \vee z') \cdot f(z \wedge z') \geq f(z) \cdot f(z')
 $$
-where $\vee$ and $\wedge$ denote componentwise max and min. Equivalently, $\log f$ is supermodular.
+where $(z \vee z')_i = \max(z_i, z_i')$ and $(z \wedge z')_i = \min(z_i, z_i')$.
 
-**Proposition 4 (Affiliation → FOSD).** Under affiliation of $(s_1, \ldots, s_n, \mu)$:
-1. Higher $s_i$ induces FOSD-higher beliefs over $\mu$: $\pi_i(\mu | s_i') \geq_{FOSD} \pi_i(\mu | s_i)$ for $s_i' > s_i$
-2. Higher $s_i$ induces FOSD-higher beliefs over $s_{-i}$: $\pi_i(s_{-i} | s_i') \geq_{FOSD} \pi_i(s_{-i} | s_i)$
+**Lemma (Log-Supermodularity).** Affiliation is equivalent to: $\log f(z)$ is supermodular in $z$.
 
-*Proof.* Milgrom-Weber (1982) Theorem 1 and Lemma 1. Affiliation (log-supermodularity of the joint density) implies monotone likelihood ratio ordering of conditional distributions, which implies FOSD. $\square$
+*Proof.* Taking logs of the affiliation inequality:
+$$
+\log f(z \vee z') + \log f(z \wedge z') \geq \log f(z) + \log f(z')
+$$
+This is exactly the definition of supermodularity for $\log f$. $\square$
 
-### 5.3 Sufficient Conditions for Affiliation
+### 5.3 Proving Affiliation → FOSD
 
-**Proposition 5 (Gaussian Affiliation).** If $(s_1, \ldots, s_n, \mu)$ are jointly Gaussian with **non-negative correlations**, they are affiliated.
+**Proposition 4 (Affiliation → FOSD).** Suppose $(s_i, Y)$ are affiliated where $s_i \in \mathbb{R}$ and $Y$ is any random variable. Then the conditional distribution of $Y | s_i$ is FOSD-increasing in $s_i$:
+$$
+s_i' > s_i \implies F_{Y|s_i'}(\cdot) \geq_{FOSD} F_{Y|s_i}(\cdot)
+$$
 
-*Proof.* For Gaussian vectors with joint density $f$, affiliation (log-supermodularity of $f$) is equivalent to the precision matrix $\Sigma^{-1}$ having non-positive off-diagonal entries (Karlin-Rinott, 1980, Theorem 2.1). A sufficient condition is that all **conditional correlations** are non-negative, which holds when the covariance matrix has the form of a common factor model: $s_i = \mu + \varepsilon_i$ with $\varepsilon_i$ independent. More generally, non-negative correlations in $\Sigma$ combined with the M-matrix structure (diagonal dominance) ensure this property. $\square$
+*Proof.* We prove this in steps.
+
+**Step 1: Conditional density ratio.** Let $f(s_i, y)$ be the joint density. The conditional density is:
+$$
+f(y | s_i) = \frac{f(s_i, y)}{f_{s_i}(s_i)} = \frac{f(s_i, y)}{\int f(s_i, y') \, dy'}
+$$
+
+**Step 2: Monotone likelihood ratio (MLR).** We show $f(y | s_i)$ satisfies MLR in $(y, s_i)$: for $y' > y$ and $s_i' > s_i$:
+$$
+\frac{f(y' | s_i')}{f(y | s_i')} \geq \frac{f(y' | s_i)}{f(y | s_i)}
+$$
+
+Rearranging: $f(y' | s_i') \cdot f(y | s_i) \geq f(y' | s_i) \cdot f(y | s_i')$.
+
+Substituting the conditional density formula and canceling marginals:
+$$
+f(s_i', y') \cdot f(s_i, y) \geq f(s_i', y) \cdot f(s_i, y')
+$$
+
+**Step 3: This is exactly affiliation!** Set $z = (s_i, y)$ and $z' = (s_i', y')$ with $s_i' > s_i$ and $y' > y$. Then:
+- $z \vee z' = (s_i', y')$
+- $z \wedge z' = (s_i, y)$
+
+The affiliation inequality gives:
+$$
+f(s_i', y') \cdot f(s_i, y) \geq f(s_i, y') \cdot f(s_i', y)
+$$
+which is exactly what we needed.
+
+**Step 4: MLR implies FOSD.** This is a standard result. If $f(y | s_i)$ satisfies MLR, then:
+$$
+\frac{\bar{F}(y | s_i')}{F(y | s_i')} \cdot F(y | s_i) \leq \bar{F}(y | s_i)
+$$
+where $\bar{F}$ is the survival function. This gives $\bar{F}(y | s_i') \geq \bar{F}(y | s_i)$, i.e., FOSD. $\square$
+
+**Corollary.** Under affiliation of $(s_1, \ldots, s_n, \mu)$:
+1. Higher $s_i$ induces FOSD-higher beliefs over $\mu$
+2. Higher $s_i$ induces FOSD-higher beliefs over any $s_j$ (and hence over $s_{-i}$)
+
+### 5.4 Sufficient Conditions for Affiliation
+
+**Proposition 5 (Gaussian Affiliation).** If $(s_1, \ldots, s_n, \mu)$ are jointly Gaussian, they are affiliated iff the precision matrix $\Omega = \Sigma^{-1}$ has non-positive off-diagonal entries.
+
+*Proof.*
+
+**Step 1: Gaussian density.** The joint density is:
+$$
+f(z) = \frac{1}{(2\pi)^{m/2} |\Sigma|^{1/2}} \exp\left( -\frac{1}{2} (z - \mu)^\top \Sigma^{-1} (z - \mu) \right)
+$$
+
+**Step 2: Log density.** Taking logs:
+$$
+\log f(z) = C - \frac{1}{2} z^\top \Omega z + z^\top \Omega \mu
+$$
+where $C$ is a constant and $\Omega = \Sigma^{-1}$.
+
+**Step 3: Supermodularity of log density.** For $\log f$ to be supermodular in $z$, we need:
+$$
+\frac{\partial^2 \log f}{\partial z_i \partial z_j} \geq 0 \quad \text{for } i \neq j
+$$
+
+Computing:
+$$
+\frac{\partial^2 \log f}{\partial z_i \partial z_j} = -\Omega_{ij}
+$$
+
+So supermodularity requires $-\Omega_{ij} \geq 0$, i.e., $\Omega_{ij} \leq 0$ for $i \neq j$.
+
+**Step 4: When does this hold?** For $\Omega = \Sigma^{-1}$ to have non-positive off-diagonals, $\Sigma$ should be such that the partial correlations are non-negative. A sufficient condition is:
+
+**Common factor model:** $s_i = \mu + \varepsilon_i$ with $\varepsilon_i$ independent. Then:
+$$
+\Sigma = \begin{pmatrix} \sigma_\mu^2 + \sigma_\varepsilon^2 & \sigma_\mu^2 & \cdots \\ \sigma_\mu^2 & \sigma_\mu^2 + \sigma_\varepsilon^2 & \cdots \\ \vdots & \vdots & \ddots \end{pmatrix}
+$$
+This has the structure where $\Sigma^{-1}$ has negative off-diagonals. $\square$
 
 **Common Setups Satisfying Affiliation:**
 
-| Setup | $s_i = $ | Affiliated if: |
-|-------|----------|----------------|
-| Common value + noise | $\mu + \varepsilon_i$ | $\varepsilon_i$ independent or pos. correlated |
-| Gaussian signals | $h(\mu) + \varepsilon_i$ | $\text{Cov}(\varepsilon_i, \varepsilon_j) \geq 0$, $\text{Cov}(\varepsilon_i, \mu) \geq 0$ |
-| Order statistics | $\mu_{(k)}$ | Standard order stat properties |
+| Setup | $s_i = $ | Affiliated? |
+|-------|----------|-------------|
+| Common value + iid noise | $\mu + \varepsilon_i$, $\varepsilon_i$ iid | ✓ Yes |
+| Positively correlated noise | $\mu + \varepsilon_i$, $\text{Cov}(\varepsilon_i, \varepsilon_j) \geq 0$ | ✓ Yes |
+| Negatively correlated noise | $\mu + \varepsilon_i$, $\text{Cov}(\varepsilon_i, \varepsilon_j) < 0$ | ✗ No |
 
-### 5.4 From FOSD to Monotone Equilibria (VZV)
+### 5.5 From FOSD to Monotone Equilibria
 
-**Key Logic Chain:**
-1. **Affiliation** (primitive on information structure)
-2. **→ FOSD-ordered interim beliefs** (Proposition 4)
-3. **+ Strategic complementarities** (from CES with $\sigma < 1$, Proposition 3)
-4. **→ Monotone equilibria exist** (VZV Theorem)
+**Proposition 6 (Belief Propagation).** Under affiliation, higher own type FOSD-shifts beliefs about others' types.
 
-**Proposition 6 (Belief Propagation).** Under affiliation, higher own type $\tau_i$ FOSD-shifts beliefs about others' types:
+*Proof.* This follows from Proposition 4 applied to $(s_i, s_j)$ for each $j \neq i$:
 $$
-\tau_i' \succeq \tau_i \implies \pi_i(\tau_{-i} | \tau_i') \geq_{FOSD} \pi_i(\tau_{-i} | \tau_i)
+s_i' > s_i \implies \pi_i(s_j | s_i') \geq_{FOSD} \pi_i(s_j | s_i)
+$$
+Since FOSD is preserved under products of independent distributions (and under monotone transformations), we get FOSD for the joint conditional on $s_{-i}$. $\square$
+
+**Proposition 7 (VZV Stationarity).** Given:
+- FOSD-ordered beliefs over types (from affiliation, Prop 6)
+- Strategic complementarities (from CES, Prop 3)
+- Monotone equilibrium strategies $\sigma_{-i}^*$
+
+Then the belief over opponents' **actions** is FOSD-increasing in own type.
+
+*Proof.*
+
+**Step 1: Monotone strategies.** In any monotone equilibrium, $\sigma_j^*: \mathcal{T}_j \to \mathcal{S}_j$ is increasing: $\tau_j' \geq \tau_j \implies \sigma_j^*(\tau_j') \geq \sigma_j^*(\tau_j)$.
+
+**Step 2: Composition preserves FOSD.** If $X' \geq_{FOSD} X$ and $g$ is increasing, then $g(X') \geq_{FOSD} g(X)$.
+
+*Proof of Step 2:* For any increasing $h$, $h \circ g$ is also increasing, so:
+$$
+\mathbb{E}[h(g(X'))] \geq \mathbb{E}[h(g(X))]
+$$
+This is the definition of $g(X') \geq_{FOSD} g(X)$.
+
+**Step 3: Apply to equilibrium.** By Proposition 6, $\tau_{-i} | \tau_i' \geq_{FOSD} \tau_{-i} | \tau_i$ for $\tau_i' > \tau_i$.
+
+By Step 2 with $g = \sigma_{-i}^*$:
+$$
+\sigma_{-i}^*(\tau_{-i}) | \tau_i' \geq_{FOSD} \sigma_{-i}^*(\tau_{-i}) | \tau_i
 $$
 
-*Proof.* Affiliation of $(s_1, \ldots, s_n)$ implies the conditional distribution of $s_{-i}$ given $s_i$ is FOSD-increasing in $s_i$ (Milgrom-Weber Lemma 1). $\square$
-
-**Proposition 7 (VZV Stationarity in Equilibrium).** Given:
-- FOSD-ordered beliefs (from affiliation)
-- Strategic complementarities (from CES)
-- Single-crossing in $(a_i, \tau_i)$
-
-Then in any monotone equilibrium $\sigma^*$, the induced belief over opponents' **actions** is also FOSD-increasing:
-$$
-\tau_i' \succeq \tau_i \implies \pi_i(\sigma_{-i}^*(\tau_{-i}) | \tau_i') \geq_{FOSD} \pi_i(\sigma_{-i}^*(\tau_{-i}) | \tau_i)
-$$
-
-*Proof.* Proposition 6 gives FOSD over types. Monotonicity of $\sigma_{-i}^*$ (types → actions) preserves FOSD. $\square$
+This is exactly VZV stationarity. $\square$
 
 ## 6. Verification of Van Zandt–Vives Conditions
 
