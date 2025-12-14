@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 19:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 19:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -674,16 +674,13 @@ T1/ppl/m/n/12 (-20) .
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: DD557212D10F46323F0AAEBC4D01B3C9;3842.
  ) 
 Here is how much of TeX's memory you used:
  14393 strings out of 478994
  211942 string characters out of 5858184
- 551080 words of memory out of 5000000
+ 551130 words of memory out of 5000000
  31001 multiletter control sequences out of 15000+600000
  480730 words of font info for 461 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -700,7 +697,7 @@ dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
 pe1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw
 /palatino/uplri8a.pfb>
-Output written on paper.pdf (18 pages, 198980 bytes).
+Output written on paper.pdf (18 pages, 198886 bytes).
 PDF statistics:
  453 PDF objects out of 1000 (max. 8388607)
  417 compressed objects within 5 object streams

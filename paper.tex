@@ -243,11 +243,11 @@ Given $P^*$ and the technology choice $S_i$, the factor demands $L_i^*$ and $X_i
 
 \subsection{The Network Formation Game}
 
-The extensive margin decision is made \emph{ex ante}. Firm $i$ observes $s_i$ and chooses $S_i$ to minimize expected total costs, which include a fixed organizational cost $\Gamma_i(S_i)$. The strategy of firm $i$ is a mapping $\sigma_i: \Sset_i \to 2^{\I \setminus \{i\}}$. Let $\sigma_{-i}$ denote the strategies of opponents.
+The extensive margin decision is made \emph{ex ante}. Firm $i$ observes $s_i$ and chooses $S_i$ to minimize expected unit costs. The strategy of firm $i$ is a mapping $\sigma_i: \Sset_i \to 2^{\I \setminus \{i\}}$. Let $\sigma_{-i}$ denote the strategies of opponents.
 
 Firm $i$'s objective is to minimize the expected cost function:
 \begin{equation}\label{eq:objective}
-    \mathcal{C}_i(S_i, s_i; \sigma_{-i}) = \E \left[ K_i(S_i, \mu, P^*(\mu, S_i, \sigma_{-i}(\s_{-i}))) + \Gamma_i(S_i) \mid s_i \right].
+    \mathcal{C}_i(S_i, s_i; \sigma_{-i}) = \E \left[ K_i(S_i, \mu, P^*(\mu, S_i, \sigma_{-i}(\s_{-i}))) \mid s_i \right].
 \end{equation}
 This formulation highlights the strategic interaction: firm $i$'s cost depends on $P^*$, which depends on $S_{-i}$, which depends on $\s_{-i}$ via $\sigma_{-i}$. Thus, firm $i$ must forecast the signals and actions of other firms.
 
