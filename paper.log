@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 21:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 22:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -663,21 +663,47 @@ d on input line 371.
 LaTeX Warning: cref reference range format for label type `assumption' undefine
 d on input line 552.
 
-[12] [13] (./paper.bbl) [14] (./paper.aux)
+[12] [13]
+Overfull \hbox (14.23737pt too wide) in paragraph at lines 628--630
+[]\T1/ppl/b/n/10.95 (-20) Step 2: Key in-equal-ity. \T1/ppl/m/n/10.95 (-20) Let
+ $\OML/zplm/m/it/10.95 t[] \OMS/zplm/m/n/10.95 ^^W \OML/zplm/m/it/10.95 t$ \T1/
+ppl/m/n/10.95 (-20) and sup-pose $\OML/zplm/m/it/10.95 x[] \OMS/zplm/m/n/10.95 
+2 [][] \OML/zplm/m/it/10.95 f\OT1/zplm/m/n/10.95 (\OML/zplm/m/it/10.95 x\OT1/pp
+l/m/n/10.95 (-20) , \OML/zplm/m/it/10.95 t\OT1/zplm/m/n/10.95 )$ \T1/ppl/m/n/10
+.95 (-20) and $\OML/zplm/m/it/10.95 x[] \OMS/zplm/m/n/10.95 2 [][] \OML/zplm/m/
+it/10.95 f\OT1/zplm/m/n/10.95 (\OML/zplm/m/it/10.95 x\OT1/ppl/m/n/10.95 (-20) ,
+ \OML/zplm/m/it/10.95 t[]\OT1/zplm/m/n/10.95 )$\T1/ppl/m/n/10.95 (-20) .
+ []
+
+[14]
+Overfull \hbox (14.43445pt too wide) in paragraph at lines 722--723
+[]\T1/ppl/m/n/10.95 (-20) MLRP means $\OML/zplm/m/it/10.95 f\OT1/zplm/m/n/10.95
+ (\OML/zplm/m/it/10.95 ^^V \OMS/zplm/m/n/10.95 j \OML/zplm/m/it/10.95 s[]\OT1/z
+plm/m/n/10.95 )/\OML/zplm/m/it/10.95 f\OT1/zplm/m/n/10.95 (\OML/zplm/m/it/10.95
+ ^^V \OMS/zplm/m/n/10.95 j \OML/zplm/m/it/10.95 s\OT1/zplm/m/n/10.95 )$ \T1/ppl
+/m/n/10.95 (-20) is in-creas-ing in $\OML/zplm/m/it/10.95 ^^V$\T1/ppl/m/n/10.95
+ (-20) . De-fine $\OT1/zplm/m/n/10.95 ^^C([]) = [][] \OML/zplm/m/it/10.95 f\OT1
+/zplm/m/n/10.95 (\OML/zplm/m/it/10.95 ^^V \OMS/zplm/m/n/10.95 j \OML/zplm/m/it/
+10.95 s[]\OT1/zplm/m/n/10.95 )\OML/zplm/m/it/10.95 d^^V\OT1/zplm/m/n/10.95 / []
+[] \OML/zplm/m/it/10.95 f\OT1/zplm/m/n/10.95 (\OML/zplm/m/it/10.95 ^^V \OMS/zpl
+m/m/n/10.95 j
+ []
+
+[15] (./paper.bbl [16]) [17] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: C90DC64BCB4F8F063470AD9E8455A963;6779.
+(rerunfilecheck)             Checksum: 37FB7C87CAB77B8767AD5C9850FE230A;7193.
  ) 
 Here is how much of TeX's memory you used:
- 15197 strings out of 478994
- 239404 string characters out of 5858184
- 585262 words of memory out of 5000000
- 31862 multiletter control sequences out of 15000+600000
- 472436 words of font info for 414 fonts, out of 8000000 for 9000
+ 15240 strings out of 478994
+ 239924 string characters out of 5858184
+ 588262 words of memory out of 5000000
+ 31873 multiletter control sequences out of 15000+600000
+ 473148 words of font info for 426 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,11n,74p,953b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,11n,74p,953b,459s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -689,10 +715,10 @@ xmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2021/texmf-
 dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/urw/palatino/uplri8a.pfb>
-Output written on paper.pdf (14 pages, 177284 bytes).
+Output written on paper.pdf (17 pages, 191895 bytes).
 PDF statistics:
- 447 PDF objects out of 1000 (max. 8388607)
- 416 compressed objects within 5 object streams
- 127 named destinations out of 1000 (max. 500000)
- 95521 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 478 PDF objects out of 1000 (max. 8388607)
+ 444 compressed objects within 5 object streams
+ 141 named destinations out of 1000 (max. 500000)
+ 95529 words of extra memory for PDF output out of 106986 (max. 10000000)
 

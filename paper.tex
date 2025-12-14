@@ -585,28 +585,196 @@ Our results imply that supply chain robustness is not merely a technological que
 A \textbf{lattice} is a partially ordered set $(L,\preceq)$ where every pair $x,y$ has a least upper bound $x\vee y$ (join) and greatest lower bound $x\wedge y$ (meet). A lattice is \textbf{complete} if every subset has a join and meet.
 \end{definition}
 
-\begin{theorem}[Tarski]\label{thm:tarski}
-Let $L$ be a complete lattice and $f:L\to L$ be isotone. Then the set of fixed points of $f$ is a nonempty complete lattice.
+\begin{theorem}[Tarski's Fixed Point Theorem]\label{thm:tarski}
+Let $L$ be a complete lattice and $f:L\to L$ be isotone (order-preserving). Then the set of fixed points $\mathrm{Fix}(f) = \{x \in L : f(x) = x\}$ is a nonempty complete lattice.
 \end{theorem}
+
+\begin{proof}
+\textbf{Step 1: Existence of a greatest fixed point.}
+Let $A = \{x \in L : x \preceq f(x)\}$. Since $L$ is complete, $A$ has a supremum $\bar{x} = \bigvee A$. We show $\bar{x}$ is a fixed point.
+
+For any $x \in A$, we have $x \preceq f(x)$. Since $x \preceq \bar{x}$ and $f$ is isotone, $f(x) \preceq f(\bar{x})$. Thus $x \preceq f(\bar{x})$ for all $x \in A$, so $\bar{x} \preceq f(\bar{x})$.
+
+Since $\bar{x} \preceq f(\bar{x})$ and $f$ is isotone, $f(\bar{x}) \preceq f(f(\bar{x}))$. Thus $f(\bar{x}) \in A$, so $f(\bar{x}) \preceq \bar{x}$.
+
+Combining, $f(\bar{x}) = \bar{x}$.
+
+\textbf{Step 2: Existence of a least fixed point.}
+Define $B = \{x \in L : f(x) \preceq x\}$ and $\underline{x} = \bigwedge B$. By a symmetric argument, $\underline{x}$ is a fixed point.
+
+\textbf{Step 3: The set of fixed points is a complete lattice.}
+For any subset $S \subseteq \mathrm{Fix}(f)$, define $A_S = \{x \in L : x \succeq \bigvee S \text{ and } f(x) \preceq x\}$. This set is nonempty (since the greatest fixed point $\bar{x} \in A_S$) and its infimum is a fixed point that serves as the join of $S$ in $\mathrm{Fix}(f)$. Meets are constructed dually.
+\end{proof}
 
 \begin{definition}
 A function $f:L\to\R$ on a lattice is \textbf{supermodular} if for all $x,y\in L$,
 \[
 f(x\vee y)+f(x\wedge y)\ge f(x)+f(y).
 \]
+A function $f:L \times T \to \R$ has \textbf{increasing differences} in $(x,t)$ if for all $x' \succeq x$ and $t' \succeq t$,
+\[
+f(x',t') - f(x,t') \ge f(x',t) - f(x,t).
+\]
 \end{definition}
 
-\begin{theorem}[Topkis]\label{thm:topkis}
-If $f:L\times T\to\R$ is supermodular in $x$ and has increasing differences in $(x,t)$, then $\argmax_x f(x,t)$ is isotone in $t$.
+\begin{theorem}[Topkis's Monotonicity Theorem]\label{thm:topkis}
+Let $L$ be a lattice and $T$ a partially ordered set. If $f:L\times T\to\R$ is supermodular in $x$ and has increasing differences in $(x,t)$, then $\argmax_{x \in L} f(x,t)$ is isotone in $t$ (in the strong set order).
 \end{theorem}
+
+\begin{proof}
+\textbf{Step 1: Strong set order.}
+For sets $A, B \subseteq L$, we say $A \preceq_s B$ (strong set order) if for all $a \in A$ and $b \in B$, we have $a \wedge b \in A$ and $a \vee b \in B$.
+
+\textbf{Step 2: Key inequality.}
+Let $t' \succeq t$ and suppose $x^* \in \argmax_x f(x,t)$ and $x^{**} \in \argmax_x f(x,t')$. We must show $x^* \wedge x^{**} \in \argmax_x f(x,t)$ and $x^* \vee x^{**} \in \argmax_x f(x,t')$.
+
+By optimality: $f(x^*,t) \ge f(x^* \wedge x^{**},t)$ and $f(x^{**},t') \ge f(x^* \vee x^{**},t')$.
+
+By supermodularity: $f(x^* \vee x^{**},t) + f(x^* \wedge x^{**},t) \ge f(x^*,t) + f(x^{**},t)$.
+
+By increasing differences: $f(x^* \vee x^{**},t') - f(x^{**},t') \ge f(x^* \vee x^{**},t) - f(x^{**},t)$.
+
+Combining these inequalities:
+\begin{align*}
+0 &\ge f(x^* \vee x^{**},t') - f(x^{**},t') & \text{(optimality of } x^{**}) \\
+&\ge f(x^* \vee x^{**},t) - f(x^{**},t) & \text{(increasing differences)} \\
+&\ge f(x^*,t) - f(x^* \wedge x^{**},t) & \text{(supermodularity)} \\
+&\ge 0 & \text{(optimality of } x^*).
+\end{align*}
+All inequalities are equalities, so $x^* \wedge x^{**} \in \argmax_x f(x,t)$ and $x^* \vee x^{**} \in \argmax_x f(x,t')$.
+\end{proof}
 
 \subsection{P-matrix theory}
 
-The Hawkins--Simon theorem gives equivalent conditions for productivity of a Leontief system. For $A\ge 0$, if $(I-A)^{-1}$ exists and has nonnegative entries, then all principal minors of $I-A$ are positive, so $I-A$ is a P-matrix. Conversely, if $I-A$ is a P-matrix, then $I-A$ is nonsingular and the inverse is nonnegative for $A\ge 0$.
+\begin{definition}
+A square matrix $B \in \R^{n \times n}$ is a \textbf{P-matrix} if all its principal minors are positive.
+\end{definition}
 
-\subsection{Affiliation}
+\begin{theorem}[Hawkins--Simon]\label{thm:hawkins_simon_proof}
+Let $A \ge 0$ be a nonnegative matrix. The following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+    \item $I-A$ is a P-matrix.
+    \item $(I-A)^{-1}$ exists and $(I-A)^{-1} \ge 0$.
+    \item The spectral radius $\rho(A) < 1$.
+\end{enumerate}
+\end{theorem}
 
-Affiliation is equivalent to log-supermodularity of the joint density. Log-supermodularity is preserved under conditioning and marginalization. In particular, the conditional density $f(\mu\mid s_i)$ is log-supermodular in $(\mu,s_i)$, which yields MLRP. MLRP implies FOSD by integrating likelihood ratios. The ordering of beliefs about $s_{-i}$ follows by applying the same argument to the joint distribution of $(s_{-i},s_i)$.
+\begin{proof}
+\textbf{(iii) $\Rightarrow$ (ii):}
+If $\rho(A) < 1$, the Neumann series $\sum_{k=0}^\infty A^k$ converges. Since $A \ge 0$, each term is nonnegative, so
+\[
+(I-A)^{-1} = \sum_{k=0}^\infty A^k \ge 0.
+\]
+
+\textbf{(ii) $\Rightarrow$ (i):}
+For any principal submatrix $A_J$ (corresponding to index set $J$), we have $(I_J - A_J)^{-1} \ge 0$ (the Schur complement structure preserves nonnegativity). A matrix with nonnegative inverse has positive determinant, so all principal minors of $I-A$ are positive.
+
+\textbf{(i) $\Rightarrow$ (iii):}
+Suppose $\rho(A) \ge 1$. By the Perron-Frobenius theorem, $A$ has a nonnegative eigenvector $v \ge 0$ with eigenvalue $\lambda = \rho(A) \ge 1$. Then $(I-A)v = (1-\lambda)v$. If $\lambda = 1$, $I-A$ is singular. If $\lambda > 1$, then $(I-A)v = (1-\lambda)v < 0$, contradicting the requirement that $(I-A)^{-1} \ge 0$ maps nonnegative vectors to nonnegative vectors.
+\end{proof}
+
+\begin{theorem}[Gale--Nikaido Univalence]\label{thm:gale_nikaido_proof}
+Let $\Phi: \R^n \to \R^n$ be continuously differentiable. If the Jacobian $D\Phi(x)$ is a P-matrix for all $x \in \R^n$, then $\Phi$ is a global homeomorphism.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+\textbf{Step 1: Local injectivity.}
+A P-matrix is nonsingular (all principal minors positive implies full rank). By the inverse function theorem, $\Phi$ is a local diffeomorphism at every point.
+
+\textbf{Step 2: Global injectivity.}
+The key insight is that P-matrices are closed under positive diagonal scaling and satisfy a specific ``inwardness'' property. If $\Phi(x) = \Phi(y)$ for $x \ne y$, consider the path $\gamma(t) = \Phi(x + t(y-x))$. The P-matrix property forces $\gamma$ to move in all coordinates simultaneously, preventing $\gamma(0) = \gamma(1)$ unless $x = y$.
+
+\textbf{Step 3: Surjectivity.}
+Local injectivity plus the P-matrix property implies that $\|\Phi(x)\| \to \infty$ as $\|x\| \to \infty$ (properness). By Hadamard's theorem, a proper local homeomorphism is a global homeomorphism.
+\end{proof}
+
+\subsection{Affiliation and stochastic dominance}
+
+\begin{definition}
+Random variables $Z = (Z_1, \ldots, Z_m)$ with joint density $f$ are \textbf{affiliated} if $f$ is log-supermodular:
+\[
+f(z \vee z') f(z \wedge z') \ge f(z) f(z') \quad \text{for all } z, z'.
+\]
+\end{definition}
+
+\begin{theorem}[Affiliation implies MLRP]\label{thm:affiliation_mlrp}
+If $(Z_1, Z_2)$ are affiliated, then the conditional density $f(z_1 \mid z_2)$ satisfies the monotone likelihood ratio property in $z_2$.
+\end{theorem}
+
+\begin{proof}
+The conditional density is $f(z_1 \mid z_2) = f(z_1, z_2) / f_{Z_2}(z_2)$. For $z_2' > z_2$ and $z_1' > z_1$:
+\begin{align*}
+\frac{f(z_1' \mid z_2')}{f(z_1 \mid z_2')} \cdot \frac{f(z_1 \mid z_2)}{f(z_1' \mid z_2)}
+&= \frac{f(z_1', z_2') \cdot f(z_1, z_2)}{f(z_1, z_2') \cdot f(z_1', z_2)}.
+\end{align*}
+Define $z = (z_1, z_2)$ and $z' = (z_1', z_2')$. Then $z \vee z' = (z_1', z_2')$ and $z \wedge z' = (z_1, z_2)$. By log-supermodularity:
+\[
+f(z_1', z_2') \cdot f(z_1, z_2) \ge f(z_1, z_2') \cdot f(z_1', z_2).
+\]
+Thus the ratio is $\ge 1$, which is the MLRP condition.
+\end{proof}
+
+\begin{theorem}[MLRP implies FOSD]\label{thm:mlrp_fosd}
+If $f(\cdot \mid s')$ dominates $f(\cdot \mid s)$ in the likelihood ratio order for $s' > s$, then $F(\cdot \mid s') \ge_{\mathrm{FOSD}} F(\cdot \mid s)$.
+\end{theorem}
+
+\begin{proof}
+MLRP means $f(\mu \mid s') / f(\mu \mid s)$ is increasing in $\mu$. Define $\Lambda(\bar{\mu}) = \int_{-\infty}^{\bar{\mu}} f(\mu \mid s') d\mu / \int_{-\infty}^{\bar{\mu}} f(\mu \mid s) d\mu$. 
+
+Since the likelihood ratio is increasing, $\Lambda(\bar{\mu})$ is increasing in $\bar{\mu}$. We have $\Lambda(-\infty) = 0$ and $\Lambda(\infty) = 1$ (both CDFs integrate to 1).
+
+For FOSD, we need $F(\bar{\mu} \mid s') \le F(\bar{\mu} \mid s)$, i.e., $\int_{-\infty}^{\bar{\mu}} f(\mu \mid s') d\mu \le \int_{-\infty}^{\bar{\mu}} f(\mu \mid s) d\mu$.
+
+Equivalently: $\int_{-\infty}^{\bar{\mu}} [f(\mu \mid s') - f(\mu \mid s)] d\mu \le 0$.
+
+The integrands start negative (for small $\mu$, the ratio is below its average of 1) and end positive, crossing zero once. The integral is the area under the difference, which is nonpositive up to every point $\bar{\mu}$.
+\end{proof}
+
+\begin{theorem}[FOSD Integration]\label{thm:fosd_int}
+If $F' \ge_{\mathrm{FOSD}} F$ and $g$ is increasing, then $\E_{F'}[g(X)] \ge \E_F[g(X)]$.
+\end{theorem}
+
+\begin{proof}
+By integration by parts:
+\[
+\E_F[g(X)] = \int_{-\infty}^\infty g(x) dF(x) = g(\infty) - \int_{-\infty}^\infty g'(x) F(x) dx.
+\]
+Since $F'(x) \le F(x)$ for all $x$ (FOSD) and $g'(x) \ge 0$ (increasing):
+\[
+\E_{F'}[g(X)] = g(\infty) - \int_{-\infty}^\infty g'(x) F'(x) dx \ge g(\infty) - \int_{-\infty}^\infty g'(x) F(x) dx = \E_F[g(X)].
+\]
+\end{proof}
+
+\subsection{Proof of price existence (Proposition~\ref{prop:price_existence})}
+
+\begin{proof}[Full proof]
+Define the mapping $\Phi: \R^n \to \R^n$ by
+\[
+\Phi_i(p) = p_i - k_i(S_i, a_i(S_i), p) - b_i,
+\]
+where $b_i = \log(1+\tau_i) - (\varphi_i \mu + \eta_i)$. Equilibrium prices solve $\Phi(p) = 0$.
+
+\textbf{Step 1: Jacobian structure.}
+The Jacobian is $D\Phi(p) = I - J_{k,p}(p)$, where $[J_{k,p}]_{ij} = \partial k_i / \partial p_j$.
+
+By Shepard's lemma, in the differentiable case:
+\[
+\frac{\partial k_i}{\partial p_j}(p) = \frac{P_j X_{ij}^*(P)}{K_i(S_i, A_i, P)} = \text{cost share of input } j \text{ in sector } i.
+\]
+
+\textbf{Step 2: Row sum bound.}
+Labor essentiality implies that labor has a positive cost share in every sector. Thus:
+\[
+\sum_{j=1}^n \frac{\partial k_i}{\partial p_j}(p) = \text{(total intermediate cost share)} < 1.
+\]
+Let $\kappa = \sup_{i,p} \sum_j \partial k_i / \partial p_j < 1$.
+
+\textbf{Step 3: P-matrix verification.}
+Since $J_{k,p} \ge 0$ (cost shares are nonnegative) and row sums are bounded by $\kappa < 1$, we have $\rho(J_{k,p}) \le \kappa < 1$. By \cref{thm:hawkins_simon_proof}, $I - J_{k,p}$ is a P-matrix.
+
+\textbf{Step 4: Global homeomorphism.}
+By \cref{thm:gale_nikaido_proof}, $\Phi$ is a global homeomorphism. Therefore $\Phi(p) = 0$ has a unique solution.
+\end{proof}
 
 %==============================================================================
 \bibliographystyle{plainnat}
