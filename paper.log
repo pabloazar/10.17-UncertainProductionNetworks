@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 19:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 19:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -657,11 +657,7 @@ LaTeX Font Info:    Trying to load font information for U+fplmbb on input line
 138.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
-) [3] [4] [5]
-
-LaTeX Warning: Reference `eq:unit_cost' on page 6 undefined on input line 241.
-
-[6] [7] [8] [9]
+) [3] [4] [5] [6] [7] [8] [9]
 Overfull \hbox (42.12973pt too wide) in paragraph at lines 336--337
 []\T1/ppl/m/n/12 (-20) Define the best-response map-ping $\OT1/zplm/m/n/12 	 : 
 ^^F \OMS/zplm/m/n/12 ! \OT1/zplm/m/n/12 ^^F$ \T1/ppl/m/n/12 (-20) where $\OT1/z
@@ -671,26 +667,14 @@ T1/ppl/m/n/12 (-20) .
  []
 
 [10] [11] [12] (./paper.bbl [13] [14] [15]) [16] [17] [18] (./paper.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: 5449F19FDA2AE0D0735FB5A2CC3F4ACE;3865
-(rerunfilecheck)             After:  6C5B6034EBB0B346BEC7C138AE676516;4311.
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 6C5B6034EBB0B346BEC7C138AE676516;4311.
  ) 
 Here is how much of TeX's memory you used:
- 14407 strings out of 478994
- 212105 string characters out of 5858184
- 551134 words of memory out of 5000000
- 31005 multiletter control sequences out of 15000+600000
+ 14409 strings out of 478994
+ 212137 string characters out of 5858184
+ 551191 words of memory out of 5000000
+ 31007 multiletter control sequences out of 15000+600000
  482822 words of font info for 465 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,11n,74p,1044b,508s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -706,10 +690,10 @@ dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
 pe1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw
 /palatino/uplri8a.pfb>
-Output written on paper.pdf (19 pages, 202016 bytes).
+Output written on paper.pdf (19 pages, 201801 bytes).
 PDF statistics:
- 466 PDF objects out of 1000 (max. 8388607)
- 429 compressed objects within 5 object streams
+ 473 PDF objects out of 1000 (max. 8388607)
+ 436 compressed objects within 5 object streams
  134 named destinations out of 1000 (max. 500000)
- 104617 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 104633 words of extra memory for PDF output out of 106986 (max. 10000000)
 
