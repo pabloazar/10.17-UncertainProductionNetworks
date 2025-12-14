@@ -222,7 +222,7 @@ Suppose \cref{ass:technology} holds. Fix $S$ and $\mu$. Then there exists a uniq
 \end{proposition}
 
 \begin{proof}
-The log-price system \cref{eq:log_price_system} defines a mapping $\Phi(p) = p - k(S, a(S), p) - b$. Labor essentiality implies that the Jacobian $I - \nabla_p k$ has row sums bounded strictly below one. By the Gale-Nikaido univalence theorem \citep{acemoglu2020endogenous}, $\Phi$ is a global homeomorphism, so the system has a unique solution.
+Rewriting \cref{eq:log_price_system} as $\Phi(p) = 0$ where $\Phi_i(p) = p_i - k_i - \log(1+\tau_i) + \varphi_i\mu + \eta_i$, we have $\nabla\Phi = I - \nabla_p k$. Labor essentiality implies row sums of $\nabla_p k$ are strictly below one. By the Gale-Nikaido univalence theorem \citep{acemoglu2020endogenous}, $\Phi$ is a global homeomorphism, so the system has a unique solution.
 \end{proof}
 
 \subsection{Monotone price response}
