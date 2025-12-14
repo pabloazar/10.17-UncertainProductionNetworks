@@ -373,7 +373,106 @@ This proposition captures the \emph{belief multiplier} without assuming differen
     \item \textbf{Strategic channel:} A higher signal $s_i$ raises $\E[s_j \mid s_i]$ for $j \neq i$ (by affiliation). This leads firm $i$ to expect that others will expand, lowering expected prices, further increasing the benefit of expansion.
 \end{enumerate}
 
-The combinatorial nature of network formation means this multiplier operates through \emph{set inclusion}: the equilibrium supplier set $S_i^*(s_i)$ expands discretely as beliefs become more optimistic. The strategic channel reinforces the direct channel because the lattice of supplier sets is closed under union---if both firm $i$ and its peers expand, the intersection benefits compound
+
+The combinatorial nature of network formation means this multiplier operates through \emph{set inclusion}: the equilibrium supplier set $S_i^*(s_i)$ expands discretely as beliefs become more optimistic. The strategic channel reinforces the direct channel because the lattice of supplier sets is closed under union---if both firm $i$ and its peers expand, the intersection benefits compound.
+
+%==============================================================================
+\section{Cobb-Douglas Example and Belief-Adjusted Domar Weights}\label{sec:domar}
+%==============================================================================
+
+We now specialize to the \textbf{Cobb-Douglas/Gaussian} case to obtain explicit formulas for how beliefs enter aggregate productivity. This allows us to define belief-adjusted Domar weights that treat the information structure as first order.
+
+\subsection{Cobb-Douglas Production and Gaussian Signals}
+
+Assume Cobb-Douglas technology:
+\begin{equation}\label{eq:cobb_douglas}
+    Y_i = \theta_i(\mu) L_i^{\alpha_i} \prod_{j \in S_i} X_{ij}^{\beta_{ij}}, \quad \text{with } \alpha_i + \sum_{j \in S_i} \beta_{ij} = 1.
+\end{equation}
+Productivity is log-linear in the common factor:
+\[
+\theta_i(\mu) = \exp(\varphi_i \mu + \eta_i),
+\]
+where $\varphi_i > 0$ measures sector $i$'s exposure to aggregate conditions and $\eta_i$ is an idiosyncratic component.
+
+Signals are Gaussian as in Example~\ref{ex:gaussian}: $s_i = \mu + \varepsilon_i$ with $\varepsilon_i \sim \mathcal{N}(0, \sigma_\varepsilon^2)$ independent across $i$ and of $\mu$.
+
+\subsection{Signal-Conditioned Domar Weights}
+
+Let the equilibrium mapping from the signal profile $\s = (s_1, \ldots, s_n)$ to allocations be
+\[
+\s \mapsto \big(P(\s), Y(\s), C(\s), S(\s)\big),
+\]
+where $S(\s)$ is the endogenous network and $(P, Y, C)$ are induced prices, outputs, and final demands.
+
+\begin{definition}[Signal-Conditioned Domar Weight]
+The \textbf{signal-conditioned Domar weight} of sector $i$ is:
+\begin{equation}\label{eq:domar}
+    D_i(\s) \equiv \frac{P_i(\s) Y_i(\s)}{\sum_{k=1}^n P_k(\s) C_k(\s)} = \frac{P_i(\s) Y_i(\s)}{\mathrm{GDP}(\s)}.
+\end{equation}
+\end{definition}
+
+This object is a function of signals because signals determine networks and thus prices. It summarizes which sectors are systemically important in the equilibrium induced by the belief state $\s$.
+
+\subsection{Interim Domar Weights}
+
+From the perspective of agent $i$, who observes only $s_i$, the relevant object is the expected Domar weight.
+
+\begin{definition}[Interim Domar Weight]
+Agent $i$'s \textbf{interim Domar weight} for sector $j$ is:
+\begin{equation}
+    D_j^i(s_i) \equiv \E\left[ D_j(\s) \mid s_i \right].
+\end{equation}
+\end{definition}
+
+This is what firm $i$ \emph{believes} the Domar weight to be, given its information. Under affiliation, these interim expectations satisfy monotonicity:
+
+\begin{lemma}[Monotonicity of Interim Domar Weights]
+If the network is monotone in signals (Theorem~\ref{thm:bne}) and larger networks increase sector $j$'s output share, then $D_j^i(s_i)$ is non-decreasing in $s_i$.
+\end{lemma}
+
+\subsection{Belief-Adjusted Domar Elasticities}
+
+The Hulten/Domar logic says that a productivity change in sector $i$ moves aggregate output by that sector's Domar weight. In our setting, we differentiate with respect to the \emph{belief state}, allowing networks to adjust.
+
+Define the posterior mean belief:
+\[
+\hat{\mu}(\s) \equiv \E[\mu \mid \s], \qquad \hat{\theta}_i(\s) \equiv \exp(\varphi_i \hat{\mu}(\s) + \eta_i).
+\]
+
+\begin{definition}[Belief-Adjusted Domar Elasticity]
+The \textbf{belief-adjusted Domar elasticity} of sector $i$ is:
+\begin{equation}
+    \Lambda_i(\s) \equiv \frac{\partial \log \mathrm{GDP}(\s)}{\partial \log \hat{\theta}_i(\s)}.
+\end{equation}
+The \textbf{aggregate belief-Domar loading} is:
+\begin{equation}\label{eq:lambda}
+    \Lambda(\s) \equiv \frac{\partial \log \mathrm{GDP}(\s)}{\partial \hat{\mu}(\s)} = \sum_{i=1}^n \Lambda_i(\s) \cdot \varphi_i.
+\end{equation}
+\end{definition}
+
+This $\Lambda(\s)$ is the summary statistic that treats beliefs as first order: it captures how a small belief shift about $\mu$ changes aggregate output through \emph{both} the direct fundamental channel and the strategic network channel.
+
+\subsection{Decomposition: Hulten Term and Strategic Amplification}
+
+\begin{proposition}[Belief-Adjusted Domar Decomposition]\label{prop:domar_decomp}
+In the Cobb-Douglas/Gaussian economy with interior equilibrium, the aggregate belief-Domar loading decomposes as:
+\begin{equation}\label{eq:decomposition}
+    \Lambda(\s) = \underbrace{\sum_{i=1}^n D_i(\s) \cdot \varphi_i}_{\text{Hulten/Domar term}} \times \underbrace{\frac{1}{1 - \theta(\s)}}_{\text{strategic amplification}},
+\end{equation}
+where $\theta(\s) \in (0,1)$ is an equilibrium feedback index measuring the strength of the network spillover.
+\end{proposition}
+
+\begin{proof}
+(Sketch) The proof follows standard Leontief-inverse algebra. In the Cobb-Douglas case, log-linearizing around the equilibrium yields:
+\[
+d \log \mathrm{GDP} = \sum_i D_i \cdot d \log \theta_i + \text{(price adjustment terms)}.
+\]
+The price adjustment terms arise because network expansion lowers input costs, which raises output. Collecting terms, the strategic complementarity contributes a geometric series that sums to $(1 - \theta)^{-1}$, where $\theta$ depends on the spectral radius of the input-output matrix weighted by belief correlations.
+\end{proof}
+
+\paragraph{Interpretation.} In optimistic belief states, the endogenous network is denser, which pushes $\theta(\s)$ up and makes the multiplier larger. This is precisely the ``belief-adjusted Domar weight'' story: beliefs enter first order not just through the direct productivity channel but through the network channel that amplifies shocks.
+
+When the network is exogenous (fixed $S$), $\theta = 0$ and we recover Hulten's theorem: $\Lambda = \sum_i D_i \varphi_i$. Endogenous networks under dispersed information add the amplification factor.
 
 %==============================================================================
 \section{Comparative Statics}\label{sec:statics}
