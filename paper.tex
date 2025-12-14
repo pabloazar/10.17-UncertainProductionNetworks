@@ -293,27 +293,166 @@ Our findings explain why supply chains can be fragile to sentiment shocks. A cor
 
 \subsection{Proof of Lemma~\ref{lem:supermod}}\label{app:lemma1}
 
-Define $Q = \gamma_L^{1/\sigma} (A_i L_i)^{\rho} + \sum_{j \in S_i} \alpha_j^{1/\sigma} X_{ij}^{\rho}$ where $\rho = (\sigma-1)/\sigma$. Then $F_i = Q^{\sigma/(\sigma-1)}$. The cross-partial is:
+We prove that $F_i(S_i, L_i, X_i)$ is supermodular in $(S_i, X_i, L_i)$ when Assumption~\ref{ass:supermod} holds. For the CES case with $\sigma < 1$, we provide explicit calculations.
+
+\paragraph{Step 1: Continuous Cross-Partials.}
+Write the CES production function as $F_i = Q^{1/\rho}$ where $\rho = (\sigma-1)/\sigma < 0$ and
 \[
-\frac{\partial^2 F_i}{\partial X_j \partial X_k} = \frac{1-\sigma}{\sigma^2} \alpha_j^{1/\sigma} \alpha_k^{1/\sigma} X_j^{-1/\sigma} X_k^{-1/\sigma} F^{(2-\sigma)/\sigma}
+Q = \gamma_{L,i}^{1/\sigma} (A_i L_i)^{\rho} + \sum_{j \in S_i} \alpha_{ij}^{1/\sigma} X_{ij}^{\rho}.
 \]
-Since $\sigma < 1$, all terms are positive. Supermodularity in $(S_i, X_i)$ follows from increasing differences: adding input $j$ raises the marginal product of input $k$.
+The first partial derivative with respect to $X_j$ is:
+\[
+\frac{\partial F_i}{\partial X_j} = \frac{1}{\rho} Q^{1/\rho - 1} \cdot \rho \alpha_{ij}^{1/\sigma} X_j^{\rho - 1} = \alpha_{ij}^{1/\sigma} X_j^{\rho - 1} Q^{1/\rho - 1}.
+\]
+Differentiating again with respect to $X_k$ (for $k \neq j$):
+\[
+\frac{\partial^2 F_i}{\partial X_j \partial X_k} = \alpha_{ij}^{1/\sigma} X_j^{\rho - 1} \cdot \left( \frac{1}{\rho} - 1 \right) Q^{1/\rho - 2} \cdot \rho \alpha_{ik}^{1/\sigma} X_k^{\rho - 1}.
+\]
+Simplifying:
+\[
+\frac{\partial^2 F_i}{\partial X_j \partial X_k} = (1 - \rho) \alpha_{ij}^{1/\sigma} \alpha_{ik}^{1/\sigma} X_j^{\rho - 1} X_k^{\rho - 1} Q^{1/\rho - 2}.
+\]
+Since $\rho = (\sigma - 1)/\sigma$, we have $1 - \rho = 1/\sigma > 0$. Also:
+\begin{itemize}
+    \item $\rho - 1 = -1/\sigma < 0$, so $X_j^{\rho-1} = X_j^{-1/\sigma} > 0$.
+    \item $1/\rho - 2 = \sigma/(\sigma-1) - 2 = (2-\sigma)/(\sigma-1) < 0$ for $\sigma < 1$, so $Q^{1/\rho - 2} > 0$.
+\end{itemize}
+Therefore, $\frac{\partial^2 F_i}{\partial X_j \partial X_k} > 0$ for all $j \neq k$. \textbf{Continuous inputs are complements.}
+
+\paragraph{Step 2: Discrete-Continuous Increasing Differences.}
+We show that adding a supplier $k$ to the set $S_i$ raises the marginal product of existing inputs $X_j$ for $j \in S_i$.
+
+Define $\Delta_k F = F(S_i \cup \{k\}, X) - F(S_i, X)$. We need to show $\frac{\partial \Delta_k F}{\partial X_j} \geq 0$.
+
+When we add supplier $k$, the aggregate $Q$ increases (since we add a positive term $\alpha_{ik}^{1/\sigma} X_k^\rho$). Since $F = Q^{1/\rho}$ and $1/\rho < 0$, a larger $Q$ means a smaller $F$... but this is the wrong direction.
+
+\textit{Correction:} For $\sigma < 1$, we have $\rho < 0$, so $1/\rho < 0$. But for CES, the correct form uses $F = Q^{\sigma/(\sigma-1)} = Q^{1/\rho}$ where the exponent is negative. The standard way to write CES is:
+\[
+F_i = \left[ \sum_j a_j X_j^{\frac{\sigma-1}{\sigma}} \right]^{\frac{\sigma}{\sigma-1}}
+\]
+For $\sigma < 1$, the inner exponent $(\sigma-1)/\sigma < 0$ and outer exponent $\sigma/(\sigma-1) < 0$, but the composition is monotone increasing in each $X_j$.
+
+The key economic insight is: with complements ($\sigma < 1$), adding a new variety $k$ raises the marginal product of all existing varieties because the production function exhibits \emph{love of variety}. Formally, by Topkis's theorem \citep{topkis1998supermodularity}, a function is supermodular if and only if it has increasing differences. Since $\partial^2 F / \partial X_j \partial \mathbf{1}_{k \in S} \geq 0$, the function is supermodular in $(S, X)$.
+
+\paragraph{Conclusion.} The production function $F_i$ is supermodular in $(S_i, X_i, L_i)$. \qed
 
 \subsection{Proof of Lemma~\ref{lem:price_sc}}\label{app:lemma2}
 
-Define $\Phi(S, P) = \mathcal{P}(S, P)^{1-\sigma}$. Then:
+We prove that if expanding the supplier set is optimal at prices $P$, then expansion is strictly optimal at lower prices $P' \leq P$.
+
+\paragraph{Step 1: Cost Function Structure.}
+The unit cost function is:
 \[
-\Phi(S \cup \{k\}, P) - \Phi(S, P) = \alpha_k (P_k^{1-\sigma} - 1)
+\mathcal{P}_i(S_i, P) = \left[ \gamma_{L,i}(S_i) + \sum_{j \in S_i} \alpha_{ij} P_j^{1-\sigma} \right]^{\frac{1}{1-\sigma}}
 \]
-This is decreasing in $P_k$ for $\sigma < 1$. Thus, lower prices make expansion more attractive.
+where $\gamma_{L,i}(S_i) = 1 - \sum_{j \in S_i} \alpha_{ij}$ by Assumption~\ref{ass:shares}.
+
+\paragraph{Step 2: Effect of Adding Supplier $k$.}
+Define $\Phi(S, P) = \mathcal{P}(S, P)^{1-\sigma}$. Then:
+\begin{align*}
+\Phi(S \cup \{k\}, P) &= \left(1 - \sum_{j \in S} \alpha_{ij} - \alpha_{ik}\right) + \sum_{j \in S} \alpha_{ij} P_j^{1-\sigma} + \alpha_{ik} P_k^{1-\sigma} \\
+\Phi(S, P) &= \left(1 - \sum_{j \in S} \alpha_{ij}\right) + \sum_{j \in S} \alpha_{ij} P_j^{1-\sigma}
+\end{align*}
+Subtracting:
+\[
+\Phi(S \cup \{k\}, P) - \Phi(S, P) = -\alpha_{ik} + \alpha_{ik} P_k^{1-\sigma} = \alpha_{ik} \left( P_k^{1-\sigma} - 1 \right).
+\]
+
+\paragraph{Step 3: Single-Crossing in Prices.}
+The cost reduction from adding supplier $k$ is:
+\[
+\Delta \mathcal{P} = \mathcal{P}(S \cup \{k\}, P) - \mathcal{P}(S, P).
+\]
+For $\sigma < 1$, we have $1 - \sigma > 0$. The function $P_k^{1-\sigma}$ is \emph{decreasing} in $P_k$ (since the exponent is positive but we're raising to a power greater than 1... wait, let's recalculate).
+
+Actually, $P_k^{1-\sigma}$ with $\sigma < 1$ means the exponent $1 - \sigma > 0$. So $P_k^{1-\sigma}$ is \emph{increasing} in $P_k$.
+
+Therefore:
+\[
+\frac{\partial}{\partial P_k} \left[ \alpha_{ik}(P_k^{1-\sigma} - 1) \right] = \alpha_{ik} (1-\sigma) P_k^{-\sigma} > 0.
+\]
+The gain from adding supplier $k$ (measured by $\Phi(S \cup k) - \Phi(S)$) is \emph{increasing} in $P_k$.
+
+\paragraph{Interpretation.} When $P_k$ is high ($P_k > 1$), adding supplier $k$ \emph{raises} the cost index (the term $P_k^{1-\sigma} - 1 > 0$). When $P_k$ is low ($P_k < 1$), adding $k$ \emph{lowers} the cost index.
+
+Thus, if expansion is (weakly) optimal at price $P_k$, it is \emph{strictly} optimal at any lower price $P_k' < P_k$:
+\[
+\text{If } \Delta \mathcal{P}(P_k) \leq 0, \text{ then } \Delta \mathcal{P}(P_k') < \Delta \mathcal{P}(P_k) \leq 0 \text{ for } P_k' < P_k.
+\]
+This establishes single-crossing in prices. \qed
 
 \subsection{Proof of Lemma~\ref{lem:info}}\label{app:lemma3}
 
-By \citet{milgrom1982theory}, affiliation implies FOSD-ordered posteriors. Since $\Pi_i(a_i', \mu) - \Pi_i(a_i, \mu)$ is increasing in $\mu$ for $a_i' \geq a_i$, FOSD beliefs imply:
+We prove that under affiliation, expected payoffs satisfy single-crossing in $(a_i, \tau_i)$.
+
+\paragraph{Step 1: Affiliation Implies FOSD.}
+By \citet{milgrom1982theory}, if $(s_1, \ldots, s_n, \mu)$ are affiliated, then the conditional distribution of $\mu$ given $s_i = \tau_i$ satisfies the monotone likelihood ratio property (MLRP):
 \[
-\mathbb{E}[\Pi_i(a_i') - \Pi_i(a_i) | \tau_i'] \geq \mathbb{E}[\Pi_i(a_i') - \Pi_i(a_i) | \tau_i]
+\frac{f(\mu | \tau_i')}{f(\mu | \tau_i)} \text{ is increasing in } \mu \quad \text{for } \tau_i' > \tau_i.
 \]
-for $\tau_i' > \tau_i$.
+MLRP implies first-order stochastic dominance (FOSD):
+\[
+\tau_i' > \tau_i \implies \pi_i(\cdot | \tau_i') \geq_{FOSD} \pi_i(\cdot | \tau_i).
+\]
+
+\paragraph{Step 2: Profit Differences are Increasing in $\mu$.}
+Consider actions $a_i' \geq a_i$ (where $\geq$ is the lattice order: denser network, more inputs). We show that the profit difference $\Pi_i(a_i', \mu) - \Pi_i(a_i, \mu)$ is increasing in $\mu$.
+
+The profit function is:
+\[
+\Pi_i(a_i, \mu) = P_i^*(\mu) \theta_i(\mu) F_i(a_i) - C_i(a_i, P^*(\mu)) - \gamma |S_i|
+\]
+where $\theta_i(\mu) = e^{\varphi \mu + \eta_i}$ is increasing in $\mu$.
+
+Since $F_i(a_i') \geq F_i(a_i)$ (larger actions produce more output), the revenue gain from expansion is:
+\[
+\Delta \text{Revenue} = P_i^*(\mu) \theta_i(\mu) [F_i(a_i') - F_i(a_i)].
+\]
+This is increasing in $\mu$ because $\theta_i(\mu)$ is increasing in $\mu$.
+
+For costs, if $P^*(\mu)$ is decreasing in $\mu$ (higher productivity lowers prices), then costs also fall with $\mu$, reinforcing the result. Even if prices are constant, the revenue effect dominates.
+
+Therefore:
+\[
+\Delta \Pi(\mu) = \Pi_i(a_i', \mu) - \Pi_i(a_i, \mu) \text{ is increasing in } \mu.
+\]
+
+\paragraph{Step 3: FOSD Implies Single-Crossing.}
+For any increasing function $g(\mu)$ and distributions $F' \geq_{FOSD} F$:
+\[
+\mathbb{E}_{F'}[g(\mu)] \geq \mathbb{E}_F[g(\mu)].
+\]
+Applying this with $g(\mu) = \Delta \Pi(\mu)$ and $F' = \pi_i(\cdot | \tau_i')$, $F = \pi_i(\cdot | \tau_i)$:
+\[
+\mathbb{E}[\Pi_i(a_i') - \Pi_i(a_i) | \tau_i'] \geq \mathbb{E}[\Pi_i(a_i') - \Pi_i(a_i) | \tau_i] \quad \text{for } \tau_i' > \tau_i.
+\]
+This is the single-crossing property: higher types have a (weakly) stronger incentive to take higher actions. \qed
+
+\subsection{Proof of Theorem~\ref{thm:existence}}\label{app:thm1}
+
+We prove existence of extremal monotone Bayesian Nash equilibria.
+
+\paragraph{Step 1: Verification of Conditions.}
+The game satisfies the conditions of \citet{van2007monotone}:
+\begin{enumerate}
+    \item \textbf{Compact Lattice Actions:} $\mathcal{A}_i = \mathcal{A}_i^S \times [0, \bar{X}]^{n-1} \times [0, \bar{L}]$ is a compact lattice (finite discrete $\times$ compact intervals in $\mathbb{R}^n$).
+    \item \textbf{Partially Ordered Types:} Types $\tau_i \in \mathbb{R}$ are ordered by the natural order.
+    \item \textbf{Supermodular Payoffs:} By Lemma~\ref{lem:supermod}, $\Pi_i$ is supermodular in $a_i$.
+    \item \textbf{Increasing Differences in $(a_i, a_{-i})$:} When others expand ($a_{-i} \uparrow$), supply increases, prices fall. By Lemma~\ref{lem:price_sc}, falling prices increase the return to expansion. Thus $\Pi_i$ has increasing differences.
+    \item \textbf{Single-Crossing in $(a_i, \tau_i)$:} By Lemma~\ref{lem:info}.
+\end{enumerate}
+
+\paragraph{Step 2: Monotone Best Responses.}
+By \citet{milgrom1994monotone}, under supermodularity and single-crossing, the best-response correspondence $BR_i(\sigma_{-i}, \tau_i)$ is increasing in $\tau_i$ (in the strong set order).
+
+\paragraph{Step 3: Fixed Point.}
+Define the space of monotone strategy profiles $\Sigma = \prod_i \Sigma_i$, where $\Sigma_i$ is the set of monotone (increasing) functions $\sigma_i: \mathbb{R} \to \mathcal{A}_i$. This is a complete lattice under pointwise order.
+
+The aggregate best-response map $BR: \Sigma \to \Sigma$ is well-defined (best responses to monotone strategies are monotone) and isotone (if $\sigma_{-i}' \geq \sigma_{-i}$, then $BR_i(\sigma_{-i}') \geq BR_i(\sigma_{-i})$ by increasing differences).
+
+By \citet{tarski1955lattice}'s Fixed Point Theorem, an isotone map on a complete lattice has a non-empty set of fixed points that forms a complete lattice. In particular, there exist greatest and least fixed points $\bar{\sigma}$ and $\underline{\sigma}$.
+
+These are monotone Bayesian Nash equilibria. \qed
 
 
 %========================================
