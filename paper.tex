@@ -234,6 +234,13 @@ Under Assumption \ref{ass:tech}, for any $\mu$ and network $S$, there exists a u
 See \citet{acemoglu2020endogenous}. The proof relies on the fact that the Jacobian $I - \frac{\partial K}{\partial P}$ is an M-matrix (a class of P-matrices) due to the essentiality of labor, guaranteeing global univalence via the Gale-Nikaido theorem.
 \end{proof}
 
+\begin{corollary}[Uniqueness of Allocations]\label{cor:allocations}
+Given the unique equilibrium price vector $P^*(\mu, S)$, the allocations $(X^*, Y^*, C^*, L^*)$ are uniquely determined.
+\end{corollary}
+\begin{proof}
+Given $P^*$ and the technology choice $S_i$, the factor demands $L_i^*$ and $X_i^*$ are uniquely determined by the strictly convex cost minimization problem \eqref{eq:unit_cost}. The output $Y_i^*$ follows from market clearing: $Y_i^* = F_i(S_i, L_i^*, X_i^*)$. Aggregate labor supply pins down the scale via $\sum_i L_i^* = 1$. Consumer demands $C^*$ are uniquely determined by utility maximization given $P^*$ and income. By the same Gale-Nikaido argument, this system has a unique solution.
+\end{proof}
+
 \subsection{The Network Formation Game}
 
 The extensive margin decision is made \emph{ex ante}. Firm $i$ observes $s_i$ and chooses $S_i$ to minimize expected total costs, which include a fixed organizational cost $\Gamma_i(S_i)$. The strategy of firm $i$ is a mapping $\sigma_i: \Sset_i \to 2^{\I \setminus \{i\}}$. Let $\sigma_{-i}$ denote the strategies of opponents.
