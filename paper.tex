@@ -10,7 +10,7 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{bbm}
 \usepackage{enumitem}
-\usepackage[margin=1.25in]{geometry} % Generous margins for readability/notes
+\usepackage[margin=1in]{geometry}  % Econometrica-style margins
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -27,10 +27,10 @@
 \titleformat{\subsection}{\bfseries\itshape}{\thesubsection.}{1em}{}
 \titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 
-% Spacing configuration for ~25-30 pages
-\onehalfspacing
-\setlength{\parskip}{0.6em}
-\setlength{\parindent}{1.5em}
+% Econometrica-style spacing
+\setstretch{1.1}  % Tighter than 1.5, readable
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{1.2em}
 
 %==============================================================================
 % THEOREM ENVIRONMENTS
@@ -106,30 +106,24 @@
 \section{Introduction}
 %==============================================================================
 
-Modern supply chains are characterized by two salient features: complexity and opacity. A manufacturer deciding whether to invest in a new specialized supplier relationship or adopt a capital-intensive logistics technology rarely observes the precise productivity of that partner, the aggregate state of demand, or upstream capacity constraints. Instead, decisions are made on the basis of dispersed, noisy signals: procurement delays, industry chatter, small price movements, and local order books. These signals are naturally correlated across firms because they reflect common macroeconomic and sectoral factors.
+Modern supply chains are defined by a tension between complexity and opacity. A manufacturer deciding whether to invest in specialized logistics or expand its supplier base rarely observes the precise productivity of its potential partners or the true state of aggregate demand. Instead, firms rely on dispersed, noisy signals: procurement delays, order book fluctuations, and industry chatter. These signals are naturally correlated, reflecting common sectoral or macroeconomic factors, yet they remain private and imperfect. 
 
-This paper asks: \emph{How does dispersed, correlated information interact with the endogenous formation of production networks?} Networks are not passive objects that merely transmit shocks; they are constructed by agents acting on beliefs. When firms cannot perfectly disentangle fundamentals from correlated noise, ``sentiment'' becomes a driver of real economic structure.
+This paper asks how dispersed, affiliated information shapes the endogenous formation of production networks. We show that networks are not merely passive transmitters of fundamental shocks; they are active constructions of agents acting on beliefs. When firms cannot perfectly disentangle fundamentals from correlated noise, ``sentiment'' becomes a driver of real economic structure.
 
-We develop a model of endogenous production network formation under private information. We build on the framework of \citet{acemoglu2020endogenous}, where firms choose technology sets to minimize unit costs. We depart from the complete information benchmark by assuming that aggregate productivity is unobserved. Instead, firms receive private signals that are \emph{affiliated} in the sense of \citet{milgrom1982theory}. This information structure introduces a distinct strategic channel. In standard production network models, complementarities arise solely from technology: a decrease in supplier prices encourages downstream expansion. In our environment, complementarities also arise from inference.
+We develop a model of network formation under private information, building on the cost-minimization framework of \citet{acemoglu2020endogenous}. We depart from the complete information benchmark by assuming aggregate productivity is unobserved. Instead, firms receive private signals that are \emph{affiliated} in the sense of \citet{milgrom1982theory}. This information structure introduces a distinct strategic channel. In standard models, complementarities are technological: low upstream prices encourage downstream expansion. In our environment, complementarities are also inferential. An optimistic firm expands not only because it believes fundamentals are strong, but because it expects others to be optimistic---and thus to expand, lowering the price level.
 
-Our analysis yields three main theoretical contributions.
+Our analysis proceeds in four steps. 
 
-First, we establish the existence of \textbf{monotone Bayesian Nash equilibria} in the game of network formation. The space of possible production networks is high-dimensional and discrete. However, we show that under general assumptions on production technology (homogeneity of degree one and labor essentiality) and information (affiliation), the induced game is supermodular. Using lattice-theoretic methods---specifically Tarski's fixed point theorem applied to the interim strategy space---we prove that firms with more optimistic private signals monotonically expand their supplier sets. This result implies the existence of distinct ``optimistic'' (high density) and ``pessimistic'' (low density) regimes for the same underlying fundamentals, driven by the coordination of beliefs.
+First, in Section~\ref{sec:equilibrium}, we establish the existence of \textbf{monotone Bayesian Nash equilibria}. Although the space of potential networks is high-dimensional and discrete, we show that the game is supermodular. Firms with more optimistic signals monotonically expand their supplier sets, generating distinct ``high density'' (optimistic) and ``low density'' (pessimistic) regimes for the same fundamentals.
 
-Second, we identify a \textbf{belief multiplier}. In standard Keynesian models, multipliers arise from demand externalities. Here, the multiplier is supply-side and structural. When firms become optimistic, they form denser networks. This expansion lowers unit costs and equilibrium prices throughout the economy, making further expansion profitable for others. The amplification arises through the interaction of affiliated beliefs and strategic complementarities: optimism begets optimism.
+Second, in Section~\ref{sec:multiplier}, we identify a \textbf{belief multiplier}. We decompose the network response to a belief shock into a direct fundamental effect and a strategic amplification effect. Because beliefs are affiliated, optimism begets optimism. The strategic channel amplifies the fundamental response, generating excess volatility in network density.
 
-Third, we provide comparative statics with respect to the \textbf{information structure}. We show that increasing the precision of private signals reduces network volatility, as firms place less weight on the correlated prior and more on the idiosyncratic realization. Conversely, increasing the correlation of error terms across firms (without changing their marginal variance) increases network volatility. This result suggests that information transparency---reducing the correlation of forecast errors---is a distinct policy tool for stabilizing supply chains.
+Third, in Section~\ref{sec:domar}, we specialize to a \textbf{Cobb-Douglas/Gaussian} environment and derive belief-adjusted Domar weights. These objects treat the information structure as first order, decomposing the sensitivity of aggregate output into a Hulten term and a strategic amplification factor.
+
+Fourth, in Section~\ref{sec:dynamic}, we sketch a dynamic extension following \citet{van2007monotone}, showing how temporary sentiment shocks can have persistent effects on network architecture through hysteresis. Section~\ref{sec:concl} concludes.
 
 \paragraph{Related Literature.}
-This paper bridges the gap between the production networks literature and the literature on global games and dispersed information. The foundational insight that network structure matters for aggregate volatility dates to \citet{long1983real} and was formalized by \citet{horvath2000sectoral}, \citet{dupor1999aggregation}, and \citet{gabaix2011granular}. \citet{acemoglu2012network} showed that heavy-tailed degree distributions can generate aggregate fluctuations from idiosyncratic shocks, overturning the law of large numbers. Empirical work by \citet{atalay2011network}, \citet{atalay2017sectoral}, and \citet{foerster2011sectoral} quantifies the role of sectoral linkages.
-
-The theoretical framework for production networks was developed by \citet{hulten1978growth}, extended by \citet{jones2011intermediate} and \citet{baqaee2019macroeconomic}, \citet{baqaee2018cascading}, and \citet{baqaee2019productivity}. On endogenous network formation, \citet{oberfield2018theory} and \citet{acemoglu2020endogenous} provide key foundations, while \citet{liu2019industrial} and \citet{bigio2020distortions} study policy implications. Recent work on supply chain disruptions includes \citet{barrot2016input}, \citet{boehm2019input}, \citet{carvalho2021supply}, and \citet{acemoglu2020firms}. On firm heterogeneity in networks, see \citet{bernard2022origins} and \citet{boehm2020misallocation}.
-
-We build directly on \citet{acemoglu2020endogenous}, extending their complete-information analysis to a Bayesian setting. We differ from \citet{kopytov2024endogenous}, who also study uncertainty in networks. Their mechanism relies on risk aversion (second-moment effects): firms diversify to insure against variance. In contrast, our agents are risk-neutral cost minimizers; our results are driven by strategic complementarities in \emph{beliefs} (first-moment effects). We show that even without risk aversion, the coordination motive inherent in supply chains creates fragility.
-
-Our information-theoretic approach connects to the uncertainty literature: \citet{bloom2009impact}, \citet{bloom2014fluctuations}, \citet{bloom2018really}, \citet{baker2016measuring}, and \citet{jurado2015measuring} on uncertainty shocks; \citet{fajgelbaum2017uncertainty} on uncertainty traps; \citet{nieuwerburgh2006learning} on learning in business cycles. On information in networks, \citet{elliott2022supply} studies fragility from strategic link formation, while \citet{herskovic2018networks} examines asset pricing implications. The methodology builds on \citet{topkis1998supermodularity}, \citet{milgrom1994monotone}, and the Bayesian games literature of \citet{van2007monotone} and \citet{morris2002social}.
-
-The remainder of the paper is organized as follows. Section \ref{sec:info} defines the information structure. Section \ref{sec:env} describes the production environment. Section \ref{sec:beliefs} characterizes the belief hierarchy. Section \ref{sec:strategic} establishes strategic complementarities. Section \ref{sec:equilibrium} proves the existence of monotone equilibria. Section \ref{sec:multiplier} formalizes the belief multiplier. Section \ref{sec:statics} presents comparative statics. Section \ref{sec:dynamic} sketches a dynamic extension. Section \ref{sec:concl} concludes.
+This paper bridges production networks and dispersed information. The foundational insight that network structure matters for aggregate volatility dates to \citet{long1983real} and was formalized by \citet{horvath2000sectoral}, \citet{dupor1999aggregation}, and \citet{gabaix2011granular}. We build directly on \citet{acemoglu2020endogenous}, extending their complete-information analysis to a Bayesian setting. We differ from \citet{kopytov2024endogenous}, whose mechanism relies on risk aversion; our results are driven by strategic complementarities in \emph{beliefs}. The methodology builds on \citet{topkis1998supermodularity}, \citet{milgrom1994monotone}, and the Bayesian games literature of \citet{van2007monotone}.
 
 %==============================================================================
 \section{Information Structure}\label{sec:info}
