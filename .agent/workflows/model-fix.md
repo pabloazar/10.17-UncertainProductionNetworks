@@ -21,7 +21,7 @@ Example: `/model-fix 31` fixes task.md item #31 (Proposition 3 circular logic)
 
 2. Search the LaTeX file for the relevant section:
 ```bash
-grep -n "Proposition 3" new_draft_2.tex
+grep -n "Proposition 3" paper.tex
 ```
 
 3. View the surrounding context (±50 lines).
@@ -38,5 +38,5 @@ grep -n "Proposition 3" new_draft_2.tex
 7. Commit with message: "Fix task #31: [description]"
 
 ## Output
-- Fixed `new_draft_2.tex`
+- Fixed `paper.tex`
 - Updated `task.md` with completed item

@@ -49,8 +49,8 @@ def main():
     # Load content
     root_dir = Path(__file__).parent.parent
     agent_framework_dir = root_dir / "agent_framework"
-    paper_path = root_dir / "paper.md"
-    diff_path = root_dir / "paper.md"  # No diff for now
+    paper_path = root_dir / "paper.tex"
+    diff_path = root_dir / "paper_diff.tex"  # latexdiff output
     system_prompt_path = root_dir / "prompts/math_check_system_prompt.txt"
     user_prompt_path = root_dir / "prompts/followup_review_prompt.txt"
 

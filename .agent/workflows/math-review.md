@@ -17,12 +17,12 @@ Automated review cycle: compile → send to reviewers → parse feedback → app
 
 1. Compile LaTeX to ensure it builds:
 ```bash
-pdflatex -interaction=nonstopmode new_draft_2.tex
+pdflatex -interaction=nonstopmode paper.tex
 ```
 
 2. Generate latexdiff against original (for context):
 ```bash
-git show 1c3a315:new_draft_2.tex > /tmp/original_draft.tex && latexdiff /tmp/original_draft.tex new_draft_2.tex > new_draft_2_diff.tex
+git show HEAD~1:paper.tex > /tmp/original_draft.tex && latexdiff /tmp/original_draft.tex paper.tex > paper_diff.tex
 ```
 
 3. Send to LLM reviewers (Claude Opus 4.5 + Grok):
@@ -40,12 +40,12 @@ python3 scripts/send_followup_review.py
 - **Minor issues**: Can defer
 
 6. For each fatal error:
-- Apply fix to `new_draft_2.tex`
+- Apply fix to `paper.tex`
 - Verify compilation
 
 7. Commit fixes:
 ```bash
-git add new_draft_2.tex && git commit -m "Address reviewer feedback: [summary]"
+git add paper.tex && git commit -m "Address reviewer feedback: [summary]"
 ```
 
 8. If fatal errors were fixed, loop back to step 1 for another round.
@@ -53,8 +53,8 @@ git add new_draft_2.tex && git commit -m "Address reviewer feedback: [summary]"
 ## Output
 - Updated `followup_review_claude_opus_deepthink.md`
 - Updated `followup_review_super_grok.md`
-- Fixed `new_draft_2.tex` (committed)
-- Updated `new_draft_2_diff.pdf` (redline)
+- Fixed `paper.tex` (committed)
+- Updated `paper_diff.pdf` (redline)
 
 ## Notes
 - Prioritize Claude feedback over Grok when in conflict

@@ -1,4 +1,7 @@
 \documentclass[11pt,a4paper]{article}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL /tmp/original_draft.tex   Sun Dec 14 22:13:44 2025
+%DIF ADD paper.tex                 Sun Dec 14 22:06:03 2025
 
 % ===== Packages =====
 \usepackage[utf8]{inputenc}
@@ -55,6 +58,87 @@
     Author Name\thanks{Affiliation. Email: author@university.edu}
 }
 \date{\today}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF LISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
 
@@ -183,11 +267,11 @@ For each $i$ and each supplier set $S_i$:
 \end{assumption}
 
 \begin{remark}
-\cref{ass:technology} does not require differentiability. The Cobb-Douglas family
+\cref{ass:technology} does not require differentiability. The CES family
 \[
-F_i = A_i(S_i) L_i^{\alpha_i} \prod_{j\in S_i} X_{ij}^{\beta_{ij}}, \quad \alpha_i + \sum_{j \in S_i} \beta_{ij} = 1,
+F_i = A_i(S_i)\left[ \gamma_L^{1/\sigma} L_i^{\frac{\sigma-1}{\sigma}} + \sum_{j\in S_i} \alpha_{ij}^{1/\sigma} X_{ij}^{\frac{\sigma-1}{\sigma}} \right]^{\frac{\sigma}{\sigma-1}}
 \]
-satisfies \cref{ass:technology}. A CES aggregator also satisfies the assumptions provided $\sigma \leq 1$ (complements or Cobb-Douglas limit); when $\sigma > 1$ (gross substitutes), labor is no longer essential since intermediates alone can produce positive output.
+satisfies \cref{ass:technology} and serves as a leading example.
 \end{remark}
 
 \subsection{Cost minimization and technology choice}
@@ -206,17 +290,6 @@ Given prices $P$, firm $i$ chooses a supplier set to minimize unit costs plus ad
 \begin{equation}\label{eq:technology_choice}
 S_i^*(P)\in\argmin_{S_i\subseteq \I\setminus\{i\}}\left\{K_i(S_i,A_i(S_i),P)+\gamma|S_i|\right\}.
 \end{equation}
-
-\paragraph{Interim payoff.}
-Given a network profile $S$, realized state $\mu$, and equilibrium prices $P^*(S,\mu)$, firm $i$'s \textbf{payoff} from supplier set $S_i$ is:
-\begin{equation}\label{eq:payoff}
-\Pi_i(S_i, S_{-i}; \mu) = P_i^*(S,\mu) \cdot Y_i^* - \left( L_i^* + \sum_{j \in S_i} P_j^* X_{ij}^* \right) - \gamma |S_i|,
-\end{equation}
-where $(L_i^*, X_i^*)$ are cost-minimizing inputs and $Y_i^* = \theta_i(\mu) F_i(S_i, A_i, L_i^*, X_i^*)$. Under contestability (\cref{def:equilibrium}), $P_i = (1+\tau_i)\theta_i(\mu)^{-1} K_i$, so operating profits are a fixed fraction $\tau_i/(1+\tau_i)$ of revenue. The adoption cost $\gamma|S_i|$ captures the sunk cost of link formation.
-
-\begin{remark}[Game is over supplier sets]
-The extensive margin decision $S_i$ is the strategic variable. The intensive margin $(L_i, X_i)$ is induced by cost minimization once $S_i$ and prices are determined. The game is therefore over the lattice $2^{\I \setminus \{i\}}$ of supplier sets.
-\end{remark}
 
 \subsection{Consumers and timing}
 
@@ -281,23 +354,13 @@ In differentiable environments, $\partial k_i/\partial p_j$ coincides with a cos
 Since $J_{k,p}(p)\ge 0$, the bound implies that $I-J_{k,p}(p)$ is a P-matrix by \cref{thm:hawkins_simon}. Hence $D\Phi(p)$ is a P-matrix for all $p$, and \cref{thm:gale_nikaido} implies that $\Phi$ is a global homeomorphism. Therefore $\Phi$ has a unique zero.
 \end{proof}
 
-\subsection{Monotone price response}
+\subsection{A monotone price response}
 
-Our strategic results use a monotonicity property of the equilibrium price mapping. We now establish this property under natural conditions on the technology.
+Our strategic results use a monotonicity property of the equilibrium price mapping. Since equilibrium prices are determined by the unit cost system, it is natural to impose that when firms expand actions in the sense of adopting larger technologies, equilibrium prices weakly fall.
 
-\begin{assumption}[Isotone technology productivity]\label{ass:isotone_A}
-For each firm $i$, the productivity term $A_i(S_i)$ is isotone in $S_i$ under set inclusion: $S_i' \supseteq S_i$ implies $A_i(S_i') \ge A_i(S_i)$.
+\begin{assumption}[Monotone price response]\label{ass:monotone_price}
+Fix $\mu$. For an action profile $a=(a_1,\ldots,a_n)$, let $S(a)=(S_1,\ldots,S_n)$ denote its supplier-set component and define $P^*(a,\mu)\equiv P^*(S(a),\mu)$. If $a\succeq a'$ (in the order defined in \cref{sec:complementarities}), then $P^*(a,\mu)\le P^*(a',\mu)$ componentwise.
 \end{assumption}
-
-\begin{lemma}[Monotone price response]\label{lem:monotone_price}
-Suppose \cref{ass:technology,ass:isotone_A} hold. Fix $\mu$. If $S' \succeq S$ (element-wise set inclusion), then $P^*(S',\mu) \le P^*(S,\mu)$ componentwise.
-\end{lemma}
-
-\begin{proof}
-By \cref{ass:isotone_A}, $S_i' \supseteq S_i$ implies $A_i(S_i') \ge A_i(S_i)$. A larger supplier set combined with higher productivity reduces unit costs: $K_i(S_i', A_i(S_i'), P) \le K_i(S_i, A_i(S_i), P)$ for any $P$.
-
-Consider the price mapping $T: P \mapsto P'$ where $P'_i = (1+\tau_i) \theta_i(\mu)^{-1} K_i(S_i, A_i(S_i), P)$. Under network $S'$, the mapping $T'$ has $T'_i(P) \le T_i(P)$ for all $P$ and $i$. Since both $T$ and $T'$ are contractions on $[\underline{P}, \bar{P}]$ (the spectral radius is below 1 by labor essentiality), and $T' \le T$ pointwise, the unique fixed points satisfy $P^{*}(S') \le P^*(S)$ by a standard monotone operator argument.
-\end{proof}
 
 %==============================================================================
 \section{Strategic Complementarities}\label{sec:complementarities}
@@ -347,11 +410,11 @@ By \citet{topkis1998supermodularity}, a function on a lattice is supermodular if
 \subsection{Price-action single crossing}
 
 \begin{lemma}[Single crossing in prices]\label{lem:price_sc}
-Under \cref{ass:isotone_A}, payoffs have increasing differences in $(a_i,a_{-i})$.
+Under \cref{ass:monotone_price}, payoffs have increasing differences in $(a_i,a_{-i})$.
 \end{lemma}
 
 \begin{proof}
-If $a_{-i}'\succeq a_{-i}$, then $P^*(a_i,a_{-i}',\mu)\le P^*(a_i,a_{-i},\mu)$ by \cref{ass:isotone_A}. For $a_i'\succeq a_i$, define the incremental payoff
+If $a_{-i}'\succeq a_{-i}$, then $P^*(a_i,a_{-i}',\mu)\le P^*(a_i,a_{-i},\mu)$ by \cref{ass:monotone_price}. For $a_i'\succeq a_i$, define the incremental payoff
 \[
 \Delta\Pi(P)=\Pi_i(a_i',P)-\Pi_i(a_i,P).
 \]
@@ -377,7 +440,7 @@ h(\mu,s_{-i})=\Pi_i(a_i',\sigma_{-i}(s_{-i});\mu,P^*)-\Pi_i(a_i,\sigma_{-i}(s_{-
 
 \textbf{Step 1:} $h$ is increasing in $\mu$. The shifter $\theta_i(\mu)=\exp(\varphi_i\mu+\eta_i)$ is increasing in $\mu$ when $\varphi_i\ge 0$, and $a_i'\succeq a_i$ weakly increases production possibilities. Hence the incremental benefit from $a_i'$ is increasing in $\mu$.
 
-\textbf{Step 2:} $h$ is increasing in $s_{-i}$. Monotone $\sigma_{-i}$ implies $\sigma_{-i}(s_{-i}')\succeq\sigma_{-i}(s_{-i})$ for $s_{-i}'\ge s_{-i}$. By \cref{ass:isotone_A}, this lowers equilibrium prices. By \cref{lem:price_sc}, lower prices increase the gain from expansion, so $h$ is increasing in $s_{-i}$.
+\textbf{Step 2:} $h$ is increasing in $s_{-i}$. Monotone $\sigma_{-i}$ implies $\sigma_{-i}(s_{-i}')\succeq\sigma_{-i}(s_{-i})$ for $s_{-i}'\ge s_{-i}$. By \cref{ass:monotone_price}, this lowers equilibrium prices. By \cref{lem:price_sc}, lower prices increase the gain from expansion, so $h$ is increasing in $s_{-i}$.
 
 \textbf{Step 3:} Apply \cref{thm:mlrp,thm:fosd_integration}. Since $h$ is increasing in $(\mu,s_{-i})$ and the conditional distribution of $(\mu,s_{-i})$ given $s_i$ is ordered by FOSD in $s_i$, we have $\E[h(\mu,s_{-i})\mid s_i']\ge \E[h(\mu,s_{-i})\mid s_i]$.
 \end{proof}
@@ -389,7 +452,7 @@ h(\mu,s_{-i})=\Pi_i(a_i',\sigma_{-i}(s_{-i});\mu,P^*)-\Pi_i(a_i,\sigma_{-i}(s_{-
 This section uses lattice methods to establish equilibrium existence in monotone strategies. The result is useful because it gives a disciplined way to describe equilibrium network regimes in a high-dimensional environment.
 
 \begin{theorem}[Extremal monotone equilibria]\label{thm:existence}
-Under \cref{ass:affiliated,ass:technology,ass:complementarity,ass:isotone_A}, the Bayesian game admits a nonempty complete lattice of monotone Bayesian Nash equilibria. In particular, there exist greatest and least equilibria $\bar\sigma$ and $\underline\sigma$ in the lattice of monotone strategies.
+Under \cref{ass:affiliated,ass:technology,ass:complementarity,ass:monotone_price}, the Bayesian game admits a nonempty complete lattice of monotone Bayesian Nash equilibria. In particular, there exist greatest and least equilibria $\bar\sigma$ and $\underline\sigma$ in the lattice of monotone strategies.
 \end{theorem}
 
 \begin{proof}
@@ -443,7 +506,7 @@ An upward FOSD shift in beliefs increases the interim expected gain from expansi
 \end{proof}
 
 \begin{remark}[Direct and strategic channels]
-The belief shift affects incentives through a direct and a strategic channel. The direct channel raises $\E[\theta_i(\mu)\mid s_i]$ and therefore the expected return to adopting a larger supplier set. The strategic channel raises $\E[g(s_{-i})\mid s_i]$ for increasing $g$ and therefore raises expected opponent expansion. Under \cref{ass:isotone_A}, higher expected opponent expansion lowers expected input prices and further raises the return to expansion.
+The belief shift affects incentives through a direct and a strategic channel. The direct channel raises $\E[\theta_i(\mu)\mid s_i]$ and therefore the expected return to adopting a larger supplier set. The strategic channel raises $\E[g(s_{-i})\mid s_i]$ for increasing $g$ and therefore raises expected opponent expansion. Under \cref{ass:monotone_price}, higher expected opponent expansion lowers expected input prices and further raises the return to expansion.
 \end{remark}
 
 %==============================================================================
@@ -570,7 +633,7 @@ We restrict attention to \textbf{Markov strategies} that depend only on the curr
 The space of monotone Markov strategies forms a complete lattice under the pointwise order.
 
 \begin{theorem}[Existence of monotone Markov equilibria]\label{thm:dynamic}
-Under dynamic analogues of \cref{ass:affiliated,ass:technology,ass:complementarity,ass:isotone_A}, the dynamic game possesses a greatest and a least monotone Markov perfect equilibrium. In these equilibria, network expansion is monotone in the current signal: optimistic firms expand, pessimistic firms contract.
+Under dynamic analogues of \cref{ass:affiliated,ass:technology,ass:complementarity,ass:monotone_price}, the dynamic game possesses a greatest and a least monotone Markov perfect equilibrium. In these equilibria, network expansion is monotone in the current signal: optimistic firms expand, pessimistic firms contract.
 \end{theorem}
 
 \begin{proof}
@@ -606,196 +669,228 @@ Our results imply that supply chain robustness is not merely a technological que
 A \textbf{lattice} is a partially ordered set $(L,\preceq)$ where every pair $x,y$ has a least upper bound $x\vee y$ (join) and greatest lower bound $x\wedge y$ (meet). A lattice is \textbf{complete} if every subset has a join and meet.
 \end{definition}
 
-\begin{theorem}[Tarski's Fixed Point Theorem]\label{thm:tarski}
-Let $L$ be a complete lattice and $f:L\to L$ be isotone (order-preserving). Then the set of fixed points $\mathrm{Fix}(f) = \{x \in L : f(x) = x\}$ is a nonempty complete lattice.
+\DIFdelbegin %DIFDELCMD < \begin{theorem}[Tarski]%%%
+\DIFdelend \DIFaddbegin \begin{theorem}[Tarski's Fixed Point Theorem]\DIFaddend \label{thm:tarski}
+Let $L$ be a complete lattice and $f:L\to L$ be isotone \DIFaddbegin \DIFadd{(order-preserving)}\DIFaddend . Then the set of fixed points \DIFdelbegin \DIFdel{of $f$ }\DIFdelend \DIFaddbegin \DIFadd{$\mathrm{Fix}(f) = \{x \in L : f(x) = x\}$ }\DIFaddend is a nonempty complete lattice.
 \end{theorem}
 
-\begin{proof}
-\textbf{Step 1: Existence of a greatest fixed point.}
-Let $A = \{x \in L : x \preceq f(x)\}$. Since $L$ is complete, $A$ has a supremum $\bar{x} = \bigvee A$. We show $\bar{x}$ is a fixed point.
+\DIFaddbegin \begin{proof}
+\textbf{\DIFadd{Step 1: Existence of a greatest fixed point.}}
+\DIFadd{Let $A = \{x \in L : x \preceq f(x)\}$. Since $L$ is complete, $A$ has a supremum $\bar{x} = \bigvee A$. We show $\bar{x}$ is a fixed point.
+}
 
-For any $x \in A$, we have $x \preceq f(x)$. Since $x \preceq \bar{x}$ and $f$ is isotone, $f(x) \preceq f(\bar{x})$. Thus $x \preceq f(\bar{x})$ for all $x \in A$, so $\bar{x} \preceq f(\bar{x})$.
+\DIFadd{For any $x \in A$, we have $x \preceq f(x)$. Since $x \preceq \bar{x}$ and $f$ is isotone, $f(x) \preceq f(\bar{x})$. Thus $x \preceq f(\bar{x})$ for all $x \in A$, so $\bar{x} \preceq f(\bar{x})$.
+}
 
-Since $\bar{x} \preceq f(\bar{x})$ and $f$ is isotone, $f(\bar{x}) \preceq f(f(\bar{x}))$. Thus $f(\bar{x}) \in A$, so $f(\bar{x}) \preceq \bar{x}$.
+\DIFadd{Since $\bar{x} \preceq f(\bar{x})$ and $f$ is isotone, $f(\bar{x}) \preceq f(f(\bar{x}))$. Thus $f(\bar{x}) \in A$, so $f(\bar{x}) \preceq \bar{x}$.
+}
 
-Combining, $f(\bar{x}) = \bar{x}$.
+\DIFadd{Combining, $f(\bar{x}) = \bar{x}$.
+}
 
-\textbf{Step 2: Existence of a least fixed point.}
-Define $B = \{x \in L : f(x) \preceq x\}$ and $\underline{x} = \bigwedge B$. By a symmetric argument, $\underline{x}$ is a fixed point.
+\textbf{\DIFadd{Step 2: Existence of a least fixed point.}}
+\DIFadd{Define $B = \{x \in L : f(x) \preceq x\}$ and $\underline{x} = \bigwedge B$. By a symmetric argument, $\underline{x}$ is a fixed point.
+}
 
-\textbf{Step 3: The set of fixed points is a complete lattice.}
-For any subset $S \subseteq \mathrm{Fix}(f)$, define $A_S = \{x \in L : x \succeq \bigvee S \text{ and } f(x) \preceq x\}$. This set is nonempty (since the greatest fixed point $\bar{x} \in A_S$) and its infimum is a fixed point that serves as the join of $S$ in $\mathrm{Fix}(f)$. Meets are constructed dually.
-\end{proof}
+\textbf{\DIFadd{Step 3: The set of fixed points is a complete lattice.}}
+\DIFadd{For any subset $S \subseteq \mathrm{Fix}(f)$, define $A_S = \{x \in L : x \succeq \bigvee S \text{ and } f(x) \preceq x\}$. This set is nonempty (since the greatest fixed point $\bar{x} \in A_S$) and its infimum is a fixed point that serves as the join of $S$ in $\mathrm{Fix}(f)$. Meets are constructed dually.
+}\end{proof}
 
-\begin{definition}
+\DIFaddend \begin{definition}
 A function $f:L\to\R$ on a lattice is \textbf{supermodular} if for all $x,y\in L$,
 \[
 f(x\vee y)+f(x\wedge y)\ge f(x)+f(y).
 \]
-A function $f:L \times T \to \R$ has \textbf{increasing differences} in $(x,t)$ if for all $x' \succeq x$ and $t' \succeq t$,
-\[
-f(x',t') - f(x,t') \ge f(x',t) - f(x,t).
-\]
-\end{definition}
+\DIFaddbegin \DIFadd{A function $f:L \times T \to \R$ has }\textbf{\DIFadd{increasing differences}} \DIFadd{in $(x,t)$ if for all $x' \succeq x$ and $t' \succeq t$,
+}\[
+\DIFadd{f(x',t') - f(x,t') \ge f(x',t) - f(x,t).
+}\]
+\DIFaddend \end{definition}
 
-\begin{theorem}[Topkis's Monotonicity Theorem]\label{thm:topkis}
-Let $L$ be a lattice and $T$ a partially ordered set. If $f:L\times T\to\R$ is supermodular in $x$ and has increasing differences in $(x,t)$, then $\argmax_{x \in L} f(x,t)$ is isotone in $t$ (in the strong set order).
+\DIFdelbegin %DIFDELCMD < \begin{theorem}[Topkis]%%%
+\DIFdelend \DIFaddbegin \begin{theorem}[Topkis's Monotonicity Theorem]\DIFaddend \label{thm:topkis}
+\DIFaddbegin \DIFadd{Let $L$ be a lattice and $T$ a partially ordered set. }\DIFaddend If $f:L\times T\to\R$ is supermodular in $x$ and has increasing differences in $(x,t)$, then \DIFdelbegin \DIFdel{$\argmax_x f(x,t)$ }\DIFdelend \DIFaddbegin \DIFadd{$\argmax_{x \in L} f(x,t)$ }\DIFaddend is isotone in $t$ \DIFaddbegin \DIFadd{(in the strong set order)}\DIFaddend .
 \end{theorem}
 
-\begin{proof}
-\textbf{Step 1: Strong set order.}
-For sets $A, B \subseteq L$, we say $A \preceq_s B$ (strong set order) if for all $a \in A$ and $b \in B$, we have $a \wedge b \in A$ and $a \vee b \in B$.
+\DIFaddbegin \begin{proof}
+\textbf{\DIFadd{Step 1: Strong set order.}}
+\DIFadd{For sets $A, B \subseteq L$, we say $A \preceq_s B$ (strong set order) if for all $a \in A$ and $b \in B$, we have $a \wedge b \in A$ and $a \vee b \in B$.
+}
 
-\textbf{Step 2: Key inequality.}
-Let $t' \succeq t$ and suppose $x^* \in \argmax_x f(x,t)$ and $x^{**} \in \argmax_x f(x,t')$. We must show $x^* \wedge x^{**} \in \argmax_x f(x,t)$ and $x^* \vee x^{**} \in \argmax_x f(x,t')$.
+\textbf{\DIFadd{Step 2: Key inequality.}}
+\DIFadd{Let $t' \succeq t$ and suppose $x^* \in \argmax_x f(x,t)$ and $x^{**} \in \argmax_x f(x,t')$. We must show $x^* \wedge x^{**} \in \argmax_x f(x,t)$ and $x^* \vee x^{**} \in \argmax_x f(x,t')$.
+}
 
-By optimality: $f(x^*,t) \ge f(x^* \wedge x^{**},t)$ and $f(x^{**},t') \ge f(x^* \vee x^{**},t')$.
+\DIFadd{By optimality: $f(x^*,t) \ge f(x^* \wedge x^{**},t)$ and $f(x^{**},t') \ge f(x^* \vee x^{**},t')$.
+}
 
-By supermodularity: $f(x^* \vee x^{**},t) + f(x^* \wedge x^{**},t) \ge f(x^*,t) + f(x^{**},t)$.
+\DIFadd{By supermodularity: $f(x^* \vee x^{**},t) + f(x^* \wedge x^{**},t) \ge f(x^*,t) + f(x^{**},t)$.
+}
 
-By increasing differences: $f(x^* \vee x^{**},t') - f(x^{**},t') \ge f(x^* \vee x^{**},t) - f(x^{**},t)$.
+\DIFadd{By increasing differences: $f(x^* \vee x^{**},t') - f(x^{**},t') \ge f(x^* \vee x^{**},t) - f(x^{**},t)$.
+}
 
-Combining these inequalities:
-\begin{align*}
-0 &\ge f(x^* \vee x^{**},t') - f(x^{**},t') & \text{(optimality of } x^{**}) \\
-&\ge f(x^* \vee x^{**},t) - f(x^{**},t) & \text{(increasing differences)} \\
-&\ge f(x^*,t) - f(x^* \wedge x^{**},t) & \text{(supermodularity)} \\
-&\ge 0 & \text{(optimality of } x^*).
-\end{align*}
-All inequalities are equalities, so $x^* \wedge x^{**} \in \argmax_x f(x,t)$ and $x^* \vee x^{**} \in \argmax_x f(x,t')$.
-\end{proof}
+\DIFadd{Combining these inequalities:
+}\begin{align*}
+\DIFadd{0 }&\DIFadd{\ge f(x^* \vee x^{**},t') - f(x^{**},t') }& \DIFadd{\text{(optimality of } x^{**}) }\\
+&\DIFadd{\ge f(x^* \vee x^{**},t) - f(x^{**},t) }& \DIFadd{\text{(increasing differences)} }\\
+&\DIFadd{\ge f(x^*,t) - f(x^* \wedge x^{**},t) }& \DIFadd{\text{(supermodularity)} }\\
+&\DIFadd{\ge 0 }& \DIFadd{\text{(optimality of } x^*).
+}\end{align*}
+\DIFadd{All inequalities are equalities, so $x^* \wedge x^{**} \in \argmax_x f(x,t)$ and $x^* \vee x^{**} \in \argmax_x f(x,t')$.
+}\end{proof}
 
-\subsection{P-matrix theory}
+\DIFaddend \subsection{P-matrix theory}
 
-\begin{definition}
-A square matrix $B \in \R^{n \times n}$ is a \textbf{P-matrix} if all its principal minors are positive.
-\end{definition}
+\DIFdelbegin \DIFdel{The Hawkins--Simon theorem gives equivalentconditions for productivity of a Leontief system.
+    For $A\ge 0$, if }\DIFdelend \DIFaddbegin \begin{definition}
+\DIFadd{A square matrix $B \in \R^{n \times n}$ is a }\textbf{\DIFadd{P-matrix}} \DIFadd{if all its principal minors are positive.
+}\end{definition}
 
 \begin{theorem}[Hawkins--Simon]\label{thm:hawkins_simon_proof}
-Let $A \ge 0$ be a nonnegative matrix. The following are equivalent:
-\begin{enumerate}[label=(\roman*)]
-    \item $I-A$ is a P-matrix.
-    \item $(I-A)^{-1}$ exists and $(I-A)^{-1} \ge 0$.
-    \item The spectral radius $\rho(A) < 1$.
-\end{enumerate}
+\DIFadd{Let $A \ge 0$ be a nonnegative matrix. The following are equivalent:
+}\begin{enumerate}[label=(\roman*)]
+    \item \DIFadd{$I-A$ is a P-matrix.
+    }\item \DIFaddend $(I-A)^{-1}$ exists and \DIFdelbegin \DIFdel{has nonnegativeentries, then }\DIFdelend \DIFaddbegin \DIFadd{$(I-A)^{-1} \ge 0$.
+    }\item \DIFadd{The spectral radius $\rho(A) < 1$.
+}\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\textbf{(iii) $\Rightarrow$ (ii):}
-If $\rho(A) < 1$, the Neumann series $\sum_{k=0}^\infty A^k$ converges. Since $A \ge 0$, each term is nonnegative, so
-\[
-(I-A)^{-1} = \sum_{k=0}^\infty A^k \ge 0.
-\]
+\textbf{\DIFadd{(iii) $\Rightarrow$ (ii):}}
+\DIFadd{If $\rho(A) < 1$, the Neumann series $\sum_{k=0}^\infty A^k$ converges. Since $A \ge 0$, each term is nonnegative, so
+}\[
+\DIFadd{(I-A)^{-1} = \sum_{k=0}^\infty A^k \ge 0.
+}\]
 
-\textbf{(ii) $\Rightarrow$ (i):}
-For any principal submatrix $A_J$ (corresponding to index set $J$), we have $(I_J - A_J)^{-1} \ge 0$ (the Schur complement structure preserves nonnegativity). A matrix with nonnegative inverse has positive determinant, so all principal minors of $I-A$ are positive.
+\textbf{\DIFadd{(ii) $\Rightarrow$ (i):}}
+\DIFadd{For any principal submatrix $A_J$ (corresponding to index set $J$), we have $(I_J - A_J)^{-1} \ge 0$ (the Schur complement structure preserves nonnegativity). A matrix with nonnegative inverse has positive determinant, so }\DIFaddend all principal minors of $I-A$ are positive\DIFdelbegin \DIFdel{, so }\DIFdelend \DIFaddbegin \DIFadd{.
+}
 
-\textbf{(i) $\Rightarrow$ (iii):}
-Suppose $\rho(A) \ge 1$. By the Perron-Frobenius theorem, $A$ has a nonnegative eigenvector $v \ge 0$ with eigenvalue $\lambda = \rho(A) \ge 1$. Then $(I-A)v = (1-\lambda)v$. If $\lambda = 1$, $I-A$ is singular. If $\lambda > 1$, then $(I-A)v = (1-\lambda)v < 0$, contradicting the requirement that $(I-A)^{-1} \ge 0$ maps nonnegative vectors to nonnegative vectors.
-\end{proof}
+\textbf{\DIFadd{(i) $\Rightarrow$ (iii):}}
+\DIFadd{Suppose $\rho(A) \ge 1$. By the Perron-Frobenius theorem, $A$ has a nonnegative eigenvector $v \ge 0$ with eigenvalue $\lambda = \rho(A) \ge 1$. Then $(I-A)v = (1-\lambda)v$. If $\lambda = 1$, }\DIFaddend $I-A$ \DIFdelbegin \DIFdel{is a P-matrix. Conversely, if $I-A$ }\DIFdelend is \DIFaddbegin \DIFadd{singular. If $\lambda > 1$, then $(I-A)v = (1-\lambda)v < 0$, contradicting the requirement that $(I-A)^{-1} \ge 0$ maps nonnegative vectors to nonnegative vectors.
+}\end{proof}
 
 \begin{theorem}[Gale--Nikaido Univalence]\label{thm:gale_nikaido_proof}
-Let $\Phi: \R^n \to \R^n$ be continuously differentiable. If the Jacobian $D\Phi(x)$ is a P-matrix for all $x \in \R^n$, then $\Phi$ is a global homeomorphism.
-\end{theorem}
+\DIFadd{Let $\Phi: \R^n \to \R^n$ be continuously differentiable. If the Jacobian $D\Phi(x)$ is }\DIFaddend a P-matrix \DIFdelbegin \DIFdel{, then $I-A$ is nonsingular and the inverse is nonnegative for $A\ge 0$}\DIFdelend \DIFaddbegin \DIFadd{for all $x \in \R^n$, then $\Phi$ is a global homeomorphism.
+}\end{theorem}
 
 \begin{proof}[Proof sketch]
-\textbf{Step 1: Local injectivity.}
-A P-matrix is nonsingular (all principal minors positive implies full rank). By the inverse function theorem, $\Phi$ is a local diffeomorphism at every point.
+\textbf{\DIFadd{Step 1: Local injectivity.}}
+\DIFadd{A P-matrix is nonsingular (all principal minors positive implies full rank). By the inverse function theorem, $\Phi$ is a local diffeomorphism at every point}\DIFaddend .
 
-\textbf{Step 2: Global injectivity.}
-The key insight is that P-matrices are closed under positive diagonal scaling and satisfy a specific ``inwardness'' property. If $\Phi(x) = \Phi(y)$ for $x \ne y$, consider the path $\gamma(t) = \Phi(x + t(y-x))$. The P-matrix property forces $\gamma$ to move in all coordinates simultaneously, preventing $\gamma(0) = \gamma(1)$ unless $x = y$.
+\DIFdelbegin \subsection{\DIFdel{Affiliation}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \textbf{\DIFadd{Step 2: Global injectivity.}}
+\DIFadd{The key insight is that P-matrices are closed under positive diagonal scaling and satisfy a specific ``inwardness'' property. If $\Phi(x) = \Phi(y)$ for $x \ne y$, consider the path $\gamma(t) = \Phi(x + t(y-x))$. The P-matrix property forces $\gamma$ to move in all coordinates simultaneously, preventing $\gamma(0) = \gamma(1)$ unless $x = y$.
+}\DIFaddend 
 
-\textbf{Step 3: Surjectivity.}
-Local injectivity plus the P-matrix property implies that $\|\Phi(x)\| \to \infty$ as $\|x\| \to \infty$ (properness). By Hadamard's theorem, a proper local homeomorphism is a global homeomorphism.
-\end{proof}
+\DIFdelbegin \DIFdel{Affiliation is equivalent to log-supermodularity of the joint density. Log-supermodularity is preserved under conditioning and marginalization.
+In particular, }\DIFdelend \DIFaddbegin \textbf{\DIFadd{Step 3: Surjectivity.}}
+\DIFadd{Local injectivity plus the P-matrix property implies that $\|\Phi(x)\| \to \infty$ as $\|x\| \to \infty$ (properness). By Hadamard's theorem, a proper local homeomorphism is a global homeomorphism.
+}\end{proof}
 
-\subsection{Affiliation and stochastic dominance}
+\subsection{\DIFadd{Affiliation and stochastic dominance}}
 
 \begin{definition}
-Random variables $Z = (Z_1, \ldots, Z_m)$ with joint density $f$ are \textbf{affiliated} if $f$ is log-supermodular:
-\[
-f(z \vee z') f(z \wedge z') \ge f(z) f(z') \quad \text{for all } z, z'.
-\]
+\DIFadd{Random variables $Z = (Z_1, \ldots, Z_m)$ with joint density $f$ are }\textbf{\DIFadd{affiliated}} \DIFadd{if $f$ is log-supermodular:
+}\[
+\DIFadd{f(z \vee z') f(z \wedge z') \ge f(z) f(z') \quad \text{for all } z, z'.
+}\]
 \end{definition}
 
 \begin{theorem}[Affiliation implies MLRP]\label{thm:affiliation_mlrp}
-If $(Z_1, Z_2)$ are affiliated, then the conditional density $f(z_1 \mid z_2)$ satisfies the monotone likelihood ratio property in $z_2$.
-\end{theorem}
+\DIFadd{If $(Z_1, Z_2)$ are affiliated, then }\DIFaddend the conditional density \DIFdelbegin \DIFdel{$f(\mu\mid s_i)$ is log-supermodular in $(\mu,s_i)$, which yields MLRP }\DIFdelend \DIFaddbegin \DIFadd{$f(z_1 \mid z_2)$ satisfies the monotone likelihood ratio property in $z_2$}\DIFaddend .
+\DIFdelbegin \DIFdel{MLRP implies FOSD by integrating likelihood ratios. The ordering of beliefs about $s_{-i}$ follows by applying the same argument to the joint distribution of $(s_{-i},s_i)$. }\DIFdelend \DIFaddbegin \end{theorem}
 
 \begin{proof}
-The conditional density is $f(z_1 \mid z_2) = f(z_1, z_2) / f_{Z_2}(z_2)$. For $z_2' > z_2$ and $z_1' > z_1$:
-\begin{align*}
-\frac{f(z_1' \mid z_2')}{f(z_1 \mid z_2')} \cdot \frac{f(z_1 \mid z_2)}{f(z_1' \mid z_2)}
-&= \frac{f(z_1', z_2') \cdot f(z_1, z_2)}{f(z_1, z_2') \cdot f(z_1', z_2)}.
-\end{align*}
-Define $z = (z_1, z_2)$ and $z' = (z_1', z_2')$. Then $z \vee z' = (z_1', z_2')$ and $z \wedge z' = (z_1, z_2)$. By log-supermodularity:
-\[
-f(z_1', z_2') \cdot f(z_1, z_2) \ge f(z_1, z_2') \cdot f(z_1', z_2).
-\]
-Thus the ratio is $\ge 1$, which is the MLRP condition.
-\end{proof}
+\DIFadd{The conditional density is $f(z_1 \mid z_2) = f(z_1, z_2) / f_{Z_2}(z_2)$. For $z_2' > z_2$ and $z_1' > z_1$:
+}\begin{align*}
+\DIFadd{\frac{f(z_1' \mid z_2')}{f(z_1 \mid z_2')} \cdot \frac{f(z_1 \mid z_2)}{f(z_1' \mid z_2)}
+}&\DIFadd{= \frac{f(z_1', z_2') \cdot f(z_1, z_2)}{f(z_1, z_2') \cdot f(z_1', z_2)}.
+}\end{align*}
+\DIFadd{Define $z = (z_1, z_2)$ and $z' = (z_1', z_2')$. Then $z \vee z' = (z_1', z_2')$ and $z \wedge z' = (z_1, z_2)$. By log-supermodularity:
+}\[
+\DIFadd{f(z_1', z_2') \cdot f(z_1, z_2) \ge f(z_1, z_2') \cdot f(z_1', z_2).
+}\]
+\DIFadd{Thus the ratio is $\ge 1$, which is the MLRP condition.
+}\end{proof}
 
 \begin{theorem}[MLRP implies FOSD]\label{thm:mlrp_fosd}
-If $f(\cdot \mid s')$ dominates $f(\cdot \mid s)$ in the likelihood ratio order for $s' > s$, then $F(\cdot \mid s') \ge_{\mathrm{FOSD}} F(\cdot \mid s)$.
-\end{theorem}
+\DIFadd{If $f(\cdot \mid s')$ dominates $f(\cdot \mid s)$ in the likelihood ratio order for $s' > s$, then $F(\cdot \mid s') \ge_{\mathrm{FOSD}} F(\cdot \mid s)$.
+}\end{theorem}
 
 \begin{proof}
-MLRP means $f(\mu \mid s') / f(\mu \mid s)$ is increasing in $\mu$. Define $\Lambda(\bar{\mu}) = \int_{-\infty}^{\bar{\mu}} f(\mu \mid s') d\mu / \int_{-\infty}^{\bar{\mu}} f(\mu \mid s) d\mu$. 
+\DIFadd{MLRP means $f(\mu \mid s') / f(\mu \mid s)$ is increasing in $\mu$. Define $\Lambda(\bar{\mu}) = \int_{-\infty}^{\bar{\mu}} f(\mu \mid s') d\mu / \int_{-\infty}^{\bar{\mu}} f(\mu \mid s) d\mu$. 
+}
 
-Since the likelihood ratio is increasing, $\Lambda(\bar{\mu})$ is increasing in $\bar{\mu}$. We have $\Lambda(-\infty) = 0$ and $\Lambda(\infty) = 1$ (both CDFs integrate to 1).
+\DIFadd{Since the likelihood ratio is increasing, $\Lambda(\bar{\mu})$ is increasing in $\bar{\mu}$. We have $\Lambda(-\infty) = 0$ and $\Lambda(\infty) = 1$ (both CDFs integrate to 1).
+}
 
-For FOSD, we need $F(\bar{\mu} \mid s') \le F(\bar{\mu} \mid s)$, i.e., $\int_{-\infty}^{\bar{\mu}} f(\mu \mid s') d\mu \le \int_{-\infty}^{\bar{\mu}} f(\mu \mid s) d\mu$.
+\DIFadd{For FOSD, we need $F(\bar{\mu} \mid s') \le F(\bar{\mu} \mid s)$, i.e., $\int_{-\infty}^{\bar{\mu}} f(\mu \mid s') d\mu \le \int_{-\infty}^{\bar{\mu}} f(\mu \mid s) d\mu$.
+}
 
-Equivalently: $\int_{-\infty}^{\bar{\mu}} [f(\mu \mid s') - f(\mu \mid s)] d\mu \le 0$.
+\DIFadd{Equivalently: $\int_{-\infty}^{\bar{\mu}} [f(\mu \mid s') - f(\mu \mid s)] d\mu \le 0$.
+}
 
-The integrands start negative (for small $\mu$, the ratio is below its average of 1) and end positive, crossing zero once. The integral is the area under the difference, which is nonpositive up to every point $\bar{\mu}$.
-\end{proof}
+\DIFadd{The integrands start negative (for small $\mu$, the ratio is below its average of 1) and end positive, crossing zero once. The integral is the area under the difference, which is nonpositive up to every point $\bar{\mu}$.
+}\end{proof}
 
 \begin{theorem}[FOSD Integration]\label{thm:fosd_int}
-If $F' \ge_{\mathrm{FOSD}} F$ and $g$ is increasing, then $\E_{F'}[g(X)] \ge \E_F[g(X)]$.
-\end{theorem}
+\DIFadd{If $F' \ge_{\mathrm{FOSD}} F$ and $g$ is increasing, then $\E_{F'}[g(X)] \ge \E_F[g(X)]$.
+}\end{theorem}
 
 \begin{proof}
-By integration by parts:
-\[
-\E_F[g(X)] = \int_{-\infty}^\infty g(x) dF(x) = g(\infty) - \int_{-\infty}^\infty g'(x) F(x) dx.
-\]
-Since $F'(x) \le F(x)$ for all $x$ (FOSD) and $g'(x) \ge 0$ (increasing):
-\[
-\E_{F'}[g(X)] = g(\infty) - \int_{-\infty}^\infty g'(x) F'(x) dx \ge g(\infty) - \int_{-\infty}^\infty g'(x) F(x) dx = \E_F[g(X)].
-\]
+\DIFadd{By integration by parts:
+}\[
+\DIFadd{\E_F[g(X)] = \int_{-\infty}^\infty g(x) dF(x) = g(\infty) - \int_{-\infty}^\infty g'(x) F(x) dx.
+}\]
+\DIFadd{Since $F'(x) \le F(x)$ for all $x$ (FOSD) and $g'(x) \ge 0$ (increasing):
+}\[
+\DIFadd{\E_{F'}[g(X)] = g(\infty) - \int_{-\infty}^\infty g'(x) F'(x) dx \ge g(\infty) - \int_{-\infty}^\infty g'(x) F(x) dx = \E_F[g(X)].
+}\]
 \end{proof}
 
-\subsection{Proof of price existence (Proposition~\ref{prop:price_existence})}
+\subsection{\DIFadd{Proof of price existence (Proposition~\ref{prop:price_existence})}}
 
 \begin{proof}[Full proof]
-Define the mapping $\Phi: \R^n \to \R^n$ by
-\[
-\Phi_i(p) = p_i - k_i(S_i, a_i(S_i), p) - b_i,
-\]
-where $b_i = \log(1+\tau_i) - (\varphi_i \mu + \eta_i)$. Equilibrium prices solve $\Phi(p) = 0$.
+\DIFadd{Define the mapping $\Phi: \R^n \to \R^n$ by
+}\[
+\DIFadd{\Phi_i(p) = p_i - k_i(S_i, a_i(S_i), p) - b_i,
+}\]
+\DIFadd{where $b_i = \log(1+\tau_i) - (\varphi_i \mu + \eta_i)$. Equilibrium prices solve $\Phi(p) = 0$.
+}
 
-\textbf{Step 1: Jacobian structure.}
-The Jacobian is $D\Phi(p) = I - J_{k,p}(p)$, where $[J_{k,p}]_{ij} = \partial k_i / \partial p_j$.
+\textbf{\DIFadd{Step 1: Jacobian structure.}}
+\DIFadd{The Jacobian is $D\Phi(p) = I - J_{k,p}(p)$, where $[J_{k,p}]_{ij} = \partial k_i / \partial p_j$.
+}
 
-By Shepard's lemma, in the differentiable case:
-\[
-\frac{\partial k_i}{\partial p_j}(p) = \frac{P_j X_{ij}^*(P)}{K_i(S_i, A_i, P)} = \text{cost share of input } j \text{ in sector } i.
-\]
+\DIFadd{By Shepard's lemma, in the differentiable case:
+}\[
+\DIFadd{\frac{\partial k_i}{\partial p_j}(p) = \frac{P_j X_{ij}^*(P)}{K_i(S_i, A_i, P)} = \text{cost share of input } j \text{ in sector } i.
+}\]
 
-\textbf{Step 2: Row sum bound.}
-Labor essentiality implies that labor has a positive cost share in every sector. Thus:
-\[
-\sum_{j=1}^n \frac{\partial k_i}{\partial p_j}(p) = \text{(total intermediate cost share)} < 1.
-\]
-Let $\kappa = \sup_{i,p} \sum_j \partial k_i / \partial p_j < 1$.
+\textbf{\DIFadd{Step 2: Row sum bound.}}
+\DIFadd{Labor essentiality implies that labor has a positive cost share in every sector. Thus:
+}\[
+\DIFadd{\sum_{j=1}^n \frac{\partial k_i}{\partial p_j}(p) = \text{(total intermediate cost share)} < 1.
+}\]
+\DIFadd{Let $\kappa = \sup_{i,p} \sum_j \partial k_i / \partial p_j < 1$.
+}
 
-\textbf{Step 3: P-matrix verification.}
-Since $J_{k,p} \ge 0$ (cost shares are nonnegative) and row sums are bounded by $\kappa < 1$, we have $\rho(J_{k,p}) \le \kappa < 1$. By \cref{thm:hawkins_simon_proof}, $I - J_{k,p}$ is a P-matrix.
+\textbf{\DIFadd{Step 3: P-matrix verification.}}
+\DIFadd{Since $J_{k,p} \ge 0$ (cost shares are nonnegative) and row sums are bounded by $\kappa < 1$, we have $\rho(J_{k,p}) \le \kappa < 1$. By \mbox{%DIFAUXCMD
+\cref{thm:hawkins_simon_proof}}\hspace{0pt}%DIFAUXCMD
+, $I - J_{k,p}$ is a P-matrix.
+}
 
-\textbf{Step 4: Global homeomorphism.}
-By \cref{thm:gale_nikaido_proof}, $\Phi$ is a global homeomorphism. Therefore $\Phi(p) = 0$ has a unique solution.
-\end{proof}
+\textbf{\DIFadd{Step 4: Global homeomorphism.}}
+\DIFadd{By \mbox{%DIFAUXCMD
+\cref{thm:gale_nikaido_proof}}\hspace{0pt}%DIFAUXCMD
+, $\Phi$ is a global homeomorphism. Therefore $\Phi(p) = 0$ has a unique solution.
+}\end{proof}
+\DIFaddend 
 
 %==============================================================================
 \bibliographystyle{plainnat}
