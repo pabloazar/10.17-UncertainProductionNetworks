@@ -90,10 +90,10 @@
 \maketitle
 
 \begin{abstract}
-\noindent We study the formation of production networks when firms possess dispersed, affiliated information about aggregate productivity. Firms make extensive margin decisions (choosing supplier sets) and intensive margin decisions (input quantities) under uncertainty. We characterize the economy as a supermodular Bayesian game. Using lattice-theoretic methods, we prove the existence of extremal monotone Bayesian Nash equilibria where firms with optimistic private signals adopt denser sets of inputs. We identify a ``sentiment multiplier'' mechanism: because signals are affiliated, a firm's optimism rationally raises its expectation of others' optimism, leading to coordinated network expansions that lower equilibrium prices and validate the initial sentiment. We decompose network volatility into fundamental and strategic components, showing that higher signal correlation amplifies volatility while higher signal precision dampens it. The model suggests that opacity in supply chains acts as an amplifier of aggregate shocks.
+\noindent We study the formation of production networks when firms possess dispersed, affiliated information about aggregate productivity. Firms make extensive margin decisions (choosing supplier sets) and intensive margin decisions (input quantities) under uncertainty. We characterize the economy as a supermodular Bayesian game. Using lattice-theoretic methods, we prove the existence of extremal monotone Bayesian Nash equilibria where firms with optimistic private signals adopt denser sets of inputs. We identify a ``belief multiplier'' mechanism: because signals are affiliated, a firm's optimism rationally raises its expectation of others' optimism, leading to coordinated network expansions that lower equilibrium prices and validate the initial beliefs. We decompose network volatility into fundamental and strategic components, showing that higher signal correlation amplifies volatility while higher signal precision dampens it. The model suggests that opacity in supply chains acts as an amplifier of aggregate shocks.
 
 \bigskip
-\noindent\textbf{Keywords:} Production networks, dispersed information, strategic complementarities, supermodular games, affiliation, sentiment multiplier.
+\noindent\textbf{Keywords:} Production networks, dispersed information, strategic complementarities, supermodular games, affiliation, belief multiplier.
 
 \noindent\textbf{JEL Codes:} D21, D83, D85, L14, E32.
 \end{abstract}
@@ -116,7 +116,7 @@ Our analysis yields three main theoretical contributions.
 
 First, we establish the existence of \textbf{monotone Bayesian Nash equilibria} in the game of network formation. The space of possible production networks is high-dimensional and discrete. However, we show that under general assumptions on production technology (homogeneity of degree one and labor essentiality) and information (affiliation), the induced game is supermodular. Using lattice-theoretic methods---specifically Tarski's fixed point theorem applied to the interim strategy space---we prove that firms with more optimistic private signals monotonically expand their supplier sets. This result implies the existence of distinct ``optimistic'' (high density) and ``pessimistic'' (low density) regimes for the same underlying fundamentals, driven by the coordination of beliefs.
 
-Second, we identify a \textbf{sentiment multiplier}. In standard Keynesian models, multipliers arise from demand externalities. Here, the multiplier is supply-side and structural. When firms become optimistic, they form denser networks. This expansion lowers unit costs and equilibrium prices throughout the economy, making further expansion profitable for others. We decompose the equilibrium response to a shift in beliefs into a direct fundamental term and a strategic term. We show that the strategic channel amplifies the fundamental response, effectively generating ``excess volatility'' in network density relative to fundamental productivity shocks.
+Second, we identify a \textbf{belief multiplier}. In standard Keynesian models, multipliers arise from demand externalities. Here, the multiplier is supply-side and structural. When firms become optimistic, they form denser networks. This expansion lowers unit costs and equilibrium prices throughout the economy, making further expansion profitable for others. The amplification arises through the interaction of affiliated beliefs and strategic complementarities: optimism begets optimism.
 
 Third, we provide comparative statics with respect to the \textbf{information structure}. We show that increasing the precision of private signals reduces network volatility, as firms place less weight on the correlated prior and more on the idiosyncratic realization. Conversely, increasing the correlation of error terms across firms (without changing their marginal variance) increases network volatility. This result suggests that information transparency---reducing the correlation of forecast errors---is a distinct policy tool for stabilizing supply chains.
 
@@ -129,7 +129,7 @@ We build directly on \citet{acemoglu2020endogenous}, extending their complete-in
 
 Our information-theoretic approach connects to the uncertainty literature: \citet{bloom2009impact}, \citet{bloom2014fluctuations}, \citet{bloom2018really}, \citet{baker2016measuring}, and \citet{jurado2015measuring} on uncertainty shocks; \citet{fajgelbaum2017uncertainty} on uncertainty traps; \citet{nieuwerburgh2006learning} on learning in business cycles. On information in networks, \citet{elliott2022supply} studies fragility from strategic link formation, while \citet{herskovic2018networks} examines asset pricing implications. The methodology builds on \citet{topkis1998supermodularity}, \citet{milgrom1994monotone}, and the Bayesian games literature of \citet{van2007monotone} and \citet{morris2002social}.
 
-The remainder of the paper is organized as follows. Section \ref{sec:info} defines the information structure. Section \ref{sec:env} describes the production environment. Section \ref{sec:beliefs} characterizes the belief hierarchy. Section \ref{sec:strategic} establishes strategic complementarities. Section \ref{sec:equilibrium} proves the existence of monotone equilibria. Section \ref{sec:multiplier} formalizes the sentiment multiplier. Section \ref{sec:statics} presents comparative statics. Section \ref{sec:dynamic} sketches a dynamic extension. Section \ref{sec:concl} concludes.
+The remainder of the paper is organized as follows. Section \ref{sec:info} defines the information structure. Section \ref{sec:env} describes the production environment. Section \ref{sec:beliefs} characterizes the belief hierarchy. Section \ref{sec:strategic} establishes strategic complementarities. Section \ref{sec:equilibrium} proves the existence of monotone equilibria. Section \ref{sec:multiplier} formalizes the belief multiplier. Section \ref{sec:statics} presents comparative statics. Section \ref{sec:dynamic} sketches a dynamic extension. Section \ref{sec:concl} concludes.
 
 %==============================================================================
 \section{Information Structure}\label{sec:info}
@@ -272,7 +272,7 @@ In a complete information setting, firm $i$ observes $\mu$ and can perfectly ant
     This follows directly from Theorem \ref{thm:milgrom}. Affiliation implies that the conditional distribution of the vector $(\mu, \s_{-i})$ given $s_i$ is stochastically increasing in $s_i$. The expectation of an increasing function with respect to a stochastically increasing distribution is increasing.
 \end{proof}
 
-This lemma is the mathematical engine of the sentiment multiplier. It implies that if equilibrium prices are lower when fundamentals are good ($\mu$ high) and when peers are optimistic ($\s_{-i}$ high), then a firm observing a high $s_i$ will rationally expect lower prices.
+This lemma is the mathematical engine of the belief multiplier. It implies that if equilibrium prices are lower when fundamentals are good ($\mu$ high) and when peers are optimistic ($\s_{-i}$ high), then a firm observing a high $s_i$ will rationally expect lower prices.
 
 %==============================================================================
 \section{Strategic Complementarities}\label{sec:strategic}
@@ -344,32 +344,36 @@ We now state the main existence result.
 The existence of extremal equilibria implies potential multiplicity. $\bar{\sigma}$ represents an ``optimistic regime'' where firms coordinate on dense networks, justified by low prices. $\underline{\sigma}$ is a ``pessimistic regime.'' In both regimes, however, network density is strictly increasing in sentiment.
 
 %==============================================================================
-\section{The Sentiment Multiplier}\label{sec:multiplier}
+\section{The Belief Multiplier}\label{sec:multiplier}
 %==============================================================================
 
-We now quantify the amplification of beliefs. Consider a uniform shift in signals $s \to s + \delta$ while holding the fundamental $\mu$ constant. This represents a ``sentiment shock.''
+The key mechanism in our model is a \emph{belief multiplier}: optimistic beliefs propagate through the network, generating amplified responses in equilibrium network density. Unlike standard multipliers derived from continuous elasticities, our multiplier operates through the discrete, combinatorial structure of network formation.
 
-Let $y$ denote the aggregate network density. In a symmetric Gaussian equilibrium, the network density is a function of the signal $s$.
-The marginal change in network density can be decomposed as:
-\begin{equation}
-    \frac{dy}{ds} = \underbrace{\frac{\partial y}{\partial \E[\mu]} \frac{\partial \E[\mu]}{\partial s}}_{\text{Fundamental Channel}} + \underbrace{\frac{\partial y}{\partial \E[P]} \frac{\partial \E[P]}{\partial \E[S_{-i}]} \frac{\partial \E[S_{-i}]}{\partial s}}_{\text{Strategic Channel}}.
-\end{equation}
-
-\begin{proposition}[The Sentiment Multiplier]\label{prop:multiplier}
-    Let $\beta \in (0, 1)$ measure the strength of strategic complementarity (the elasticity of own-network size with respect to aggregate network size). In the Gaussian limit, the elasticity of the network to a sentiment shock is amplified by the factor:
-    \begin{equation}
-        \Mcal = \frac{1}{1 - \rho \beta},
-    \end{equation}
-    where $\rho = \Cov(s_i, s_j) / \Var(s_i)$ is the signal correlation.
+\begin{proposition}[Belief Multiplier: Monotonicity]\label{prop:multiplier}
+Consider two information structures $\mathcal{I}$ and $\mathcal{I}'$ such that the induced posteriors satisfy $\pi'(\cdot \mid s_i) \geq_{\text{FOSD}} \pi(\cdot \mid s_i)$ for all $s_i$ (more optimistic beliefs). Let $\bar{\sigma}$ and $\bar{\sigma}'$ denote the greatest monotone equilibria under $\mathcal{I}$ and $\mathcal{I}'$ respectively. Then:
+\[
+\bar{\sigma}'(s_i) \supseteq \bar{\sigma}(s_i) \quad \text{for all } s_i.
+\]
+That is, more optimistic beliefs lead to (weakly) denser equilibrium networks at every signal realization.
 \end{proposition}
 
-This formula highlights that the multiplier is driven by two factors:
+\begin{proof}
+The proof proceeds by monotone comparative statics on the best-response correspondence.
+
+\textbf{Step 1:} Under more optimistic beliefs $\mathcal{I}'$, for any fixed opponent strategy $\sigma_{-i}$, firm $i$'s expected cost of expansion decreases. This follows from FOSD: if $\mu$ is expected to be higher, then $\theta_i(\mu)$ is higher and unit costs $K_i$ are lower. Moreover, if others' signals are expected to be higher (via affiliation), expected prices $\E[P^* \mid s_i]$ are lower.
+
+\textbf{Step 2:} By the single-crossing property (Lemma~\ref{lem:info_sc}), the best-response correspondence $\BR_i(\sigma_{-i}; \mathcal{I}')$ is pointwise greater than $\BR_i(\sigma_{-i}; \mathcal{I})$.
+
+\textbf{Step 3:} The greatest equilibrium is the limit of iterated best responses starting from the maximal strategy. Since the best-response operator shifts upward under $\mathcal{I}'$, the fixed point $\bar{\sigma}'$ is pointwise greater than $\bar{\sigma}$.
+\end{proof}
+
+This proposition captures the \emph{belief multiplier} without assuming differentiability or continuous actions. The amplification arises because:
 \begin{enumerate}
-    \item \textbf{Technological Linkages ($\beta$):} How much do lower prices encourage expansion?
-    \item \textbf{Informational Correlation ($\rho$):} How much does my signal tell me about your signal?
+    \item \textbf{Direct channel:} A higher signal $s_i$ raises $\E[\mu \mid s_i]$, directly increasing the expected benefit of expansion.
+    \item \textbf{Strategic channel:} A higher signal $s_i$ raises $\E[s_j \mid s_i]$ for $j \neq i$ (by affiliation). This leads firm $i$ to expect that others will expand, lowering expected prices, further increasing the benefit of expansion.
 \end{enumerate}
 
-If signals are idiosyncratic ($\rho \to 0$), the multiplier is 1. If signals are public ($\rho \to 1$), the multiplier converges to the standard Keynesian/network multiplier $1/(1-\beta)$.
+The combinatorial nature of network formation means this multiplier operates through \emph{set inclusion}: the equilibrium supplier set $S_i^*(s_i)$ expands discretely as beliefs become more optimistic. The strategic channel reinforces the direct channel because the lattice of supplier sets is closed under union---if both firm $i$ and its peers expand, the intersection benefits compound
 
 %==============================================================================
 \section{Comparative Statics}\label{sec:statics}
@@ -386,7 +390,7 @@ We examine how the quality of information affects the real economy.
     Holding the marginal variance of signals constant, an increase in the correlation between error terms $\varepsilon_i$ increases aggregate network volatility.
 \end{theorem}
 \begin{proof}
-    (Sketch) An increase in error correlation increases $\rho$ without changing the signal's responsiveness to $\mu$. This increases the sentiment multiplier $\Mcal = (1-\rho\beta)^{-1}$. A correlated noise shock is now amplified more strongly because firms are more confident that others have seen the same shock.
+    (Sketch) An increase in error correlation increases the strength of higher-order beliefs: when $\rho$ is higher, a firm's signal is more informative about others' signals. By the belief multiplier (Proposition~\ref{prop:multiplier}), this amplifies the strategic channel. A correlated noise shock is magnified because firms expect others to have observed similar signals.
 \end{proof}
 
 This result suggests that \textbf{opacity} (low precision) combined with \textbf{correlated information sources} (e.g., reliance on a few public indicators or rumors) creates the most volatile supply chains.
@@ -409,9 +413,9 @@ where $\gamma^+$ is the cost of forming a link and $\gamma^-$ is the cost of sev
 \section{Conclusion}\label{sec:concl}
 %==============================================================================
 
-This paper has integrated dispersed information into the theory of endogenous production networks. We showed that the formation of supply chains is driven by a \textbf{sentiment multiplier} arising from the interaction of affiliated beliefs and strategic complementarities.
+This paper has integrated dispersed information into the theory of endogenous production networks. We showed that the formation of supply chains is driven by a \textbf{belief multiplier} arising from the interaction of affiliated beliefs and strategic complementarities.
 
-Our results imply that supply chain volatility is not merely a reflection of fundamental TFP shocks but is endogenous to the information structure. Policies that improve transparency---such as standardized reporting of supply chain stress or public data on aggregate input flows---can reduce the correlation of belief errors and dampen the sentiment multiplier. Conversely, reliance on opaque, correlated signals exacerbates instability.
+Our results imply that supply chain volatility is not merely a reflection of fundamental TFP shocks but is endogenous to the information structure. Policies that improve transparency---such as standardized reporting of supply chain stress or public data on aggregate input flows---can reduce the correlation of belief errors and dampen the belief multiplier. Conversely, reliance on opaque, correlated signals exacerbates instability.
 
 %==============================================================================
 % REFERENCES
@@ -471,24 +475,11 @@ Since $\sigma_{-i}$ is monotone, higher $\s_{-i}$ implies larger $S_{-i}$. By th
 \textbf{Step 3: Applying Lemma \ref{lem:expectations}.}
 Since $g$ is increasing in $(\mu, \s_{-i})$, by Lemma \ref{lem:expectations}, $\Delta(s_i) = \E[g(\mu, \s_{-i}) \mid s_i]$ is increasing in $s_i$. \qed
 
-\subsection{Derivation of the Sentiment Multiplier}
-In the Gaussian limit, let $y$ be the network action (density). Consider the linear best-response approximation:
+\subsection{Remark: Linear Approximation in Gaussian Case}
+In the Gaussian limit with continuous actions, one can approximate the belief multiplier using a linear best-response. Let $y$ denote network density and consider:
 \[
 y_i = \alpha \E[\mu|s_i] + \beta \E[y_{-i}|s_i].
 \]
-In a symmetric equilibrium, $y(s) = c s$ for some constant $c$.
-
-Substituting the Gaussian posteriors from Example \ref{ex:gaussian}:
-\[
-c s = \alpha \rho s + \beta c \rho s.
-\]
-Solving for $c$:
-\[
-c (1 - \beta \rho) = \alpha \rho.
-\]
-\[
-c = \frac{\alpha \rho}{1 - \beta \rho}.
-\]
-The term $\frac{1}{1-\beta \rho}$ is the sentiment multiplier $\Mcal$. \qed
+In a symmetric equilibrium $y(s) = c s$, substituting Gaussian posteriors yields $c = \frac{\alpha \rho}{1 - \beta \rho}$. The term $(1-\beta \rho)^{-1}$ captures the amplification from iterated expectations. However, this continuous approximation abstracts from the discrete, combinatorial nature of the supplier set $S_i$. The monotone comparative statics in Proposition~\ref{prop:multiplier} provides a more general characterization that does not require differentiability or continuous actions. \qed
 
 \end{document}
