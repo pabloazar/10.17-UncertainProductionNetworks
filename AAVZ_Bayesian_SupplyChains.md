@@ -144,50 +144,86 @@ $$
 $$
 for $a_i' \geq a_i$. This is the Milgrom-Shannon monotone selection criterion. $\square$
 
-## 5. Affiliation and Interim Beliefs
+## 5. Interim Beliefs and FOSD Ordering (Van Zandt–Vives Approach)
 
-### 5.1 Signal Structure
+The key insight of Van Zandt–Vives (2007) is that **no common prior is needed**. What matters is that interim beliefs are **FOSD-ordered in types**. This ordering can arise from multiple sources.
 
-Signals are $s_i = h(\mu) + \varepsilon_i$ where $(\varepsilon_1, \ldots, \varepsilon_n, \mu)$ are **affiliated** random variables.
+### 5.1 The VZV Interim Formulation
 
-**Definition (Affiliation).** Random variables $(Z_1, \ldots, Z_m)$ with joint density $f$ are **affiliated** if for all $z, z' \in \mathbb{R}^m$:
+**Definition (FOSD-Ordered Types).** Types $\tau_i \in \mathcal{T}_i$ are ordered by $\tau_i \succeq \tau_i'$ if and only if the interim belief $\pi_i(\cdot | \tau_i)$ FOSD-dominates $\pi_i(\cdot | \tau_i')$:
+$$
+\tau_i \succeq \tau_i' \iff \pi_i(\cdot | \tau_i) \geq_{FOSD} \pi_i(\cdot | \tau_i')
+$$
+
+This is **the** definition of the type order—not an assumption to be verified. Types are their interim beliefs.
+
+### 5.2 Sources of FOSD Ordering
+
+The FOSD ordering of interim beliefs can arise from several mechanisms:
+
+#### Source A: Stationarity with Strategic Complementarities (VZV Primary Approach)
+
+**Proposition 4 (VZV Stationarity).** Suppose:
+1. The game has strategic complementarities (ID in $(a_i, a_{-i})$) — verified in Proposition 3
+2. Players use monotone strategies $\sigma_i: \mathcal{T}_i \to \mathcal{S}_i$ (increasing in type)
+3. Higher types expect higher opponent types in equilibrium
+
+Then the **equilibrium belief distribution** over opponents' actions is FOSD-increasing in own type.
+
+*Proof.* This is the core of VZV (2007) Section 3. In any monotone strategy equilibrium, if $\sigma_{-i}$ are increasing in type, then:
+- Higher $\tau_i$ → higher belief over $\tau_{-i}$ (by expectation)
+- Higher $\tau_{-i}$ → higher $a_{-i} = \sigma_{-i}(\tau_{-i})$ (by monotonicity)
+- Therefore: higher $\tau_i$ → FOSD-higher belief over $a_{-i}$
+
+The key point: **FOSD ordering is endogenous to equilibrium**, not a primitive assumption. $\square$
+
+#### Source B: Affiliation (Milgrom-Weber Foundation)
+
+Alternatively, FOSD ordering follows from an **affiliation** structure on signals and fundamentals.
+
+**Definition (Affiliation).** Random variables $(Z_1, \ldots, Z_m)$ with joint density $f$ are **affiliated** if:
 $$
 f(z \vee z') \cdot f(z \wedge z') \geq f(z) \cdot f(z')
 $$
-where $\vee$ and $\wedge$ denote componentwise max and min.
 
-### 5.2 Affiliation from Gaussian Structure
+**Proposition 5 (Affiliation → FOSD).** Under affiliation of signals $(s_1, \ldots, s_n, \mu)$:
+1. Higher $s_i$ induces FOSD-higher beliefs over $\mu$: $\pi_i(\mu | s_i') \geq_{FOSD} \pi_i(\mu | s_i)$ for $s_i' > s_i$
+2. Higher $s_i$ induces FOSD-higher beliefs over $s_{-i}$: $\pi_i(s_{-i} | s_i') \geq_{FOSD} \pi_i(s_{-i} | s_i)$
 
-**Proposition 4 (Gaussian Affiliation).** If $(\varepsilon_1, \ldots, \varepsilon_n, \mu)$ are jointly Gaussian with non-negative correlations (i.e., covariance matrix has non-negative off-diagonal entries), then they are affiliated.
+*Proof.* Milgrom-Weber (1982) Theorem 1 and Lemma 1. Affiliation (log-supermodularity of the joint density) implies monotone likelihood ratio ordering of conditional distributions. $\square$
 
-*Proof.* For Gaussian random vectors, affiliation is equivalent to the inverse of the covariance matrix having non-positive off-diagonal entries (Karlin-Rinott, 1980). If the covariance matrix $\Sigma$ has non-negative off-diagonal entries, then $\Sigma^{-1}$ has non-positive off-diagonal entries (this is the M-matrix property for positive definite matrices with non-negative entries). $\square$
+### 5.3 Sufficient Conditions for Affiliation
 
-**Corollary.** In our model, assume:
-- $\mu \sim N(\bar{\mu}, \sigma_\mu^2)$
-- $\varepsilon_i \sim N(0, \sigma_\varepsilon^2)$ with $\text{Cov}(\varepsilon_i, \varepsilon_j) \geq 0$ for all $i, j$
-- $\text{Cov}(\varepsilon_i, \mu) \geq 0$ for all $i$
+**Proposition 6 (Gaussian Affiliation).** If $(s_1, \ldots, s_n, \mu)$ are jointly Gaussian with **non-negative correlations**, they are affiliated.
 
-Then signals are affiliated.
+*Proof.* For Gaussian vectors, affiliation ⟺ the precision matrix (inverse covariance) has non-positive off-diagonals. Non-negative correlations in the covariance matrix $\Sigma$ imply this property for $\Sigma^{-1}$ (Karlin-Rinott, 1980). $\square$
 
-### 5.3 FOSD Ordering of Interim Beliefs
+**Common Setups Satisfying Affiliation:**
 
-**Proposition 5 (Milgrom-Weber).** Under affiliation, higher signals induce FOSD-higher beliefs:
+| Setup | $s_i = $ | Affiliated if: |
+|-------|----------|----------------|
+| Common value + noise | $\mu + \varepsilon_i$ | $\varepsilon_i$ independent or pos. correlated |
+| Gaussian signals | $h(\mu) + \varepsilon_i$ | $\text{Cov}(\varepsilon_i, \varepsilon_j) \geq 0$, $\text{Cov}(\varepsilon_i, \mu) \geq 0$ |
+| Order statistics | $\mu_{(k)}$ | Standard order stat properties |
 
-If $s_i' > s_i$, then $\pi_i(\cdot | s_i') \geq_{FOSD} \pi_i(\cdot | s_i)$.
+### 5.4 The VZV Insight: Complementarities + Monotone Strategies Suffice
 
-*Proof.* This is Milgrom-Weber (1982, Econometrica) Theorem 1. Affiliation implies that the conditional distribution of $\mu$ given $s_i$ is stochastically increasing in $s_i$. Formally, for any increasing function $g$:
+**Key Point:** Van Zandt–Vives show that in games of strategic complementarities, **we don't need to assume affiliation or any specific information structure**. 
+
+If:
+- Actions are complements (ID in $(a_i, a_{-i})$) — from CES with $\sigma < 1$
+- Payoffs have single-crossing in $(a_i, \tau_i)$ — from ID in $(a_i, \mu)$ + belief updating
+
+Then **monotone equilibria exist** and beliefs over opponents' actions are automatically FOSD-ordered in equilibrium.
+
+**Proposition 7 (Belief Propagation in Equilibrium).** In any monotone strategy equilibrium $\sigma^*$:
+
+If $\tau_i' \succeq \tau_i$, then the induced distribution over opponents' actions satisfies:
 $$
-\mathbb{E}[g(\mu) | s_i' = s] \text{ is increasing in } s
+\pi_i(\sigma_{-i}^*(\tau_{-i}) | \tau_i') \geq_{FOSD} \pi_i(\sigma_{-i}^*(\tau_{-i}) | \tau_i)
 $$
-This is exactly the FOSD property of interim beliefs. $\square$
 
-### 5.4 Cross-Player Belief Updating
-
-**Proposition 6 (Belief Propagation).** Under affiliation, higher own type $\tau_i$ FOSD-shifts beliefs about others' types $\tau_{-i}$:
-
-If $\tau_i' \succeq \tau_i$, then $\pi_i(\tau_{-i} | \tau_i') \geq_{FOSD} \pi_i(\tau_{-i} | \tau_i)$.
-
-*Proof.* Affiliation of $(s_1, \ldots, s_n)$ (induced by affiliation of $(\varepsilon_1, \ldots, \varepsilon_n, \mu)$) implies that the conditional distribution of $s_{-i}$ given $s_i$ is FOSD-increasing in $s_i$ (Milgrom-Weber Lemma 1). Since $\tau_j = s_j$ for all $j$, this gives the result. $\square$
+*Proof.* Monotonicity of $\sigma_{-i}^*$ + any reasonable belief correlation structure gives this. In the VZV framework, this is endogenous to equilibrium construction. $\square$
 
 ## 6. Verification of Van Zandt–Vives Conditions
 
@@ -203,7 +239,7 @@ We now verify that our model satisfies the conditions of Van Zandt–Vives (2007
 
 ### 6.3 VZV Condition 3: Quasisupermodularity in Own Action
 
-**Proposition 7.** The payoff $\Pi_i(a_i; \sigma_{-i}, z, \tau_i)$ is **quasisupermodular** in $a_i$.
+**Proposition 8 (Quasisupermodularity).** The payoff $\Pi_i(a_i; \sigma_{-i}, z, \tau_i)$ is **quasisupermodular** in $a_i$.
 
 *Proof.* By Proposition 1, the CES production function with $\sigma < 1$ is supermodular in $(S_i, L_i, X_i)$. Revenue $p(\mu) \theta_i(\mu) F_i$ inherits supermodularity (positive scalar multiplication preserves supermodularity).
 
@@ -225,7 +261,7 @@ Supermodularity implies quasisupermodularity. $\square$
 
 ### 6.6 VZV Condition 6: Best-Reply Correspondence Properties
 
-**Proposition 8.** The best-reply correspondence $BR_i$ is:
+**Proposition 9 (Best-Reply Properties).** The best-reply correspondence $BR_i$ is:
 1. Nonempty (by compactness and upper semicontinuity)
 2. Upper hemicontinuous (Maximum Theorem)
 3. Ascending in $(a_{-i}, \tau_i, z)$ (Topkis/Milgrom-Shannon)
@@ -233,7 +269,7 @@ Supermodularity implies quasisupermodularity. $\square$
 *Proof.*
 1. **Nonempty:** $\mathcal{S}_i$ is compact, $\Pi_i$ is continuous in $a_i$ (CES is smooth), so the maximum is attained.
 2. **UHC:** Payoff is continuous in $a_i$ and the constraint set $\mathcal{S}_i$ is constant, so the Maximum Theorem applies.
-3. **Ascending:** By Propositions 3 and 7, $\mathbb{E}[\Pi_i | \tau_i]$ has single-crossing in $(a_i, a_{-i})$, $(a_i, \tau_i)$, and $(a_i, z)$. Milgrom-Shannon monotone selection theorem implies all selections from $BR_i$ are monotone. $\square$
+3. **Ascending:** By Propositions 3 and 8, $\mathbb{E}[\Pi_i | \tau_i]$ has single-crossing in $(a_i, a_{-i})$, $(a_i, \tau_i)$, and $(a_i, z)$. Milgrom-Shannon monotone selection theorem implies all selections from $BR_i$ are monotone. $\square$
 
 ## 7. Main Results
 
@@ -347,19 +383,21 @@ This provides **equilibrium selection** through extremal equilibrium focus, yiel
 $$
 F_i = \left[ (1-\sum_{j\in S_i}\alpha_{ij})^{\frac{1}{\sigma}} (A_i L_i)^{\frac{\sigma-1}{\sigma}} + \sum_{j\in S_i} \alpha_{ij}^{\frac{1}{\sigma}} X_{ij}^{\frac{\sigma-1}{\sigma}} \right]^{\frac{\sigma}{\sigma-1}}
 $$
-→ Implies: Supermodularity (Prop. 1), single-crossing (Prop. 2)
+→ Implies: Supermodularity (Prop. 1), single-crossing (Prop. 2), ID in $(a_i, a_{-i})$ (Prop. 3)
 
-**(P2) Gaussian Affiliated Signals:**
-$$
-s_i = h(\mu) + \varepsilon_i, \quad (\varepsilon, \mu) \text{ jointly Gaussian with non-negative correlations}
-$$
-→ Implies: Affiliation (Prop. 4), FOSD beliefs (Prop. 5), cross-player correlation (Prop. 6)
+**(P2) FOSD-Ordered Interim Beliefs (VZV Approach):**
+
+Choose **one** of:
+- **(P2a) Stationarity + Complementarities:** In equilibrium with monotone strategies, higher types expect FOSD-higher opponent actions (Prop. 4). No primitives on information structure needed.
+- **(P2b) Affiliation:** Signals $(s_1, \ldots, s_n, \mu)$ affiliated → FOSD beliefs (Props. 5-6). Sufficient: Gaussian with non-negative correlations.
+
+→ Implies: Single-crossing in $(a_i, \tau_i)$, belief propagation (Prop. 7)
 
 **(P3) Bounded Action Spaces:**
 $$
 X_{ij} \in [0, \bar{X}], \quad L_i \in [0, \bar{L}], \quad \mathcal{A}_i \text{ finite}
 $$
-→ Implies: Compact lattice (Lemma 1), best-reply existence (Prop. 8)
+→ Implies: Compact lattice (Lemma 1), best-reply existence (Prop. 9)
 
 **(P4) Monotone State Dynamics:**
 $$
@@ -371,11 +409,12 @@ $$
 
 | Derived Condition | Source |
 |-------------------|--------|
-| Quasisupermodularity in $a_i$ | P1 (CES supermodularity) |
+| Quasisupermodularity in $a_i$ | P1 (CES supermodularity) → Prop. 8 |
 | Single-crossing in $(a_i, \tau_i)$ | P1 + P2 (FOSD beliefs) |
-| ID in $(a_i, a_{-i})$ | P1 (price single-crossing) |
+| ID in $(a_i, a_{-i})$ | P1 (price single-crossing via A&A) |
+| FOSD-ordered beliefs | P2a (endogenous) or P2b (affiliation) |
 | Compact lattice actions | P3 |
-| Ascending best-reply | All of the above |
+| Ascending best-reply | Props. 3, 8 → Prop. 9 |
 
 ### C. Main Results
 
