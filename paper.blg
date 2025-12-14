@@ -5,6 +5,98 @@ The style file: aer.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib
+Repeated entry---line 515 of file references.bib
+ : @article{dupor1999aggregation
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 525 of file references.bib
+ : @article{atalay2011network
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 535 of file references.bib
+ : @article{atalay2017sectoral
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 545 of file references.bib
+ : @article{foerster2011sectoral
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 555 of file references.bib
+ : @article{hulten1978growth
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 565 of file references.bib
+ : @article{jones2011intermediate
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 575 of file references.bib
+ : @article{baqaee2019macroeconomic
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 585 of file references.bib
+ : @article{baqaee2018cascading
+ :                             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 595 of file references.bib
+ : @article{baqaee2019productivity
+ :                                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 605 of file references.bib
+ : @article{liu2019industrial
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 615 of file references.bib
+ : @article{bigio2020distortions
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 625 of file references.bib
+ : @article{kopytov2024endogenous
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 635 of file references.bib
+ : @article{boehm2019input
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 645 of file references.bib
+ : @article{boehm2020misallocation
+ :                                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 655 of file references.bib
+ : @article{bernard2022origins
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 665 of file references.bib
+ : @article{elliott2022supply
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 675 of file references.bib
+ : @article{herskovic2018networks
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 685 of file references.bib
+ : @article{bloom2018really
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 695 of file references.bib
+ : @article{bloom2014fluctuations
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 705 of file references.bib
+ : @article{baker2016measuring
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 715 of file references.bib
+ : @article{fajgelbaum2017uncertainty
+ :                                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 725 of file references.bib
+ : @article{nieuwerburgh2006learning
+ :                                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 735 of file references.bib
+ : @article{morris2002social
+ :                          ,
+I'm skipping whatever remains of this entry
 You've used 38 entries,
             2984 wiz_defined-function locations,
             864 strings with 9205 characters,
@@ -46,3 +138,4 @@ warning$ -- 0
 while$ -- 450
 width$ -- 0
 write$ -- 643
+(There were 23 error messages)

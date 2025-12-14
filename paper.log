@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 19:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 19:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -667,9 +667,6 @@ T1/ppl/m/n/12 (-20) .
  []
 
 [9] [10] [11] (./paper.bbl [12] [13] [14]) [15] [16] [17] (./paper.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: DD557212D10F46323F0AAEBC4D01B3C9;3842.
  ) 
