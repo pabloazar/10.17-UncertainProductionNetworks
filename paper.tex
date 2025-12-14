@@ -217,30 +217,12 @@ p_i = \log(1+\tau_i) - (\varphi_i\mu+\eta_i) + k_i(S_i,a_i(S_i),p),
 \end{equation}
 where $p_i=\log P_i$, $a_i=\log A_i$, and $k_i=\log K_i$.
 
-\begin{definition}[P-matrix]\label{def:pmatrix}
-A square matrix $B$ is a \textbf{P-matrix} if all its principal minors are positive.
-\end{definition}
-
-\begin{theorem}[Hawkins--Simon]\label{thm:hawkins_simon}
-A matrix $B=I-A$ with $A\ge 0$ is a P-matrix if and only if $B^{-1}$ exists and has nonnegative entries.
-\end{theorem}
-
-\begin{theorem}[Gale--Nikaido]\label{thm:gale_nikaido}
-Let $\Phi:\R^n\to\R^n$ be continuously differentiable. If the Jacobian $D\Phi(x)$ is a P-matrix for all $x$, then $\Phi$ is a global homeomorphism.
-\end{theorem}
-
 \begin{proposition}[Existence and uniqueness of prices]\label{prop:price_existence}
-Suppose \cref{ass:technology} holds and that $p\mapsto k(S,a(S),p)$ is continuously differentiable. Fix $S$ and $\mu$. Then \cref{eq:log_price_system} has a unique solution $p^*(S,\mu)$, and therefore a unique equilibrium price vector $P^*(S,\mu)$.
+Suppose \cref{ass:technology} holds. Fix $S$ and $\mu$. Then there exists a unique equilibrium price vector $P^*(S,\mu)$.
 \end{proposition}
 
 \begin{proof}
-Define $\Phi(p)=p-k(S,a(S),p)-b$, where $b_i=\log(1+\tau_i)-(\varphi_i\mu+\eta_i)$. Then $p$ solves \cref{eq:log_price_system} if and only if $\Phi(p)=0$. The Jacobian is $D\Phi(p)=I-J_{k,p}(p)$, where $J_{k,p}(p)$ has entries $\partial k_i/\partial p_j$.
-
-In differentiable environments, $\partial k_i/\partial p_j$ coincides with a cost share. Labor essentiality implies that the share of intermediate inputs in unit costs is strictly below one. Thus there exists $\kappa\in(0,1)$ such that for all $i$ and all $p$,
-\[
-\sum_{j=1}^n \frac{\partial k_i}{\partial p_j}(p) \le \kappa.
-\]
-Since $J_{k,p}(p)\ge 0$, the bound implies that $I-J_{k,p}(p)$ is a P-matrix by \cref{thm:hawkins_simon}. Hence $D\Phi(p)$ is a P-matrix for all $p$, and \cref{thm:gale_nikaido} implies that $\Phi$ is a global homeomorphism. Therefore $\Phi$ has a unique zero.
+Define the price mapping $T: P \mapsto P'$ by $P'_i = (1+\tau_i) \theta_i(\mu)^{-1} K_i(S_i, A_i(S_i), P)$. Labor essentiality implies that the cost share of intermediates is strictly below one: for some $\kappa < 1$, the mapping $T$ is a contraction. By Banach's fixed point theorem, $T$ has a unique fixed point.
 \end{proof}
 
 \subsection{Monotone price response}
@@ -600,20 +582,6 @@ Let $L$ be a complete lattice and $f:L\to L$ be isotone. Then $\mathrm{Fix}(f)$ 
 
 \begin{theorem}[Topkis's Monotonicity Theorem]\label{thm:topkis}
 If $f:L\times T\to\R$ is supermodular in $x$ and has increasing differences in $(x,t)$, then $\argmax_x f(x,t)$ is isotone in $t$.
-\end{theorem}
-
-\subsection{P-matrix theory}
-
-\begin{definition}
-A matrix $B$ is a \textbf{P-matrix} if all principal minors are positive.
-\end{definition}
-
-\begin{theorem}[Hawkins--Simon]\label{thm:hawkins_simon}
-For $A \ge 0$: $I-A$ is a P-matrix $\Leftrightarrow$ $(I-A)^{-1} \ge 0$ $\Leftrightarrow$ $\rho(A) < 1$.
-\end{theorem}
-
-\begin{theorem}[Gale--Nikaido]\label{thm:gale_nikaido}
-If $\Phi:\R^n \to \R^n$ is $C^1$ and $D\Phi(x)$ is a P-matrix for all $x$, then $\Phi$ is a global homeomorphism.
 \end{theorem}
 
 \subsection{Affiliation and stochastic dominance}
