@@ -3,114 +3,395 @@
 ## 1. Primitives and Information
 
 - Time $t=0,1,\dots$. Finite set of products/firms $\mathcal I=\{1,\dots,n\}$.
-- Aggregate state $\mu_t\in\mathcal M\subset\mathbb R$ follows Markov kernel $P(\mu'\mid\mu)$ on compact $\mathcal M$.
-- At the start of $t$, firm $i$ receives private signal $s_{i,t}=h(\mu_t)+\varepsilon_{i,t}$ with $(\varepsilon_{i,t})_{i\in\mathcal I}$ affiliated. The induced posterior (interim belief) is $\pi_i(\cdot\mid s_{i,t})$. Types $t_i\equiv s_{i,t}\in\mathcal T_i$ are ordered by MLR/FOSD via their induced interim beliefs: $t_i\succeq t'_i$ iff $\pi_i(\cdot\mid t_i)\ge_{FOSD}\pi_i(\cdot\mid t'_i)$.
+- Aggregate state $\mu_t\in\mathcal M\subset\mathbb R$ follows Markov kernel $P(\mu'|\mu)$ on compact $\mathcal M$.
+- At the start of $t$, firm $i$ receives private signal $s_{i,t}=h(\mu_t)+\varepsilon_{i,t}$ with $(\varepsilon_{i,t})_{i\in\mathcal I}$ affiliated. The induced posterior (interim belief) is $\pi_i(\cdot|s_{i,t})$. Types $\tau_i\equiv s_{i,t}\in\mathcal T_i$ are ordered by MLR/FOSD via their induced interim beliefs: $\tau_i\succeq \tau'_i$ iff $\pi_i(\cdot|\tau_i)\ge_{FOSD}\pi_i(\cdot|\tau'_i)$.
 
-## 2. Technology (Acemoglu–Azar exact extensive margin)
+**Notation change:** We use $\tau_i$ for types (to avoid confusion with time $t$).
 
-- Each $i$ chooses an **endogenous supplier subset** $\alpha_{i,t}\in\mathcal A_i\subseteq 2^{\mathcal I\setminus\{i\}}$ (finite menu of subsets as in Acemoglu–Azar), an input vector $x_{i,t}=(x_{ij,t})_{j\ne i}\in\mathbb R_+^{n-1}$, and a scale $k_{i,t}\in[0,\bar k]$.
-- Let $A_t$ be the adjacency matrix with $(i,j)$ entry $1\{j\in\alpha_{i,t}\}$. The effective upstream aggregate is $q_{i,t}=\sum_{j\in \alpha_{i,t}} x_{ij,t}$.
-- Output (key equation, display):
+## 2. Technology: CES with Endogenous Extensive Margin (Acemoglu–Azar)
+
+### 2.1 The Acemoglu–Azar Production Function
+
+Following Acemoglu–Azar (2020, Econometrica), each firm $i$ chooses:
+- An **endogenous supplier subset** $S_i \in \mathcal{A}_i \subseteq 2^{\mathcal{I}\setminus\{i\}}$ (finite menu of allowable subsets)
+- Input quantities $X_i = (X_{ij})_{j \in S_i} \in \mathbb{R}_+^{|S_i|}$
+- Labor $L_i \in \mathbb{R}_+$
+
+The **CES production function with Harrod-neutral technology** is (Acemoglu–Azar Appendix eq. 11):
 $$
-y_{i,t}=\theta_{i,t}\,F\big(k_{i,t},q_{i,t}\big),\qquad \theta_{i,t}=\exp(\varphi\,\mu_t+\eta_{i,t}).
+Y_i = F_i(S_i, A_i(S_i), L_i, X_i) = \left[ (1-\sum_{j\in S_i}\alpha_{ij})^{\frac{1}{\sigma}} (A_i(S_i) L_i)^{\frac{\sigma-1}{\sigma}} + \sum_{j\in S_i} \alpha_{ij}^{\frac{1}{\sigma}} X_{ij}^{\frac{\sigma-1}{\sigma}} \right]^{\frac{\sigma}{\sigma-1}}
 $$
-  Here $F$ is supermodular and has increasing differences (ID) in $(k,q)$; $\eta_{i,t}$ is idiosyncratic.
-- Revenues $p_t\,y_{i,t}$ with $p_t$ increasing in $\mu_t$. Costs: convex $c_i(k_{i,t})$, link/activation costs $\sum_{j}\phi_{ij}(1\{j\in\alpha_{i,t}\})$, and input expenditures $\sum_j w_{ij,t}\,x_{ij,t}$.
-- State for the stage game: $z_t=(\mu_t,A_{t-1})$. The network law of motion is order-preserving: $A_t=\Gamma(A_{t-1},\alpha_t)$ with $\Gamma$ isotone in both arguments (as in A&A’s dynamic extension; e.g., links persist with probability increasing in activation).
+where:
+- $\sigma > 0$ is the elasticity of substitution ($\sigma \neq 1$)
+- $\alpha_{ij} \in (0,1)$ are distribution parameters with $\sum_{j \in S_i} \alpha_{ij} < 1$
+- $A_i(S_i) > 0$ is the productivity associated with supplier set $S_i$
+
+**Special cases:**
+- $\sigma \to 1$: Cobb-Douglas (Acemoglu–Azar baseline)
+- $\sigma \to 0$: Leontief (fixed proportions)
+- $\sigma \to \infty$: Linear (perfect substitutes)
+
+### 2.2 Adding Uncertainty
+
+We extend Acemoglu–Azar to uncertainty by making productivity state-dependent:
+$$
+\theta_i(\mu) = \exp(\varphi \mu + \eta_i), \qquad \varphi > 0
+$$
+
+The **stochastic production function** becomes:
+$$
+Y_i = \theta_i(\mu) \cdot F_i(S_i, A_i(S_i), L_i, X_i)
+$$
+
+### 2.3 Cost Function
+
+From Acemoglu–Azar (Appendix B), the unit cost function for CES technology is:
+$$
+K_i(S_i, A_i(S_i), P) = \left[ (1-\sum_{j\in S_i}\alpha_{ij}) \left(\frac{W}{A_i(S_i)}\right)^{1-\sigma} + \sum_{j\in S_i} \alpha_{ij} P_j^{1-\sigma} \right]^{\frac{1}{1-\sigma}}
+$$
+
+Normalizing $W=1$ (wage as numeraire):
+$$
+K_i(S_i, A_i(S_i), P) = \left[ (1-\sum_{j\in S_i}\alpha_{ij}) A_i(S_i)^{\sigma-1} + \sum_{j\in S_i} \alpha_{ij} P_j^{1-\sigma} \right]^{\frac{1}{1-\sigma}}
+$$
 
 ## 3. Strategy Spaces and Order Structure
 
-- Actions $a_i\equiv(\alpha_i,x_i,k_i)$ lie in $\mathcal S_i=\mathcal A_i\times \mathbb R_+^{n-1}\times[0,\bar k]$ ordered componentwise, with $\mathcal A_i$ ordered by set inclusion.
-- Assumption S1 (Lattice structure). Each $\mathcal A_i$ is finite; hence $\mathcal A_i$ is a complete lattice (discrete metric). The product $\mathcal S_i$ is a complete lattice under the product order.
-- Assumption C (Compactness or Coercivity). One of the following holds:
-  - C1 (Bounds): for each $i$, inputs satisfy $x_{ij}\in[0,\bar x]$ and $k_i\in[0,\bar k]$, so $\mathcal S_i$ is a compact metrizable complete lattice.
-  - C2 (Coercivity): $c_i(k)$ is superlinear and input prices satisfy $\inf_{\mu} w_{ij}(\mu)\ge \underline w>0$ for all $i,j$, so the stage payoff is upper semicontinuous and coercive; the argmax is nonempty and lies in a compact sublattice.
+### 3.1 Action Space
 
-- Types $\mathcal T_i$ carry the partial order $\succeq$ induced by FOSD/MLR on interim beliefs (Van Zandt–Vives).
+Each firm's action is $a_i = (S_i, X_i, L_i)$ where:
+- $S_i \in \mathcal{A}_i$: supplier subset (finite set ordered by inclusion $\subseteq$)
+- $X_i \in [0, \bar{X}]^{n-1}$: input quantities (bounded)
+- $L_i \in [0, \bar{L}]$: labor (bounded)
 
-## 4. Payoffs and Increasing Differences
+The action space $\mathcal{S}_i = \mathcal{A}_i \times [0, \bar{X}]^{n-1} \times [0, \bar{L}]$ is ordered componentwise.
 
-- Firm $i$’s period payoff at state $z$ and type $t_i$ against strategy profile $\sigma_{-i}$ is (key equation, display):
+### 3.2 Lattice Structure
+
+**Lemma 1 (Strategy Lattice).** Under the bounds $X_{ij} \in [0, \bar{X}]$ and $L_i \in [0, \bar{L}]$:
+1. $\mathcal{A}_i$ is a finite lattice under set inclusion with meet $S \wedge T = S \cap T$ and join $S \vee T = S \cup T$.
+2. $[0, \bar{X}]^{n-1} \times [0, \bar{L}]$ is a compact complete lattice under componentwise order.
+3. The product $\mathcal{S}_i$ is a compact metrizable complete lattice.
+
+*Proof.* (1) Any finite poset closed under $\cap$ and $\cup$ is a lattice. $\mathcal{A}_i \subseteq 2^{\mathcal{I}\setminus\{i\}}$ is finite by assumption. (2) Closed bounded intervals in $\mathbb{R}$ are complete lattices; products of complete lattices are complete lattices. (3) Products of compact metrizable complete lattices are compact metrizable complete lattices. $\square$
+
+## 4. Payoff Structure and Derivation of Van Zandt–Vives Conditions
+
+### 4.1 Period Payoff
+
+At state $z = (\mu, A_{t-1})$ and type $\tau_i$, firm $i$'s expected period payoff against strategy profile $\sigma_{-i}$ is:
 $$
-\Pi_i(a_i;\sigma_{-i},z,t_i)=\mathbb E\Big[p(\mu)\,\theta_i(\mu)\,F\big(k_i,\textstyle\sum_{j\in\alpha_i}x_{ij}\big)-c_i(k_i)-\sum_j\phi_{ij}(1\{j\in\alpha_i\})-\sum_j w_{ij}(\mu)\,x_{ij} \;\Big|\; t_i,\,z\Big].
+\Pi_i(a_i; \sigma_{-i}, z, \tau_i) = \mathbb{E}\Big[ p(\mu) \cdot \theta_i(\mu) \cdot F_i(S_i, A_i(S_i), L_i, X_i) - L_i - \sum_{j \in S_i} P_j X_{ij} \;\Big|\; \tau_i, z \Big]
 $$
-- Assumption P1 (Strategic complementarities). For each $i$, $\Pi_i$ has increasing differences in $(a_i,a_{-i})$ and in $(a_i,z)$, and has single crossing in $(a_i,t_i)$ via the FOSD order on interim beliefs. Sufficient conditions: (i) $F$ supermodular with ID; (ii) $p(\mu)$ and $\theta_i(\mu)$ increasing in $\mu$; (iii) affiliation so that higher $t_i$ FOSD-shifts beliefs over others’ types (hence expected $a_{-i}$) upward; (iv) separable convex costs.
 
-- Assumption P2 (Regularity). Payoffs are continuous in actions and measurable in $(t,z)$. Under C1, $\mathcal S_i$ is compact; under C2, the objective is upper semicontinuous and coercive, so best replies exist.
+where $p(\mu)$ is the output price (increasing in $\mu$) and $P_j$ are intermediate input prices.
 
-These yield a **monotone supermodular** Bayesian stage game (Van Zandt–Vives, JET 2007).
+### 4.2 Supermodularity of the CES Production Function
 
-## 5. Equilibrium Concepts
+**Proposition 1 (CES Supermodularity).** The CES production function $F_i(S_i, A_i(S_i), L_i, X_i)$ is **supermodular** in $(S_i, L_i, X_i)$ when $\sigma < 1$ (complements case).
 
-- Static BNE at $z$: a profile $\sigma(z)=(\sigma_i(\cdot,z))_{i}$ of measurable strategies $\sigma_i: \mathcal T_i\to\mathcal S_i$ such that for all $t_i$,
+*Proof.* Write $F_i = G(Q)^{\frac{\sigma}{\sigma-1}}$ where:
 $$
-\sigma_i(t_i,z)\in\arg\max_{a_i\in\mathcal S_i}\;\mathbb E\big[\Pi_i(a_i;\sigma_{-i},z,t_i)\big].
+Q = (1-\sum_{j\in S_i}\alpha_{ij})^{\frac{1}{\sigma}} (A_i L_i)^{\frac{\sigma-1}{\sigma}} + \sum_{j\in S_i} \alpha_{ij}^{\frac{1}{\sigma}} X_{ij}^{\frac{\sigma-1}{\sigma}}
 $$
-- Dynamic Bayesian Markov perfect equilibrium (BMPE): strategies $\sigma_i(\cdot,\cdot)$ and $A' = \Gamma(A,\alpha)$ with value functions $V_i(z,t_i)$ solving the Bellman equations and beliefs updated by Bayes’ rule.
 
-## 6. Lemmas
+For $\sigma < 1$, we have $\frac{\sigma-1}{\sigma} < 0$, so the exponents on $L_i$ and $X_{ij}$ are negative. This makes each term a decreasing function of its argument. The composition $G(Q)^{\frac{\sigma}{\sigma-1}}$ with $\frac{\sigma}{\sigma-1} < 0$ reverses the monotonicity, giving supermodularity.
 
-**Lemma 1 (Strategy lattice).** Under S1 and C1, each $\mathcal S_i$ is a compact metrizable complete lattice.
-
-*Proof.* $\mathcal A_i$ is finite, hence compact and complete under inclusion; $\mathbb R_+^{n-1}$ (bounded to $[0,\bar x]^{n-1}$ by C1) and $[0,\bar k]$ are complete lattices under componentwise order; their product is a compact complete lattice. $\square$
-
-**Lemma 2 (Increasing differences).** Under P1–P2, the interim objective $\mathbb E[\Pi_i\mid t_i]$ has increasing differences in $(a_i,a_{-i},z)$ and single crossing in $(a_i,t_i)$.
-
-*Proof.* Supermodularity/ID of $F$ imply complementarity between own controls and upstream aggregate $q_i$; higher $a_{-i}$ raises expected upstream availability and reduces effective costs, preserving ID in $(a_i,a_{-i})$. Since $p(\mu),\theta_i(\mu)$ increase in $\mu$ and signals are affiliated, a higher $t_i$ FOSD-shifts beliefs over $\mu$ and $a_{-i}$ upward, ensuring single crossing in $(a_i,t_i)$ and ID in $(a_i,z)$. Separable convex costs preserve supermodularity. $\square$
-
-**Lemma 3 (Monotone best replies).** The best-response correspondence $BR_i$ is nonempty, upper hemicontinuous, and monotone in $(a_{-i},z,t_i)$.
-
-*Proof.* Under C1, compactness/continuity yield nonemptiness and u.h.c. Under C2, coercivity and upper semicontinuity ensure existence and u.h.c. Increasing differences (Lemma 2) and the monotone-supermodular structure imply monotone selections (Topkis, Milgrom–Shannon). $\square$
-
-## 7. Main Results (Stage Game)
-
-**Theorem 1 (Greatest and least monotone BNE; Van Zandt–Vives).** In the static stage game at state $z$, there exist a greatest and a least pure-strategy Bayesian Nash equilibrium $\overline\sigma(z)$ and $\underline\sigma(z)$, each in strategies monotone in type. They are obtained by iterating the (generalized) best-reply mapping from maximal/minimal strategies.
-
-*Proof.* This is an application of Van Zandt–Vives (2007, JET 134:339–360): our game satisfies (i) strategic complementarities (supermodularity in actions), (ii) increasing differences in own action and type profile (via affiliation/FOSD), and (iii) existence of best replies with an order-preserving aggregate best-reply map (via C1 or C2). Their constructive fixed-point proof yields extremal monotone equilibria. $\square$
-
-**Theorem 2 (Comparative statics of extremal BNE).** (i) If interim beliefs shift upward in FOSD (e.g., more informative signals in the MLR sense), then both $\underline\sigma(z)$ and $\overline\sigma(z)$ increase (Van Zandt–Vives). (ii) If a parameter $\tau$ enters with increasing differences in payoffs (e.g., lower link costs, higher $p(\mu)$), then $\underline\sigma(z;\tau)$ and $\overline\sigma(z;\tau)$ are nondecreasing in $\tau$ (Topkis/Milgrom–Shannon).
-
-*Proof.* (i) Van Zandt–Vives prove that a FOSD upward shift in interim beliefs increases the extremal equilibria. (ii) Increasing differences in $(a_i,\tau)$ imply monotone best replies in $\tau$; the fixed points of an isotone map are monotone (Tarski). $\square$
-
-## 8. Dynamic Results
-
-Define the dynamic operator mapping bounded value functions into themselves (key equation, display):
+More precisely, for supermodularity we need $\frac{\partial^2 F}{\partial X_{ij} \partial X_{ik}} \geq 0$ for $j \neq k$. Computing:
 $$
-(\mathcal T V_i)(z,t_i)=\max_{a_i\in\mathcal S_i}\Big\{\mathbb E[\Pi_i(a_i;\sigma_{-i},z,t_i)] + \beta\,\mathbb E[V_i(z',t'_i)\mid z,t_i,a_i,\sigma_{-i}]\Big\}.
+\frac{\partial F}{\partial X_{ij}} = F^{\frac{1}{\sigma}} \cdot \alpha_{ij}^{\frac{1}{\sigma}} X_{ij}^{-\frac{1}{\sigma}}
 $$
-Assume $\Gamma(A,\alpha)$ is isotone and the induced transition kernel preserves the FOSD order conditional on actions.
 
-**Theorem 3 (Existence of BMPE and stationary network).** There exists a Bayesian Markov perfect equilibrium. Moreover, the induced policy operator is isotone, and there exist extremal Markov strategies delivering a stationary network $A^*$ solving $A^*=\Gamma(A^*,\alpha^*)$.
+$$
+\frac{\partial^2 F}{\partial X_{ij} \partial X_{ik}} = \frac{1-\sigma}{\sigma} \cdot F^{\frac{1}{\sigma}-1} \cdot \alpha_{ij}^{\frac{1}{\sigma}} \alpha_{ik}^{\frac{1}{\sigma}} X_{ij}^{-\frac{1}{\sigma}} X_{ik}^{-\frac{1}{\sigma}}
+$$
 
-*Proof.* Period payoffs are supermodular with ID; the continuation term preserves ID when the transition is isotone (Acemoglu–Azar dynamic extension, order-preserving $\Gamma$). Hence $\mathcal T$ is an order-preserving self-map on the lattice of bounded functions; monotone policy correspondences admit extremal fixed points (Tarski). The induced $\Gamma$ and monotone strategies yield existence of $A^*$. $\square$
+This is $\geq 0$ when $\sigma < 1$ (since $\frac{1-\sigma}{\sigma} > 0$). $\square$
 
-**Theorem 4 (Monotone transitional dynamics).** Let $z_0'\ge z_0$ in the product order (higher $\mu$, denser inherited $A$, or higher $\tau$). Then along extremal BMPE policies, the entire paths $\{\underline\sigma_t(z_0')\}_t$ and $\{\overline\sigma_t(z_0')\}_t$ weakly dominate those from $z_0$, and the network paths satisfy $A_t(z_0')\ge A_t(z_0)$ for all $t$.
+**Remark.** When $\sigma > 1$ (substitutes), the production function is **submodular**. This highlights that the strategic complementarities in our model arise naturally from technological complementarities in production.
 
-*Proof.* Induction using isotone best replies and isotone $\Gamma$: a higher initial state yields (weakly) higher actions, which propagate forward via $\Gamma$, preserving the order period by period. $\square$
+### 4.3 Technology-Price Single-Crossing (Acemoglu–Azar Proposition 3)
 
-## 9. Positioning and Contribution
+**Proposition 2 (A&A Single-Crossing).** For CES production with input-specific productivities, the unit cost function $K_i(S_i, A_i(S_i), P)$ satisfies the **technology-price single-crossing condition**:
 
-- **Exact A&A extensive margin under uncertainty.** We adopt Acemoglu–Azar’s *subset choice* of inputs (the extensive margin of the IO matrix) as the primitive technological decision. This differs from exposure-weight models that directly choose continuous weights on a fixed support.
-- **Incomplete information with affiliation.** We introduce affiliated private signals (MLR/FOSD) and use Van Zandt–Vives’ interim formulation (no common prior needed) to establish existence of greatest/least BNE in monotone strategies and FOSD comparative statics.
-- **Dynamic monotone structure.** By imposing an order-preserving network law of motion $\Gamma$ (in the spirit of A&A’s dynamic version), we obtain ordered transition paths and stationary equilibria without uniqueness—selection-robust predictions absent in deterministic complete-information models.
-- **Relative to Taschereau-Dumouchel et al.** Their “endogenous networks” typically allow agents to choose exposure/intensity under complete information or reduced-form shocks; we differ by (i) optimizing over the *set* of active inputs (A&A’s extensive margin), (ii) allowing private affiliated information to shape link activation, and (iii) proving extremal BNE and dynamic monotonicity via supermodular-Bayesian methods. The result is an equilibrium lattice with policy-robust comparative statics.
+For all $S_i \subset S_i'$ and price vectors $P' \leq P$ (componentwise on $P_{-i}$):
+$$
+K_i(S_i', A_i(S_i'), P) \leq K_i(S_i, A_i(S_i), P) \implies K_i(S_i', A_i(S_i'), P') \leq K_i(S_i, A_i(S_i), P')
+$$
 
-## 10. References (select)
+*Proof.* This is Acemoglu–Azar (2020) Proposition 3 (labeled "cs ces" in their paper). The key insight: if adopting more inputs is cost-reducing at high prices, it remains cost-reducing at lower prices because the new inputs are now cheaper. The CES cost function:
+$$
+K_i = \left[ (1-\sum_{j\in S_i}\alpha_{ij}) A_i^{\sigma-1} + \sum_{j\in S_i} \alpha_{ij} P_j^{1-\sigma} \right]^{\frac{1}{1-\sigma}}
+$$
+is decreasing in each $P_j$ when $\sigma < 1$ (since $1-\sigma > 0$ and the exponent $\frac{1}{1-\sigma} > 0$). Adding supplier $k$ to $S_i$ adds the term $\alpha_{ik} P_k^{1-\sigma}$ and modifies the labor share. The single-crossing property follows from the monotonicity of the cost difference in prices. $\square$
 
-- Acemoglu, D., and P. D. Azar (2020), “Endogenous Production Networks,” Econometrica 88(1):33–82.
-- Milgrom, P., and C. Shannon (1994), “Monotone Comparative Statics,” Econometrica.
-- Topkis, D. M. (1998), Supermodularity and Complementarity, Princeton University Press.
-- Van Zandt, T., and X. Vives (2007), “Monotone equilibria in Bayesian games of strategic complementarities,” JET 134:339–360.
+### 4.4 Increasing Differences in Payoffs
 
-## Appendix: Assumption-to-Theorem Mapping (Referee Quick Check)
+**Proposition 3 (Strategic Complementarities).** Under the CES technology with $\sigma < 1$:
+1. $\Pi_i$ has **increasing differences** in $(a_i, a_{-i})$
+2. $\Pi_i$ has **increasing differences** in $(a_i, z)$
+3. $\Pi_i$ has **single-crossing** in $(a_i, \tau_i)$
 
-- A1 Lattices (S1): $\mathcal A_i\subseteq 2^{\mathcal I\setminus\{i\}}$ finite (inclusion order); actions $a_i=(\alpha_i,x_i,k_i)$ ordered componentwise. Product is a complete lattice. Under C1, compact metrizable.
-- A2 Regularity (P2/C1–C2): either bounds $x_{ij}\in[0,\bar x]$, $k_i\in[0,\bar k]$ (C1) or coercivity with superlinear $c_i(k)$ and $\inf_{\mu}w_{ij}(\mu)\ge\underline w>0$ (C2); payoffs continuous in actions and measurable in $(t,z)$.
-- A3 Technology (P1): $F$ supermodular with increasing differences in $(k,q)$; revenues $p(\mu)\,\theta(\mu)$ increasing in $\mu$; separable convex costs. Implies strategic complementarities.
-- A4 Information (VZ–Vives interim): types are private signals; interim beliefs ordered by FOSD/MLR (affiliation ensures higher type FOSD-shifts beliefs). Implies single-crossing in $(a_i,t_i)$.
-- T1 (Lemmas 1–3): nonempty argmax and monotone best responses (Topkis/Milgrom–Shannon).
-- T2 (VZ–Vives): existence of greatest/least pure-strategy BNE in strategies monotone in type; extremal equilibria increase under FOSD improvements in interim beliefs.
-- T3 (Topkis): comparative statics in parameters $\tau$ that enter with increasing differences.
-- D1 (Dynamics): isotone law of motion $\Gamma(A,\alpha)$; Bellman operator preserves order; extremal Markov strategies (Tarski) and ordered transition paths.
+*Proof.*
 
-This mapping verifies each hypothesis used in the theorems and points to the exact assumption (A1–A4) delivering it.
+**(1) ID in $(a_i, a_{-i})$:** Higher $a_{-i}$ means more production by other firms, which (in equilibrium) lowers intermediate input prices $P_j$. By Proposition 2 (single-crossing), lower $P_j$ makes adoption of more suppliers more attractive, increasing marginal returns to $a_i$.
+
+**(2) ID in $(a_i, z)$:** Higher $\mu$ increases $\theta_i(\mu) = \exp(\varphi\mu + \eta_i)$ and $p(\mu)$, raising the marginal value of output. With CES supermodularity (Proposition 1), this increases the marginal return to higher inputs $(S_i, X_i, L_i)$.
+
+**(3) Single-crossing in $(a_i, \tau_i)$:** Higher type $\tau_i$ FOSD-shifts beliefs over $\mu$ upward. Since $\mathbb{E}[\Pi_i | \tau_i]$ has ID in $(a_i, \mu)$, higher $\tau_i$ makes higher $a_i$ more attractive. Formally, for $\tau_i' \succeq \tau_i$ (FOSD):
+$$
+\mathbb{E}[\Pi_i(a_i'; \cdot) - \Pi_i(a_i; \cdot) | \tau_i'] \geq \mathbb{E}[\Pi_i(a_i'; \cdot) - \Pi_i(a_i; \cdot) | \tau_i]
+$$
+for $a_i' \geq a_i$. This is the Milgrom-Shannon monotone selection criterion. $\square$
+
+## 5. Affiliation and Interim Beliefs
+
+### 5.1 Signal Structure
+
+Signals are $s_i = h(\mu) + \varepsilon_i$ where $(\varepsilon_1, \ldots, \varepsilon_n, \mu)$ are **affiliated** random variables.
+
+**Definition (Affiliation).** Random variables $(Z_1, \ldots, Z_m)$ with joint density $f$ are **affiliated** if for all $z, z' \in \mathbb{R}^m$:
+$$
+f(z \vee z') \cdot f(z \wedge z') \geq f(z) \cdot f(z')
+$$
+where $\vee$ and $\wedge$ denote componentwise max and min.
+
+### 5.2 Affiliation from Gaussian Structure
+
+**Proposition 4 (Gaussian Affiliation).** If $(\varepsilon_1, \ldots, \varepsilon_n, \mu)$ are jointly Gaussian with non-negative correlations (i.e., covariance matrix has non-negative off-diagonal entries), then they are affiliated.
+
+*Proof.* For Gaussian random vectors, affiliation is equivalent to the inverse of the covariance matrix having non-positive off-diagonal entries (Karlin-Rinott, 1980). If the covariance matrix $\Sigma$ has non-negative off-diagonal entries, then $\Sigma^{-1}$ has non-positive off-diagonal entries (this is the M-matrix property for positive definite matrices with non-negative entries). $\square$
+
+**Corollary.** In our model, assume:
+- $\mu \sim N(\bar{\mu}, \sigma_\mu^2)$
+- $\varepsilon_i \sim N(0, \sigma_\varepsilon^2)$ with $\text{Cov}(\varepsilon_i, \varepsilon_j) \geq 0$ for all $i, j$
+- $\text{Cov}(\varepsilon_i, \mu) \geq 0$ for all $i$
+
+Then signals are affiliated.
+
+### 5.3 FOSD Ordering of Interim Beliefs
+
+**Proposition 5 (Milgrom-Weber).** Under affiliation, higher signals induce FOSD-higher beliefs:
+
+If $s_i' > s_i$, then $\pi_i(\cdot | s_i') \geq_{FOSD} \pi_i(\cdot | s_i)$.
+
+*Proof.* This is Milgrom-Weber (1982, Econometrica) Theorem 1. Affiliation implies that the conditional distribution of $\mu$ given $s_i$ is stochastically increasing in $s_i$. Formally, for any increasing function $g$:
+$$
+\mathbb{E}[g(\mu) | s_i' = s] \text{ is increasing in } s
+$$
+This is exactly the FOSD property of interim beliefs. $\square$
+
+### 5.4 Cross-Player Belief Updating
+
+**Proposition 6 (Belief Propagation).** Under affiliation, higher own type $\tau_i$ FOSD-shifts beliefs about others' types $\tau_{-i}$:
+
+If $\tau_i' \succeq \tau_i$, then $\pi_i(\tau_{-i} | \tau_i') \geq_{FOSD} \pi_i(\tau_{-i} | \tau_i)$.
+
+*Proof.* Affiliation of $(s_1, \ldots, s_n)$ (induced by affiliation of $(\varepsilon_1, \ldots, \varepsilon_n, \mu)$) implies that the conditional distribution of $s_{-i}$ given $s_i$ is FOSD-increasing in $s_i$ (Milgrom-Weber Lemma 1). Since $\tau_j = s_j$ for all $j$, this gives the result. $\square$
+
+## 6. Verification of Van Zandt–Vives Conditions
+
+We now verify that our model satisfies the conditions of Van Zandt–Vives (2007, JET) Theorem 1.
+
+### 6.1 VZV Condition 1: Compact Lattice Action Spaces
+
+✓ **Verified by Lemma 1.** $\mathcal{S}_i = \mathcal{A}_i \times [0, \bar{X}]^{n-1} \times [0, \bar{L}]$ is a compact metrizable complete lattice.
+
+### 6.2 VZV Condition 2: Type Spaces with FOSD Order
+
+✓ **Verified by construction.** Types $\tau_i \in \mathcal{T}_i$ are ordered by $\tau_i \succeq \tau_i'$ iff $\pi_i(\cdot|\tau_i) \geq_{FOSD} \pi_i(\cdot|\tau_i')$.
+
+### 6.3 VZV Condition 3: Quasisupermodularity in Own Action
+
+**Proposition 7.** The payoff $\Pi_i(a_i; \sigma_{-i}, z, \tau_i)$ is **quasisupermodular** in $a_i$.
+
+*Proof.* By Proposition 1, the CES production function with $\sigma < 1$ is supermodular in $(S_i, L_i, X_i)$. Revenue $p(\mu) \theta_i(\mu) F_i$ inherits supermodularity (positive scalar multiplication preserves supermodularity).
+
+Costs are:
+- $L_i$: linear in $L_i$ (modular)
+- $\sum_{j \in S_i} P_j X_{ij}$: linear in $X_{ij}$ for fixed $S_i$ (modular)
+
+The sum of supermodular and modular functions is supermodular. Taking expectations preserves supermodularity (Milgrom-Shannon). Hence $\mathbb{E}[\Pi_i | \tau_i]$ is supermodular in $a_i$.
+
+Supermodularity implies quasisupermodularity. $\square$
+
+### 6.4 VZV Condition 4: Single-Crossing in $(a_i, \tau_i)$
+
+✓ **Verified by Proposition 3(3).** Higher $\tau_i$ FOSD-shifts beliefs over $\mu$, and $\Pi_i$ has ID in $(a_i, \mu)$, giving single-crossing.
+
+### 6.5 VZV Condition 5: Increasing Differences in $(a_i, a_{-i})$
+
+✓ **Verified by Proposition 3(1).** Through the price mechanism and technology-price single-crossing (Proposition 2).
+
+### 6.6 VZV Condition 6: Best-Reply Correspondence Properties
+
+**Proposition 8.** The best-reply correspondence $BR_i$ is:
+1. Nonempty (by compactness and upper semicontinuity)
+2. Upper hemicontinuous (Maximum Theorem)
+3. Ascending in $(a_{-i}, \tau_i, z)$ (Topkis/Milgrom-Shannon)
+
+*Proof.*
+1. **Nonempty:** $\mathcal{S}_i$ is compact, $\Pi_i$ is continuous in $a_i$ (CES is smooth), so the maximum is attained.
+2. **UHC:** Payoff is continuous in $a_i$ and the constraint set $\mathcal{S}_i$ is constant, so the Maximum Theorem applies.
+3. **Ascending:** By Propositions 3 and 7, $\mathbb{E}[\Pi_i | \tau_i]$ has single-crossing in $(a_i, a_{-i})$, $(a_i, \tau_i)$, and $(a_i, z)$. Milgrom-Shannon monotone selection theorem implies all selections from $BR_i$ are monotone. $\square$
+
+## 7. Main Results
+
+### 7.1 Static Stage Game
+
+**Theorem 1 (Existence of Extremal Monotone BNE).** In the static stage game at state $z$, there exist a **greatest** and a **least** pure-strategy Bayesian Nash equilibrium $\bar{\sigma}(z)$ and $\underline{\sigma}(z)$, each in strategies monotone in type.
+
+*Proof.* This follows from Van Zandt–Vives (2007) Theorem 1. We have verified:
+- (VZV1) Compact lattice action spaces ✓
+- (VZV2) Type spaces with FOSD order ✓
+- (VZV3) Quasisupermodularity in own action ✓
+- (VZV4) Single-crossing in $(a_i, \tau_i)$ ✓
+- (VZV5) Increasing differences in $(a_i, a_{-i})$ ✓
+- (VZV6) Nonempty, UHC, ascending best-reply ✓
+
+The extremal equilibria are constructed by iterating the best-reply mapping from the maximal (resp. minimal) strategy profile. Convergence is guaranteed by Tarski's fixed-point theorem. $\square$
+
+### 7.2 Comparative Statics
+
+**Theorem 2 (Comparative Statics of Extremal BNE).**
+1. If interim beliefs shift upward in FOSD, both $\underline{\sigma}(z)$ and $\bar{\sigma}(z)$ increase weakly.
+2. If parameter $\tau$ enters with increasing differences (e.g., higher $A_i(S_i)$, lower distortions), then $\underline{\sigma}(z;\tau)$ and $\bar{\sigma}(z;\tau)$ are nondecreasing in $\tau$.
+
+*Proof.*
+**(1)** Van Zandt–Vives Theorem 2: FOSD improvement in beliefs increases extremal equilibria.
+
+**(2)** Let $\tau$ parameterize technology with $A_i(S_i; \tau)$ increasing in $\tau$. Then $\Pi_i$ has ID in $(a_i, \tau)$: higher $\tau$ raises $A_i$, raising $F_i$, raising marginal value of inputs. By Topkis, the best-reply is monotone in $\tau$. Fixed points of isotone maps are monotone (Tarski). $\square$
+
+### 7.3 Dynamic Extension
+
+**Theorem 3 (Existence of Bayesian Markov Perfect Equilibrium).**
+
+Define the Bellman operator:
+$$
+(\mathcal{T}V_i)(z, \tau_i) = \max_{a_i \in \mathcal{S}_i} \Big\{ \mathbb{E}[\Pi_i(a_i; \sigma_{-i}, z, \tau_i)] + \beta \mathbb{E}[V_i(z', \tau_i') | z, \tau_i, a_i, \sigma_{-i}] \Big\}
+$$
+
+Assume the law of motion $A' = \Gamma(A, \alpha)$ is isotone and the transition kernel preserves FOSD order. Then:
+1. There exists a Bayesian Markov Perfect Equilibrium.
+2. There exist extremal Markov strategies.
+3. There exists a stationary network $A^*$ solving $A^* = \Gamma(A^*, \alpha^*)$.
+
+*Proof.*
+1. **Existence:** The period payoff is supermodular (Proposition 7). The continuation value preserves ID when the transition is isotone (Stokey-Lucas-Prescott + Topkis): if $V_i(z', \tau_i')$ is increasing in $(z', \tau_i')$ and the transition FOSD-shifts $(z', \tau_i')$ upward when $(z, \tau_i, a_i)$ increases, then $\mathbb{E}[V_i | z, \tau_i, a_i]$ has ID in $a_i$ and $(z, \tau_i)$.
+
+2. **Extremal strategies:** The operator $\mathcal{T}$ maps the lattice of bounded value functions to itself and is order-preserving. By Tarski, extremal fixed points exist.
+
+3. **Stationary network:** With monotone extremal strategies $\alpha^*$, the map $A \mapsto \Gamma(A, \alpha^*(A))$ is isotone on the lattice of networks (ordered by inclusion). By Tarski, there exists $A^*$ with $A^* = \Gamma(A^*, \alpha^*(A^*))$. $\square$
+
+**Theorem 4 (Monotone Transitional Dynamics).**
+
+Let $z_0' \geq z_0$ (higher $\mu$, denser inherited $A$). Then along extremal BMPE policies:
+$$
+\underline{\sigma}_t(z_0') \geq \underline{\sigma}_t(z_0), \quad \bar{\sigma}_t(z_0') \geq \bar{\sigma}_t(z_0), \quad A_t(z_0') \geq A_t(z_0) \text{ for all } t
+$$
+
+*Proof.* By induction on $t$.
+
+**Base case ($t=0$):** $z_0' \geq z_0$ by assumption.
+
+**Inductive step:** Suppose $z_t' \geq z_t$. By Theorem 2, extremal actions satisfy $\sigma_t(z_t') \geq \sigma_t(z_t)$. In particular, supplier choices satisfy $\alpha_t(z_t') \supseteq \alpha_t(z_t)$ (in the inclusion order).
+
+Since $\Gamma$ is isotone:
+$$
+A_{t+1}' = \Gamma(A_t', \alpha_t') \geq \Gamma(A_t, \alpha_t) = A_{t+1}
+$$
+
+Also, since $\mu_{t+1}' | z_t'$ FOSD-dominates $\mu_{t+1} | z_t$ (assuming the Markov kernel preserves order), we have $z_{t+1}' \geq z_{t+1}$.
+
+By induction, the ordering propagates for all $t$. $\square$
+
+## 8. Positioning and Contribution
+
+### 8.1 Exact Acemoglu–Azar Extensive Margin under Uncertainty
+
+We adopt Acemoglu–Azar's **subset choice** of inputs (the extensive margin of the IO matrix) as the primitive technological decision. This differs from exposure-weight models that directly choose continuous weights on a fixed support. Our CES specification inherits their:
+- Technology-price single-crossing (Proposition 2)
+- Equilibrium existence and uniqueness (via their lattice-theoretic approach)
+- Discontinuous comparative statics when supplier sets change
+
+### 8.2 Incomplete Information with Derived Affiliation
+
+We introduce **affiliated private signals**. Crucially, affiliation is **derived** from a natural Gaussian structure on fundamentals and noise (Proposition 4), not assumed ad hoc. This yields:
+- FOSD ordering of interim beliefs (Proposition 5)
+- Cross-player belief correlation (Proposition 6)
+- Single-crossing in $(a_i, \tau_i)$ via Milgrom-Weber/Shannon machinery
+
+### 8.3 Van Zandt–Vives Application
+
+By verifying the six VZV conditions from primitives, we establish:
+- Existence of extremal monotone BNE (not just any BNE)
+- Comparative statics in beliefs and parameters
+- Dynamic extension with ordered transition paths
+
+This provides **equilibrium selection** through extremal equilibrium focus, yielding robust policy predictions absent in complete-information models.
+
+### 8.4 Comparison with Taschereau-Dumouchel et al.
+
+| Feature | Taschereau-Dumouchel | Our Model |
+|---------|---------------------|-----------|
+| Choice variable | Continuous exposure weights | Discrete supplier subsets (A&A) |
+| Information | Complete | Incomplete (affiliated signals) |
+| Equilibrium | Fixed-point | Extremal monotone BNE |
+| Dynamics | Deterministic | Bayesian Markov with ordered paths |
+
+## 9. Appendix: Assumption-to-Theorem Mapping
+
+### A. Primitive Assumptions
+
+**(P1) CES Technology with $\sigma < 1$:**
+$$
+F_i = \left[ (1-\sum_{j\in S_i}\alpha_{ij})^{\frac{1}{\sigma}} (A_i L_i)^{\frac{\sigma-1}{\sigma}} + \sum_{j\in S_i} \alpha_{ij}^{\frac{1}{\sigma}} X_{ij}^{\frac{\sigma-1}{\sigma}} \right]^{\frac{\sigma}{\sigma-1}}
+$$
+→ Implies: Supermodularity (Prop. 1), single-crossing (Prop. 2)
+
+**(P2) Gaussian Affiliated Signals:**
+$$
+s_i = h(\mu) + \varepsilon_i, \quad (\varepsilon, \mu) \text{ jointly Gaussian with non-negative correlations}
+$$
+→ Implies: Affiliation (Prop. 4), FOSD beliefs (Prop. 5), cross-player correlation (Prop. 6)
+
+**(P3) Bounded Action Spaces:**
+$$
+X_{ij} \in [0, \bar{X}], \quad L_i \in [0, \bar{L}], \quad \mathcal{A}_i \text{ finite}
+$$
+→ Implies: Compact lattice (Lemma 1), best-reply existence (Prop. 8)
+
+**(P4) Monotone State Dynamics:**
+$$
+\theta_i(\mu) = \exp(\varphi\mu + \eta_i), \quad p(\mu) \text{ increasing}, \quad \Gamma(A, \alpha) \text{ isotone}
+$$
+→ Implies: ID in $(a_i, z)$ (Prop. 3), dynamic monotonicity (Thm. 4)
+
+### B. Derived Conditions
+
+| Derived Condition | Source |
+|-------------------|--------|
+| Quasisupermodularity in $a_i$ | P1 (CES supermodularity) |
+| Single-crossing in $(a_i, \tau_i)$ | P1 + P2 (FOSD beliefs) |
+| ID in $(a_i, a_{-i})$ | P1 (price single-crossing) |
+| Compact lattice actions | P3 |
+| Ascending best-reply | All of the above |
+
+### C. Main Results
+
+| Theorem | Uses |
+|---------|------|
+| Thm 1 (Extremal BNE) | VZV conditions from P1–P3 |
+| Thm 2 (Comparative statics) | VZV + Topkis |
+| Thm 3 (Dynamic BMPE) | P1–P4 + Stokey-Lucas |
+| Thm 4 (Ordered paths) | P4 + induction |
+
+## 10. References
+
+- Acemoglu, D., and P. D. Azar (2020), "Endogenous Production Networks," Econometrica 88(1):33–82.
+- Karlin, S., and Y. Rinott (1980), "Classes of orderings of measures and related correlation inequalities," Journal of Multivariate Analysis.
+- Milgrom, P., and C. Shannon (1994), "Monotone Comparative Statics," Econometrica.
+- Milgrom, P., and R. Weber (1982), "A Theory of Auctions and Competitive Bidding," Econometrica.
+- Stokey, N., R. Lucas, and E. Prescott (1989), Recursive Methods in Economic Dynamics, Harvard.
+- Topkis, D. M. (1998), Supermodularity and Complementarity, Princeton.
+- Van Zandt, T., and X. Vives (2007), "Monotone equilibria in Bayesian games of strategic complementarities," JET 134:339–360.
