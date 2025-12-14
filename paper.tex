@@ -101,128 +101,74 @@ This paper contributes to the production networks literature \citep{long1983real
 \cref{sec:dynamic} sketches a dynamic extension, and \cref{sec:conclusion} concludes.
 
 %==============================================================================
-\section{Information Structure}\label{sec:information}
+\section{Model}\label{sec:model}
 %==============================================================================
 
-This section defines the information available to firms and records the monotone implications of affiliation that we use throughout the paper. The first is that a higher signal makes a firm more optimistic about aggregate productivity. The second is that a higher signal makes a firm more optimistic about other firms' signals, and therefore about their actions once we establish monotonicity.
+We consider an economy with $n$ industries. Each industry $i$ produces a differentiated good using labor and intermediate inputs purchased from a subset of other industries. Production is subject to an aggregate productivity shock $\mu$ that is not directly observed; instead, each firm receives a private signal correlated with the shock. The model generates strategic complementarities in network formation because a firm's inference about fundamentals is also an inference about other firms' network choices.
 
-Let $\mu \in \mathcal{M} \subseteq \R$ be an aggregate productivity state. Each firm $i \in \I = \{1,\ldots,n\}$ observes a private signal $s_i\in\R$. Write $s_{-i}$ for the profile of other firms' signals.
+\subsection{Information and beliefs}
 
-\subsection{Affiliation and stochastic dominance}
-
-\begin{definition}[Affiliation]\label{def:affiliation}
-Random variables $Z=(Z_1,\ldots,Z_m)$ with joint density $f$ on a product lattice are \emph{affiliated} if for all $z,z'$,
-\[
-f(z\vee z')\,f(z\wedge z') \ge f(z)\,f(z'),
-\]
-where $\vee$ and $\wedge$ denote componentwise maximum and minimum.
-\end{definition}
+There is an aggregate productivity state $\mu \in \R$. Firm $i$ observes a private signal $s_i \in \R$. The joint distribution of $(\mu, s_1, \ldots, s_n)$ satisfies an affiliation condition that orders beliefs in a useful way.
 
 \begin{assumption}[Affiliated information]\label{ass:affiliated}
-The vector $(\mu,s_1,\ldots,s_n)$ is affiliated.
+The vector $(\mu, s_1, \ldots, s_n)$ has a joint density $f$ that is log-supermodular: for all $z, z' \in \R^{n+1}$,
+\[
+f(z \vee z') \, f(z \wedge z') \ge f(z) \, f(z'),
+\]
+where $\vee$ and $\wedge$ denote componentwise maximum and minimum.
 \end{assumption}
 
-\begin{theorem}[Milgrom--Weber]\label{thm:mlrp}
-Suppose \cref{ass:affiliated} holds. Then:
-\begin{enumerate}[label=(\roman*)]
-    \item The conditional distribution of $\mu$ given $s_i$ satisfies the monotone likelihood ratio property (MLRP) in $s_i$: for $s_i'>s_i$,
-    \[
-        \frac{f(\mu\mid s_i')}{f(\mu\mid s_i)} \text{ is increasing in }\mu.
-    \]
-    \item MLRP implies first-order stochastic dominance: $s_i'>s_i$ implies $\pi(\cdot\mid s_i') \ge_{\mathrm{FOSD}} \pi(\cdot\mid s_i)$.
-    \item Beliefs about other signals are also ordered: $s_i'>s_i$ implies
-    \[
-        \E[g(s_{-i})\mid s_i'] \ge \E[g(s_{-i})\mid s_i]
-    \]
-    for any bounded increasing function $g$.
-\end{enumerate}
+Affiliation is a strong form of positive correlation. The Gaussian factor model---where $\mu \sim \N(\bar\mu, \sigma_\mu^2)$ and $s_i = \mu + \varepsilon_i$ with i.i.d.\ noise $\varepsilon_i \sim \N(0, \sigma_\varepsilon^2)$---is a leading example. The posterior mean $\E[\mu \mid s_i] = \frac{\sigma_\mu^2 s_i + \sigma_\varepsilon^2 \bar\mu}{\sigma_\mu^2 + \sigma_\varepsilon^2}$ is increasing in $s_i$.
+
+The key implication of affiliation is that beliefs are ordered by first-order stochastic dominance. A higher signal $s_i$ shifts the distribution of $\mu$ upward; it also shifts beliefs about other firms' signals upward. This ordering underlies the comparative statics developed below.
+
+\begin{theorem}[Affiliation orders beliefs]\label{thm:mlrp}
+Under \cref{ass:affiliated}: (i) The conditional density of $\mu$ given $s_i$ satisfies the monotone likelihood ratio property (MLRP). (ii) MLRP implies $\pi(\cdot \mid s_i') \ge_{\mathrm{FOSD}} \pi(\cdot \mid s_i)$ for $s_i' > s_i$. (iii) Beliefs about other signals are ordered: $\E[g(s_{-i}) \mid s_i]$ is increasing in $s_i$ for any increasing function $g$.
 \end{theorem}
 
-\begin{theorem}[FOSD integration]\label{thm:fosd_integration}
-Let $F'\ge_{\mathrm{FOSD}} F$. Then $\E_{F'}[g] \ge \E_{F}[g]$ for any increasing function $g$ for which the expectations exist.
-\end{theorem}
+\subsection{Production technology}
 
-\subsection{A leading example}
-
-\begin{example}[Gaussian common factor]\label{ex:gaussian}
-Let $\mu\sim\N(\bar\mu,\sigma_\mu^2)$ and $s_i=\mu+\varepsilon_i$ with i.i.d.\ $\varepsilon_i\sim\N(0,\sigma_\varepsilon^2)$. Then $(\mu,s_1,\ldots,s_n)$ are affiliated. The posterior is
+Industry $i$ chooses a supplier set $S_i \subseteq \I \setminus \{i\}$, labor $L_i \ge 0$, and intermediate inputs $X_i = (X_{ij})_{j \in S_i}$. Output is
 \[
-\mu\mid s_i \sim \N\!\left(\frac{\sigma_\mu^2 s_i + \sigma_\varepsilon^2 \bar\mu}{\sigma_\mu^2+\sigma_\varepsilon^2},\,\frac{\sigma_\mu^2\sigma_\varepsilon^2}{\sigma_\mu^2+\sigma_\varepsilon^2}\right).
+Y_i = \theta_i(\mu) \, F_i(S_i, A_i(S_i), L_i, X_i),
 \]
-In particular, the posterior mean $\E[\mu\mid s_i]$ is increasing in $s_i$.
-\end{example}
+where the productivity shifter $\theta_i(\mu) = \exp(\varphi_i \mu + \eta_i)$ links firm output to the aggregate state. The parameter $\varphi_i \ge 0$ governs sensitivity; $\eta_i$ is an idiosyncratic component known to all. The term $A_i(S_i)$ captures deterministic productivity gains from the supplier set.
 
-%==============================================================================
-\section{Production Environment}\label{sec:environment}
-%==============================================================================
-
-This section defines the production side of the economy and the unit-cost representation that summarizes firms' technology choices. The main purpose is to construct the unit cost function for each possible supplier set. This object pins down both firms' extensive margin technology choice and, through the price system, the strategic interaction across firms.
-
-\subsection{Technology and supplier sets}
-
-There are $n$ industries, each producing a distinct good. Industry $i$ chooses:
-\begin{itemize}
-    \item a supplier set $S_i \subseteq \I\setminus\{i\}$,
-    \item intermediate inputs $X_i=(X_{ij})_{j\ne i}$ with $X_{ij}=0$ for $j\notin S_i$,
-    \item labor $L_i\ge 0$.
-\end{itemize}
-
-Production is given by
-\[
-Y_i = \theta_i(\mu)\,F_i(S_i, A_i(S_i), L_i, X_i),
-\]
-where $\theta_i(\mu)=\exp(\varphi_i\mu+\eta_i)$ with $\varphi_i\ge 0$ and $\eta_i$ is firm-specific and known to all. The term $A_i(S_i)$ captures deterministic productivity differences across supplier sets. Forming and maintaining a supplier link is costly: each adopted link contributes an adoption cost $\gamma\ge 0$.
-
-\begin{assumption}[Production technology]\label{ass:technology}
-For each $i$ and each supplier set $S_i$:
-\begin{enumerate}[label=(\roman*)]
-    \item $F_i(S_i,A_i,L_i,X_i)$ is continuous and strictly increasing in $(L_i,X_i)$ and strictly increasing in $A_i$.
-    \item $F_i$ is homogeneous of degree one in $(L_i,X_i)$.
-    \item (\emph{Labor essentiality}) $F_i(S_i,A_i,0,X_i)=0$ for all $X_i$.
-\end{enumerate}
+\begin{assumption}[Technology]\label{ass:technology}
+For each $i$ and supplier set $S_i$: (i) $F_i$ is continuous and strictly increasing in inputs; (ii) $F_i$ is homogeneous of degree one in $(L_i, X_i)$; (iii) Labor is essential: $F_i(S_i, A_i, 0, X_i) = 0$.
 \end{assumption}
 
-\begin{remark}
-\cref{ass:technology} does not require differentiability. The Cobb-Douglas family
-\[
-F_i = A_i(S_i) L_i^{\alpha_i} \prod_{j\in S_i} X_{ij}^{\beta_{ij}}, \quad \alpha_i + \sum_{j \in S_i} \beta_{ij} = 1,
-\]
-satisfies \cref{ass:technology}. A CES aggregator also satisfies the assumptions provided $\sigma \leq 1$ (complements or Cobb-Douglas limit); when $\sigma > 1$ (gross substitutes), labor is no longer essential since intermediates alone can produce positive output.
-\end{remark}
+The Cobb-Douglas specification $F_i = A_i(S_i) L_i^{\alpha_i} \prod_{j \in S_i} X_{ij}^{\beta_{ij}}$ with $\alpha_i + \sum_j \beta_{ij} = 1$ satisfies these conditions. A CES aggregator also works provided inputs are complements ($\sigma \le 1$); with gross substitutes ($\sigma > 1$), labor essentiality fails.
 
-\subsection{Cost minimization and technology choice}
+\subsection{Cost minimization and network choice}
 
-Following \citet{acemoglu2020endogenous}, we characterize firm behavior through cost minimization.
-
-\paragraph{Intensive margin.}
-Given a supplier set $S_i$, prices $P$, and productivity $A_i(S_i)$, the unit cost function is
+Following \citet{acemoglu2020endogenous}, firm behavior reduces to cost minimization. Given a supplier set $S_i$ and input prices $P$, the \textbf{unit cost function} is
 \begin{equation}\label{eq:unit_cost}
-K_i(S_i,A_i(S_i),P)=\min_{L_i,X_i}\left\{L_i+\sum_{j\in S_i}P_j X_{ij}:\ F_i(S_i,A_i,L_i,X_i)=1\right\}.
+K_i(S_i, A_i(S_i), P) = \min_{L_i, X_i} \left\{ L_i + \sum_{j \in S_i} P_j X_{ij} : F_i(S_i, A_i, L_i, X_i) = 1 \right\}.
 \end{equation}
-By homogeneity, producing $Y_i$ units costs $Y_i\cdot K_i(S_i,A_i(S_i),P)$.
-
-\paragraph{Extensive margin.}
-Given prices $P$, firm $i$ chooses a supplier set to minimize unit costs plus adoption costs:
+By homogeneity, producing $Y_i$ units costs $Y_i \cdot K_i$. At the extensive margin, firm $i$ chooses a supplier set to minimize total cost:
 \begin{equation}\label{eq:technology_choice}
-S_i^*(P)\in\argmin_{S_i\subseteq \I\setminus\{i\}}\left\{K_i(S_i,A_i(S_i),P)+\gamma|S_i|\right\}.
+S_i^*(P) \in \argmin_{S_i \subseteq \I \setminus \{i\}} \left\{ K_i(S_i, A_i(S_i), P) + \gamma |S_i| \right\},
 \end{equation}
+where $\gamma \ge 0$ is a per-link adoption cost. This two-stage structure---choose suppliers, then optimize inputs---means the strategic game is over supplier sets rather than continuous input choices.
 
-\paragraph{Interim payoff.}
-Given a network profile $S$, realized state $\mu$, and equilibrium prices $P^*(S,\mu)$, firm $i$'s \textbf{payoff} from supplier set $S_i$ is:
+\subsection{Payoffs}
+
+Given network $S$, state $\mu$, and equilibrium prices $P^*(S, \mu)$, firm $i$'s payoff from supplier set $S_i$ is
 \begin{equation}\label{eq:payoff}
-\Pi_i(S_i, S_{-i}; \mu) = P_i^*(S,\mu) \cdot Y_i^* - \left( L_i^* + \sum_{j \in S_i} P_j^* X_{ij}^* \right) - \gamma |S_i|,
+\Pi_i(S_i, S_{-i}; \mu) = P_i^* Y_i^* - \left( L_i^* + \sum_{j \in S_i} P_j^* X_{ij}^* \right) - \gamma |S_i|,
 \end{equation}
-where $(L_i^*, X_i^*)$ are cost-minimizing inputs and $Y_i^* = \theta_i(\mu) F_i(S_i, A_i, L_i^*, X_i^*)$. Under contestability (\cref{def:equilibrium}), $P_i = (1+\tau_i)\theta_i(\mu)^{-1} K_i$, so operating profits are a fixed fraction $\tau_i/(1+\tau_i)$ of revenue. The adoption cost $\gamma|S_i|$ captures the sunk cost of link formation.
+where $(L_i^*, X_i^*)$ solve \cref{eq:unit_cost} and $Y_i^* = \theta_i(\mu) F_i(S_i, A_i, L_i^*, X_i^*)$. Under contestability, output price equals a markup over unit cost: $P_i = (1 + \tau_i) \theta_i(\mu)^{-1} K_i$. This implies operating profits are a constant share $\tau_i / (1 + \tau_i)$ of revenue; the network choice affects profits through the adoption cost $\gamma |S_i|$ and through the unit cost $K_i$.
 
-\begin{remark}[Game is over supplier sets]
-The extensive margin decision $S_i$ is the strategic variable. The intensive margin $(L_i, X_i)$ is induced by cost minimization once $S_i$ and prices are determined. The game is therefore over the lattice $2^{\I \setminus \{i\}}$ of supplier sets.
-\end{remark}
+\subsection{Timing and household}
 
-\subsection{Consumers and timing}
-
-A representative household supplies one unit of labor inelastically and consumes the $n$ goods. We assume preferences are strictly increasing, strictly concave, and homothetic. The household owns the firms and receives their profits. We keep the household side in this reduced form because our analysis focuses on unit costs, equilibrium prices, and the technology adoption problem.
-
-Timing is as follows. Nature draws $\mu$ and signals $(s_1,\ldots,s_n)$. Each firm observes its private signal and chooses its supplier set. Given the realized network and the realized state, production and consumption take place and prices clear markets.
+A representative household supplies one unit of labor inelastically and consumes the $n$ goods with homothetic preferences. The sequence of events is:
+\begin{enumerate}
+\item Nature draws $(\mu, s_1, \ldots, s_n)$.
+\item Each firm $i$ observes $s_i$ and chooses supplier set $S_i$.
+\item The state $\mu$ is realized, production takes place, and prices clear markets.
+\end{enumerate}
+The game is a Bayesian game over supplier sets, with the price system determined by equilibrium conditions.
 
 %==============================================================================
 \section{Competitive Equilibrium and Price Characterization}\label{sec:equilibrium_characterization}
