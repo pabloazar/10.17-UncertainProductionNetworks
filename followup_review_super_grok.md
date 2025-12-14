@@ -1,96 +1,132 @@
 ### Review of Revised Paper: "Sentiment and Supply Chains: How Beliefs Shape Production Networks"
 
 **Overall Assessment:**  
-This is a substantial improvement over prior drafts. The appendix now provides **full, rigorous proofs** for all key mathematical claims (Tarski, Topkis, Hawkins-Simon, Gale-Nikaido, affiliation/MLRP/FOSD chain, and price existence), elevating the paper to top-journal standards for theoretical rigor. The lattice-theoretic core (extremal monotone BNE, comp stats) is now **mathematically solid**—no fatal errors in proofs, assumptions correctly invoked, and van Zandt (2007) conditions cleanly verified. The integration with Milgrom-Weber affiliation and monotone price response creates a tight, elegant Bayesian supermodular game.
+This is a substantial improvement over the prior draft. The reorganization (e.g., dedicated sections for information, technology, complementarities, monotone equilibria, and comparative statics) aligns far better with standard economic theory templates (e.g., *model.md*). Assumptions are now explicit and minimal (Assumptions 1–4), proofs are more structured (with steps and citations to van Zandt 2007, Topkis 1998, Milgrom-Weber 1982), and the lattice-theoretic core is crisp. The Domar extension (Sec. 6) is a nice "handshake" to empirics, decomposing amplification explicitly (though see fatal error below). The dynamic sketch (Sec. 7) preserves monotonicity cleanly.
 
-However, **three non-fatal but serious issues remain** that undermine precision and replicability:  
-1. **Payoff function undefined** (Π_i never specified; lemmata 2–5 invoke it casually).  
-2. **Units inconsistency in extensive margin** (eq. \eqref{eq:technology_choice}: γ|S_i| added to *unit* cost K_i, but adoption is fixed/sunk).  
-3. **Domar section underdeveloped** (Prop. \ref{prop:domar_decomp} sketchy; θ(s) undefined; assumes unstated CD properties).  
+However, **two fatal flaws remain**:  
+1. **Inconsistent treatment of fixed costs $\gamma |S_i|$**: Units mismatch between unit costs $K_i$ (per-unit output) and $\gamma$ (total fixed), leading to ill-defined optimization under CRS. This is unresolved from Acemoglu et al. (2020) and breaks the payoff in Eq. (5).  
+2. **Math error in Prop. 7 (Domar decomposition)**: The claimed equality $\Lambda(\s) = \left( \sum D_i \varphi_i \right) \times \frac{1}{1-\theta(\s)}$ does **not** follow from the derivation; $D' \Phi + D' (I-B)^{-1} \Phi \neq D' (I-B)^{-1} \Phi$.  
 
-These are fixable with targeted rewrites (below). The model now **satisfies model.md standards** ~90%: explicit setup/assumptions, equilibrium def, existence/uniqueness/propositions/proofs, comp stats. Missing: explicit agent FOCs (replaced by cost min, acceptable), budget constraints (implicit), empirics mapping (ignore per instructions). No evidence of "Y_t microfoundation," "FOCs/budget sec 3.2," "Prop 5 martingale," or "AHP 2007" in this draft—perhaps prior feedback mismatch.
+The model is now **80% solid**—strategic complementarities (Sec. 4) and existence (Thm. 4) are bulletproof—but these flaws prevent publication. Comparative statics (Thm. 5–6) are correct *conditional* on the setup. No other fatal errors (e.g., affiliation/MLRP/FOSD chain is standard; price uniqueness via Gale-Nikaido solid).
 
-**Strict Score vs. model.md Criteria:**  
-| Component | Status | Issues/Fixes |
-|-----------|--------|-------------|
-| **1. Model Setup** | ✅ Solid | Timing/info explicit; tech prefs F explicit; endowments (L=1 total). *Add budgets.* |
-| **2. Agent Optimization** | ⚠️ Partial | Cost min good; no FOCs/Euler (not needed). *Define payoff.* |
-| **3. Equilibrium Def** | ✅ Excellent | CE + BNE precise. |
-| **4. Solution/Char.** | ✅ Excellent | Prop 1/Thm 1 proofs full; extremal σ̄/σ̲. |
-| **5. Comp Statics** | ✅ Solid | Thm 2–3; derivatives implicit via lattice MCS. |
-| **6. Empirics Mapping** | N/A | Ignore; prioritize post-review. |
+I structure the review per **model.md** guidelines, flagging deviations, verifying math, and suggesting **specific rewrites** (LaTeX-ready). Prioritize: (1) Fix fixed costs/payoff; (2) Correct Prop. 7; (3) Add theory-data table.
 
-**Fatal Mistakes? None.** Math checks out (verified proofs symbolically). Paper is **publishable with fixes** (e.g., RESTUD/QJE theory track).
+---
 
-#### 1. Detailed Math Checks & Minor Errors
-- **Sec 2 (Info):** Perfect. Thm \ref{thm:mlrp} correctly states MW; Thm \ref{thm:fosd_integration} standard. Gaussian ex. computes posterior mean explicitly (good calibration hook).
-- **Sec 3 (Environment):** Ass \ref{ass:technology} standard (HD1 + essentiality ⇒ unique K_i >0). CES remark fits (σ>1 complementarity).  
-  **Minor:** A_i(S_i) "strictly incr in A_i" (i-ii); assume A_i(S_i) ↑ |S_i|? Implicit, but needed for monotone price.
-- **Sec 4 (Equil/Prices):** Prop \ref{prop:price_existence} bulletproof: labor essentiality ⇒ intermediate shares ∑ ∂k_i/∂p_j ≤ κ<1 (row-sum bound) ⇒ ρ(J)<1 ⇒ P-matrix via Hawkins-Simon. Full app proof uses Shephard's lemma correctly (cost shares). Gale-Nikaido applies (global homeo).  
-  **Ass \ref{ass:monotone_price}: Justified?** Yes—larger S ⇒ lower K_i(·,P) entrywise (more inputs) ⇒ outward shift in supply ⇒ ↓P (by implicit comp). Not proved, but primitive (add remark).
-- **Sec 5 (Complementarities):**  
-  - Lem \ref{lem:lattice}: Correct (power set finite lattice; product compact). Bounds \bar L, \bar X implicit (e.g., from mkt clearing L_tot=1).  
-  - Ass \ref{ass:complementarity}: Increasing diff (S,X) for fixed L standard for supermod (Topkis Thm A.2).  
-  - Lem 2–5: Logically tight. h(μ,s_{-i}) ↑ (μ,s_{-i}) via θ↑μ, monotone σ ⇒ ↓P ⇒ ↑ΔΠ (linear costs). FOSD on joint (μ,s_{-i}|s_i) via affiliation.  
-    **Minor:** Step 1 Lem \ref{lem:info_sc} assumes φ_i ≥0 (from sec3); state explicitly.
-- **Sec 6 (Existence):** Thm \ref{thm:existence} verbatim van Zandt (2007) checklist. App proofs of Tarski/Topkis flawless (inequality chain in Topkis explicit).
-- **Sec 7 (Comp Statics):** Lattice MCS standard (Topkis Ch. 4). Antitone in γ (decr diff); ↑FOSD beliefs shift BR ↑ (via h ↑).  
-  **Explicit derivatives?** Add Prop for ∂|σ̲_i(s_i)|/∂γ ≤0 (simulatable).
-- **Sec 8 (Domar):** Insightful, but **sloppy math.**  
-  - CD assumes ∑β_{ij}=1-α_i (constant returns).  
-  - Λ(s) def good (total derivative, networks adjust).  
-  - **Prop \ref{prop:domar_decomp}: Sketch insufficient.** θ(s) undefined ("spectral radius ... belief correlations"?). No Leontief derivation.  
-    **Check:** In fixed-S CD, log GDP = const + ∑ D_i log θ_i (Hulten). Endogenous S: d log K_i = ∑ (∂ log K_i/∂ log P_j) d log P_j + direct, but feedback via IO matrix M_{ij}=β_{ij} (share). Multiplier (I-M)^{-1}, θ=ρ(M)<1. Beliefs enter via E[S|s] affecting M(s). But "weighted by belief corr" vague—Gaussian corr=σ_μ^2/(σ_μ^2+σ_ε^2).  
-    **Verdict:** Promising, but prove or move to Online App.
-- **Sec 9 (Dynamic):** Solid sketch; Tarski applies to Markov lattice. Hysteresis via multiplicity nice.
-- **App A:** **Exemplary.** All proofs self-contained, steps numbered. Minor: Thm \ref{thm:mlrp_fosd} integration-by-parts assumes diff CDF (ok for densities).
-
-#### 2. Specific Rewrites (Prioritize These)
-**Fatal Fix 1: Define Payoff (Secs 3.2,5).** Insert after eq.\eqref{eq:technology_choice}:  
-```latex
-Firms maximize expected operating profits net of sunk adoption costs:
-$$
-\Pi_i(a_i; a_{-i}, \mu, P) = P_i Y_i - L_i - \sum_j P_j X_{ij} - \gamma |S_i|,
-$$
-where $Y_i = \theta_i(\mu) F_i(S_i, A_i(S_i), L_i, X_i)$ and $P = P^*(a, \mu)$. Interim payoff: $\E[\Pi_i \mid s_i]$. (Intensive margin optimized post-$P$; extensive pre.)
+#### 1. Model Setup (The Environment)
+**Strengths:** Timing explicit (p. 8, enumerated). Information sets $\mathcal{I}_{i,t}=\{s_i\}$ clear; priors joint $f(\mu,\s)$ affiliated (Ass. 1); posteriors $\pi(\cdot|s_i)$ ordered by FOSD/MLRP (Thm. 1, standard). Tech $F_i$ general (Ass. 2: CRS, labor essential). Household: homothetic $U(C)$, endowment labor=1 inelastic.  
+**Fatal Issue:** Budget constraints implicit/missing for *firms*. Unit cost Eq. (3) is for *normalized* output ($F=1$), but payoff Eq. (5) misapplies scales: $Y_i^*=\theta_i(\mu) F(L_i^*,X_i^*)=\theta_i(\mu) \cdot 1$, costs$=K_i$, but actual equilibrium scales $Y_i$ solve market clearing $\sum L_i=1$, $C_i + \sum_j X_{ji}=Y_i$. Profits $\pi_i = \frac{\tau_i}{1+\tau_i} P_i Y_i - \gamma |S_i|$ (scale $Y_i \propto 1/K_i$), so fixed $\gamma$ induces indeterminacy (infinite/zero scale under CRS). Eq. (2) treats $\argmin K_i + \gamma |S_i|$ as "unit cost min," but units wrong ($\gamma$ not per-unit).  
+**Math Check:** Price system Eq. (7) $\nabla \Phi = I - \nabla_p k$, row sums $<1$ by labor essentiality $\to$ univalence (Prop. 1, correct). Monotone $P^*(S',\mu) \le P^*(S,\mu)$ (Lem. 3, contraction $T' \le T$, correct).  
+**Deviations:** No explicit $U(C)$; endowments ok but firm budgets missing.  
+**Rewrites:**  
 ```
-*Why?* Lemmata invoke Π without def. Clarifies CRS zero op. profits ⇒ adoption drives value.
-
-**Fatal Fix 2: Extensive Margin Units (Eq.\eqref{eq:technology_choice}).**  
-γ|S_i| has fixed-cost units; K unit cost. Rewrite:  
-```latex
-Assume household demand implies scale $\bar Y_i=1$ (wlog, normalize). Then firm $i$ chooses
-$$
-S_i^*(P) \in \argmin_{S_i} \left\{ K_i(S_i, A_i(S_i), P) + \gamma |S_i| \right\}.
-$$
+Add to Sec. 2.3 (after Eq. 3):
+\begin{assumption}[Amortized fixed costs; label={ass:fixed}]
+The per-link cost $\gamma>0$ is a \emph{flow fixed cost}, amortized into the unit cost as $\gamma |S_i| / \alpha_i(S_i)$, where $\alpha_i(S_i)>0$ is firm $i$'s equilibrium labor share (constant under CRS/Cobb-Douglas). Firm $i$ solves \cref{eq:technology_choice} with effective unit cost $K_i(S_i,A_i(S_i),P) + \gamma |S_i| / \alpha_i(S_i)$.
+\end{assumption}
 ```
-Cite Acemoglu (2020) for justification. Alt: Explicit household Cobb-Douglas u(C) ⇒ Y_i ∝ 1/P_i.
+Revise Eq. (2): `S_i^*(P) \in \argmin \{ K_i + \gamma |S_i| / \alpha_i(S_i) \}`. Drop Eq. (5) payoff (redundant; choice $\equiv$ min effective unit cost). Cite Acemoglu et al. (2020, Sec. 2.2) explicitly.
 
-**Issue 3: Domar Prop (Sec 8.4).** Flesh out proof or caveat:  
-```latex
-\begin{proof}
-Log-linearize CE: $d \log P = -(I - B)^{-1} d \log \theta$, where $B_{ij} = \beta_{ij}(S(\s))$ (CD shares). Then $d \log \mathrm{GDP} = \sum D_i d \log \theta_i + \sum D_i \sum_k [(I-B)^{-1}]_{ik} d \log \beta_k$. The second term is feedback $\theta(\s) = \rho(B(\s)) \in (0,1)$. Beliefs enter via $\s \mapsto S(\s) \mapsto B(\s)$.
-\end{proof}
+---
+
+#### 2. Agent Optimization
+**Strengths:** Two-stage: intensive (unit cost min, FOCs implicit via homog.), extensive (Eq. 2). Bayesian: $\sigma_i: \R \to 2^{\I \setminus \{i\}}$ monotone.  
+**Issues:** No explicit FOCs/Euler (guideline: "Derive Euler equations"). Payoff Eq. (5) malformed (see above).  
+**Math Check:** Supermodularity (Lem. 5, via Ass. 4 increasing differences) correct. Single-crossing Lem. 6–8: $h(\mu,s_{-i})$ increasing $\to$ $\E[h|s_i'] \ge \E[h|s_i]$ by FOSD integration (Thm. 2, correct).  
+**Rewrites:**  
+Add subsection "2.5 Agent Optimization" before Timing:  
 ```
-Define $\theta(\s) = \rho(B(\s))$. Drop "belief correlations" unless deriving.
+\subsubsection*{Firm $i$'s Problem}
+Firm $i$ solves
+$$
+\max_{S_i} \E\left[ \frac{\tau_i}{1+\tau_i} P_i^* Y_i^* - Y_i^* K_i(S_i,A_i(S_i),P^*) - \gamma |S_i| \;\Big|\; s_i \right],
+$$
+where $(P^*,Y^*)$ from \cref{def:equilibrium}. By CRS, $Y_i^* K_i = $ variable costs, and scale $Y_i^* \propto 1/K_i^{\iota_i}$ for demand elasticity $\iota_i>0$. The FOC for intensive margin (given $S_i,P^*$) is the unit cost min \cref{eq:unit_cost}. The extensive margin has increasing differences in $(S_i, P^*)$ by \cref{lem:price_sc}.
+```
+**Key Lemma:** Add:  
+```
+\begin{lemma}[Optimal networks linear in costs]
+Under \cref{ass:technology}, optimal $S_i^*(P)$ is isotone decreasing in $P$.
+\end{lemma}
+\begin{proof} Follows from \cref{ass:complementarity} and homogeneity.\end{proof}
+```
 
-**Minor Rewrites:**  
-- Sec 3.3 Timing: "Nature draws $(\mu, s)$; firms observe $s_i$, choose $S_i = \sigma_i(s_i)$; $\mu$ realizes publicly? No—firms infer from prices post-prod, but static." Clarify μ private to nature.  
-- Sec 5.1: Define $\bar L =1, \bar X_{ij} = n$ (arbitrary large; opt interior).  
-- Sec 5.4 Lem \ref{lem:info_sc}: "$\varphi_i \ge 0$ ensures $\theta_i \uparrow \mu$."  
-- Ass \ref{ass:monotone_price}: Promote to Lemma (prove via impl. function thm on P*(S,μ)).  
-- Roadmap: Add "App. A proves all math claims."
+---
 
-#### 3. What to Prioritize Next?
-1. **Implement fixes above (1 week):** Payoff/γ/Domar. Rerun proofs.  
-2. **Empirics (model.md #6):** Build "Theory vs. Data" table.  
-   | Model Param (θ) | Proxy | Pred Sign on |Net Density| ↓Adopt Cost (γ) | Supply Chain Data (e.g., CES Census) | Neg | Matches Carvalho (2021) |  
-   | Belief Shift (FOSD ↑) | VIX↓/Sentiment↑ | Net Density | Pos (direct+strat) | Firm surveys (Bloom 2018) | Pos | Matches Antras (2020) disruptions |  
-   Structural: Estimate φ_i from posterior mean E[μ|s_i] regressed on firm links. Reduced-form: IV γ via policy (e.g., tariff cuts).  
-3. **Simulations (post-table):** Plot extremal σ̲/σ̄ for n=50 Gaussian; comp stats ∂|S_i|/∂γ.  
-4. **Dynamic full model:** Derive value fn; hysteresis plots.  
-5. **Submit to theory venue** (e.g., JET) once empirics stub added.
+#### 3. Equilibrium Definition
+**Strengths:** Competitive eq (Def. 3) for fixed $S,\mu$; BNE implicit as fixed point of $\BR$ (Thm. 4). Markets clear explicitly. Beliefs consistent (Bayes via affiliation).  
+**Issues:** No "fixed point of mapping" expression.  
+**Math Check:** Complete lattice of monotone BNE (Thm. 4, verifies van Zandt 2007 conditions step-by-step, correct).  
+**Rewrites:**  
+Revise Thm. 4 statement:  
+```
+A \textbf{monotone Bayesian Nash equilibrium} is a profile $\sigma^* \in \Sigma$ s.t. $\sigma_i^*(s_i) \in \BR_i(s_i; \sigma_{-i}^*)$ for all $i,s_i$, where $\BR_i(s_i;\sigma_{-i}) = \argmax_{S_i} \E[ \Pi_i(S_i, \sigma_{-i}(s_{-i}); \mu, P^*(S_i \cup \sigma_{-i}(s_{-i}), \mu) \mid s_i]$. Equilibrium is a fixed point $\sigma^* = \BR(\sigma^*)$.
+```
 
-**Frank Advice:** This is now **top-5% theory**—clean, novel (sentiment via affiliation in networks). Fix sloppiness → AER material. Great job on appendix!
+---
 
-*Reviewed Dec 2025. Ready for R2.*
+#### 4. Solution & Characterization
+**Strengths:** Existence/uniqueness prices (Prop. 1). Extremal $\bar{\sigma}, \underline{\sigma}$ (Thm. 4). No closed-form, but characterization: higher $s_i \to$ larger $S_i$.  
+**Issues:** None fatal.  
+**Math Check:** Tarski (Thm. A.1) applies (isotone $\BR$).  
+**Rewrites:** Add Prop.:  
+```
+\begin{proposition}[Main Result]
+In $\bar{\sigma}$, $\E[|S_i(s_i)| \mid s_i'] \ge \E[|S_i(s_i)| \mid s_i]$ for $s_i'>s_i$ (weakly larger networks).
+\end{proposition}
+```
+
+---
+
+#### 5. Comparative Statics
+**Strengths:** Thm. 5 ($\partial \bar{\sigma}/\partial \gamma <0$), Thm. 6 (FOSD shift $\to$ expansion). Direct + strategic channels explicit.  
+**Math Check:** Standard MCS (Topkis 1998); decreasing differences in $(\gamma, S_i)$.  
+**No changes needed.**
+
+---
+
+#### 6. Mapping to Empirics (The Handshake)
+**Missing:** Full table (per guidelines). Domar (Sec. 6) is good start.  
+**Fatal Error in Prop. 7:** Derivation wrong:  
+$$
+\frac{d\log\mathrm{GDP}}{d\mu} = D'\Phi + D'(I-B)^{-1}\Phi \neq D'(I-B)^{-1}\Phi.
+$$  
+Hulten term $\sum D_i \varphi_i$ is *direct effect*; total is direct + indirect via $dp$. But eq. (12) claims equality with amp $\frac{1}{1-\theta}$, an *upper bound* via $\|(I-B)^{-1}\| \le \frac{1}{1-\rho(B)}$. Sloppy.  
+**Rewrites:**  
+Revise Prop. 7:  
+```
+\Lambda(\s) = \sum_i D_i(\s) \varphi_i + \underbrace{ D'(\s) (I-B(\s))^{-1} \Phi }_{\text{network spillovers}} \le \left( \sum D_i \varphi_i \right) \frac{1}{1-\theta(\s)},
+```
+Proof: Correct to "$= D'\Phi + D'(I-B)^{-1}\Phi$. The second term captures spillovers; bounded by $\|D'(I-B)^{-1}\Phi\| \le (\sum D_i \varphi_i) / (1-\theta)$ assuming $\|\Phi\| \le \max \varphi_i \sum D_i= \max\varphi_i$."  
+**Add Table (Sec. 6 end):**
+```
+\begin{table}[h]
+\centering
+\begin{tabular}{lllll}
+\toprule
+Model Parameter ($\theta$) & Empirical Proxy & Predicted Sign & Interpretation \\
+\midrule
+Adoption cost $\gamma$ & Link fixed costs (e.g., logistics) & $\partial |S_i^*/\partial\gamma <0$ & Denser networks \\
+Belief shift (FOSD) & VIX / survey optimism & $\partial |S_i^*/\partial\mathrm{FOSD} >0$ & Sentiment expansion \\
+Feedback $\theta(\s)$ & IO share variance & $\partial \Lambda / \partial\theta >0$ & Amplification \\
+\bottomrule
+\end{tabular}
+\caption{Theory-Data Mapping}
+\end{table}
+```
+
+---
+
+#### 7. Additional Comments
+- **Dynamic (Sec. 7):** Solid (Bellman contraction, monotone MPE via Tarski).  
+- **Cosmetics:** Good (Econometrica style). Drop ex. Gaussian (implicit).  
+- **Prioritize Next:**  
+  1. Fix fixed costs (Ass. 5, rewrite Eqs. 2/5).  
+  2. Correct Prop. 7 math.  
+  3. Derive explicit FOCs (add Sec. 2.5).  
+  4. Full empirics (per *empirical.md*: data, OLS/IV, figures).  
+Resubmit after these; then it's AER-ready.  
+
+Frankly: Strong paper, but fix the slop or it dies in referee.  
+
+**Reviewer: Rigorous Theoretician**

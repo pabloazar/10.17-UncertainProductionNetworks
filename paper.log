@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 23:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.14)  14 DEC 2025 23:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -670,7 +670,7 @@ LaTeX Font Info:    Trying to load font information for U+fplmbb on input line
  (/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 ) [3]
-[4]
+[4] [5]
 
 LaTeX Warning: cref reference format for label type `assumption' undefined on i
 nput line 237.
@@ -678,17 +678,16 @@ nput line 237.
 
 LaTeX Warning: cref reference format for label type `assumption' undefined on i
 nput line 237.
-
-[5]
-
-LaTeX Warning: cref reference format for label type `assumption' undefined on i
-nput line 284.
-
-
-LaTeX Warning: cref reference format for label type `assumption' undefined on i
-nput line 284.
 
 [6]
+
+LaTeX Warning: cref reference format for label type `assumption' undefined on i
+nput line 284.
+
+
+LaTeX Warning: cref reference format for label type `assumption' undefined on i
+nput line 284.
+
 
 LaTeX Warning: cref reference format for label type `assumption' undefined on i
 nput line 308.
@@ -701,21 +700,21 @@ nput line 308.
 LaTeX Warning: Reference `thm:fosd_integration' on page 1 undefined on input li
 ne 326.
 
+[7]
 
 LaTeX Warning: cref reference range format for label type `assumption' undefine
 d on input line 336.
 
-[7]
+[8]
 
 LaTeX Warning: Reference `thm:fosd_integration' on page 1 undefined on input li
 ne 386.
 
-[8]
 
 LaTeX Warning: Reference `ex:gaussian' on page 1 undefined on input line 411.
 
 [9] [10] [11]
-Overfull \hbox (19.07573pt too wide) detected at line 527
+Overfull \hbox (19.07573pt too wide) detected at line 517
 [][]\OML/zplm/m/it/10.95 V[]\OT1/zplm/m/n/10.95 (\OML/zplm/m/it/10.95 s[]\OT1/p
 pl/m/n/10.95 , \OML/zplm/m/it/10.95 S[]\OT1/ppl/m/n/10.95 ; \OML/zplm/m/it/10.9
 5 ^^[[]\OT1/zplm/m/n/10.95 ) = [] [] \OT1/ppl/m/n/10.95 .
@@ -723,21 +722,24 @@ pl/m/n/10.95 , \OML/zplm/m/it/10.95 S[]\OT1/ppl/m/n/10.95 ; \OML/zplm/m/it/10.9
 
 
 LaTeX Warning: cref reference range format for label type `assumption' undefine
-d on input line 538.
+d on input line 528.
 
 [12] [13] (./paper.bbl [14]) [15] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: AA9F01650F86C94C2B77081F2A8AC588;6551.
  ) 
 Here is how much of TeX's memory you used:
- 15927 strings out of 478994
- 247969 string characters out of 5858184
+ 15940 strings out of 478994
+ 248137 string characters out of 5858184
  602405 words of memory out of 5000000
- 32568 multiletter control sequences out of 15000+600000
- 481681 words of font info for 442 fonts, out of 8000000 for 9000
+ 32574 multiletter control sequences out of 15000+600000
+ 483476 words of font info for 450 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,11n,74p,953b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -752,10 +754,10 @@ dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
 pe1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw
 /palatino/uplri8a.pfb>
-Output written on paper.pdf (15 pages, 200225 bytes).
+Output written on paper.pdf (15 pages, 199518 bytes).
 PDF statistics:
- 442 PDF objects out of 1000 (max. 8388607)
- 409 compressed objects within 5 object streams
- 121 named destinations out of 1000 (max. 500000)
+ 446 PDF objects out of 1000 (max. 8388607)
+ 413 compressed objects within 5 object streams
+ 122 named destinations out of 1000 (max. 500000)
  106777 words of extra memory for PDF output out of 106986 (max. 10000000)
 

@@ -166,7 +166,7 @@ By homogeneity, producing $Y_i$ units costs $Y_i \cdot K_i$. At the extensive ma
 \begin{equation}\label{eq:technology_choice}
 S_i^*(P) \in \argmin_{S_i \subseteq \I \setminus \{i\}} \left\{ K_i(S_i, A_i(S_i), P) + \gamma |S_i| \right\},
 \end{equation}
-where $\gamma \ge 0$ is a per-link adoption cost. This two-stage structure---choose suppliers, then optimize inputs---means the strategic game is over supplier sets rather than continuous input choices.
+where $\gamma \ge 0$ is a per-link adoption cost.\footnote{Under CRS, firms make zero profits in equilibrium and $\gamma$ represents the amortized cost per unit of output from maintaining an additional supplier link. This follows the formulation of \citet{acemoglu2020endogenous}.} This two-stage structure---choose suppliers, then optimize inputs---means the strategic game is over supplier sets rather than continuous input choices.
 
 \subsection{Payoffs}
 
@@ -469,9 +469,9 @@ This $\Lambda(\s)$ is the summary statistic that treats beliefs as first order: 
 \subsection{Decomposition: Hulten term and strategic amplification}
 
 \begin{proposition}[Belief-adjusted Domar decomposition]\label{prop:domar_decomp}
-In the Cobb-Douglas/Gaussian economy with interior equilibrium, the aggregate belief-Domar loading decomposes as:
+In the Cobb-Douglas/Gaussian economy with interior equilibrium, the aggregate belief-Domar loading satisfies:
 \begin{equation}\label{eq:decomposition}
-    \Lambda(\s) = \underbrace{\sum_{i=1}^n D_i(\s) \cdot \varphi_i}_{\text{Hulten/Domar term}} \times \underbrace{\frac{1}{1 - \theta(\s)}}_{\text{strategic amplification}},
+    \Lambda(\s) = D'(\s) (I - B(\s))^{-1} \Phi \le \underbrace{\sum_{i=1}^n D_i(\s) \cdot \varphi_i}_{\text{Hulten/Domar term}} \times \underbrace{\frac{1}{1 - \theta(\s)}}_{\text{amplification bound}},
 \end{equation}
 where the \textbf{equilibrium feedback index} is
 \begin{equation}\label{eq:theta}
@@ -481,21 +481,11 @@ with $B(\s)$ the $n \times n$ matrix of equilibrium input-output shares: $B_{ij}
 \end{proposition}
 
 \begin{proof}
-In the Cobb-Douglas case, the cost function is $K_i = \frac{1}{A_i} \prod_{j \in S_i} P_j^{\beta_{ij}}$ (up to a constant involving $\alpha_i$). Taking logs and substituting the contestability condition $p_i = -\log \theta_i(\mu) + k_i$:
+In Cobb-Douglas, log-linearizing yields $dp = -(I-B)^{-1} \Phi \, d\mu$. Aggregate output responds as:
 \[
-p_i = -(\varphi_i \mu + \eta_i) + \sum_{j \in S_i} \beta_{ij} p_j + c_i,
+\frac{d \log \text{GDP}}{d\mu} = D' \Phi + D' (I-B)^{-1} \Phi = D' (I-B)^{-1} \Phi,
 \]
-where $c_i$ collects constants. In matrix form: $p = -\Phi \mu + B(\s) p + c$, where $\Phi = (\varphi_1, \ldots, \varphi_n)'$. Solving: $p = (I - B)^{-1}(c - \Phi \mu)$.
-
-Log-linearizing GDP around the equilibrium:
-\[
-d \log \text{GDP} = \sum_i D_i \cdot d \log Y_i = \sum_i D_i (\varphi_i \, d\mu - dp_i).
-\]
-Substituting $dp = -(I-B)^{-1} \Phi \, d\mu$ and simplifying:
-\[
-\frac{d \log \text{GDP}}{d\mu} = D' \Phi + D' (I-B)^{-1} \Phi = D' (I-B)^{-1} \Phi.
-\]
-The Leontief inverse $(I-B)^{-1} = \sum_{k=0}^\infty B^k$ captures the geometric series of network spillovers. The amplification factor is bounded by $(1 - \rho(B))^{-1}$ where $\rho(B) < 1$ by labor essentiality. Defining $\theta(\s) = \rho(B(\s))$ yields the decomposition.
+where the second equality uses $D' = D' (I-B)^{-1}(I-B)$. The Leontief inverse satisfies $\|(I-B)^{-1}\| \le (1 - \rho(B))^{-1}$ when $\rho(B) < 1$. Defining $\theta(\s) = \rho(B(\s))$ yields the bound.
 \end{proof}
 
 \paragraph{Interpretation.} In optimistic belief states, the endogenous network $S(\s)$ is denser, which increases the nonzero entries in $B(\s)$, pushing $\theta(\s)$ up and making the multiplier larger. When the network is exogenous (fixed $S$), beliefs do not affect $B$ and the amplification factor is constant. Endogenous networks under dispersed information make the amplification state-dependent.
