@@ -1,197 +1,95 @@
-\ifx\undefined\bysame
-\newcommand{\bysame}{\leavevmode\hbox to\leftmargin{\hrulefill\,\,}}
-\fi
-\begin{thebibliography}{xx}
+\begin{thebibliography}{15}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\harvarditem[Acemoglu and Tahbaz-Salehi]{Acemoglu and
-  Tahbaz-Salehi}{2020}{acemoglu2020firms}
-{\bf Acemoglu, Daron and Alireza Tahbaz-Salehi}, ``Firms, Failures, and
-  Fluctuations: The Macroeconomics of Supply Chain Disruptions,'' {\it Working
-  paper}, 2020.
+\bibitem[Acemoglu and Azar(2020)]{acemoglu2020endogenous}
+Daron Acemoglu and Pablo~D Azar.
+\newblock Endogenous production networks.
+\newblock \emph{Econometrica}, 88\penalty0 (1):\penalty0 33--82, 2020.
 
-\harvarditem[Acemoglu and Azar]{Acemoglu and
-  Azar}{2020}{acemoglu2020endogenous}
-{\bf \bysame{} and Pablo~D Azar}, ``Endogenous Production Networks,'' {\it
-  Econometrica}, 2020, {\it 88} (1), 33--82.
+\bibitem[Acemoglu et~al.(2012)Acemoglu, Carvalho, Ozdaglar, and
+  Tahbaz-Salehi]{acemoglu2012network}
+Daron Acemoglu, Vasco~M Carvalho, Asuman Ozdaglar, and Alireza Tahbaz-Salehi.
+\newblock The network origins of aggregate fluctuations.
+\newblock \emph{Econometrica}, 80\penalty0 (5):\penalty0 1977--2016, 2012.
 
-\harvarditem[Acemoglu et al.]{Acemoglu, Carvalho, Ozdaglar and
-  Tahbaz-Salehi}{2012}{acemoglu2012network}
-{\bf \bysame{}, Vasco~M Carvalho, Asuman Ozdaglar, and Alireza Tahbaz-Salehi},
-  ``The Network Origins of Aggregate Fluctuations,'' {\it Econometrica}, 2012,
-  {\it 80} (5), 1977--2016.
+\bibitem[Barrot and Sauvagnat(2016)]{barrot2016input}
+Jean-No{\"e}l Barrot and Julien Sauvagnat.
+\newblock Input specificity and the propagation of idiosyncratic shocks in
+  production networks.
+\newblock \emph{Quarterly Journal of Economics}, 131\penalty0 (3):\penalty0
+  1543--1592, 2016.
 
-\harvarditem[Atalay]{Atalay}{2017}{atalay2017sectoral}
-{\bf Atalay, Enghin}, ``How Important Are Sectoral Shocks?,'' {\it American
-  Economic Journal: Macroeconomics}, 2017, {\it 9} (4), 254--280.
+\bibitem[Bloom(2009)]{bloom2009impact}
+Nicholas Bloom.
+\newblock The impact of uncertainty shocks.
+\newblock \emph{Econometrica}, 77\penalty0 (3):\penalty0 623--685, 2009.
 
-\harvarditem[Atalay et al.]{Atalay, Hortacsu, Roberts and
-  Syverson}{2011}{atalay2011network}
-{\bf \bysame{}, Ali Hortacsu, James Roberts, and Chad Syverson}, ``Network
-  Structure of Production,'' {\it Proceedings of the National Academy of
-  Sciences}, 2011, {\it 108}, 5199--5202.
+\bibitem[Bloom et~al.(2018)Bloom, Floetotto, Jaimovich, Saporta-Eksten, and
+  Terry]{bloom2018really}
+Nicholas Bloom, Max Floetotto, Nir Jaimovich, Itay Saporta-Eksten, and
+  Stephen~J Terry.
+\newblock Really uncertain business cycles.
+\newblock \emph{Econometrica}, 86\penalty0 (3):\penalty0 1031--1065, 2018.
 
-\harvarditem[Baker et al.]{Baker, Bloom and Davis}{2016}{baker2016measuring}
-{\bf Baker, Scott~R, Nicholas Bloom, and Steven~J Davis}, ``Measuring Economic
-  Policy Uncertainty,'' {\it Quarterly Journal of Economics}, 2016, {\it 131}
-  (4), 1593--1636.
+\bibitem[Carvalho et~al.(2021)Carvalho, Nirei, Saito, and
+  Tahbaz-Salehi]{carvalho2021supply}
+Vasco~M Carvalho, Makoto Nirei, Yukiko~U Saito, and Alireza Tahbaz-Salehi.
+\newblock Supply chain disruptions: Evidence from the great east japan
+  earthquake.
+\newblock \emph{Quarterly Journal of Economics}, 136\penalty0 (2):\penalty0
+  1255--1321, 2021.
 
-\harvarditem[Baqaee]{Baqaee}{2018}{baqaee2018cascading}
-{\bf Baqaee, David~R}, ``Cascading Failures in Production Networks,'' {\it
-  Econometrica}, 2018, {\it 86} (5), 1819--1838.
+\bibitem[Gabaix(2011)]{gabaix2011granular}
+Xavier Gabaix.
+\newblock The granular origins of aggregate fluctuations.
+\newblock \emph{Econometrica}, 79\penalty0 (3):\penalty0 733--772, 2011.
 
-\harvarditem[Baqaee and Farhi]{Baqaee and Farhi}{2019}{baqaee2019macroeconomic}
-{\bf Baqaee, David~Rezza and Emmanuel Farhi}, ``The Macroeconomic Impact of
-  Microeconomic Shocks: Beyond Hulten's Theorem,'' {\it Econometrica}, 2019,
-  {\it 87} (4), 1155--1203.
+\bibitem[Horvath(2000)]{horvath2000sectoral}
+Michael Horvath.
+\newblock Sectoral shocks and aggregate fluctuations.
+\newblock \emph{Journal of Monetary Economics}, 45\penalty0 (1):\penalty0
+  69--106, 2000.
 
-\harvarditem[Baqaee and Farhi]{Baqaee and Farhi}{2020}{baqaee2019productivity}
-{\bf \bysame{} and \bysame{}}, ``Productivity and Misallocation in General
-  Equilibrium,'' {\it Quarterly Journal of Economics}, 2020, {\it 135} (1),
-  105--163.
+\bibitem[Jurado et~al.(2015)Jurado, Ludvigson, and Ng]{jurado2015measuring}
+Kyle Jurado, Sydney~C Ludvigson, and Serena Ng.
+\newblock Measuring uncertainty.
+\newblock \emph{American Economic Review}, 105\penalty0 (3):\penalty0
+  1177--1216, 2015.
 
-\harvarditem[Barrot and Sauvagnat]{Barrot and Sauvagnat}{2016}{barrot2016input}
-{\bf Barrot, Jean-No{\"e}l and Julien Sauvagnat}, ``Input Specificity and the
-  Propagation of Idiosyncratic Shocks in Production Networks,'' {\it Quarterly
-  Journal of Economics}, 2016, {\it 131} (3), 1543--1592.
+\bibitem[Long and Plosser(1983)]{long1983real}
+John~B Long and Charles~I Plosser.
+\newblock Real business cycles.
+\newblock \emph{Journal of Political Economy}, 91\penalty0 (1):\penalty0
+  39--69, 1983.
 
-\harvarditem[Bernard et al.]{Bernard, Dhyne, Magerman, Manova and
-  Moxnes}{2022}{bernard2022origins}
-{\bf Bernard, Andrew~B, Emmanuel Dhyne, Glenn Magerman, Kalina Manova, and
-  Andreas Moxnes}, ``The Origins of Firm Heterogeneity: A Production Network
-  Approach,'' {\it Journal of Political Economy}, 2022, {\it 130} (7),
-  1765--1804.
+\bibitem[Milgrom and Shannon(1994)]{milgrom1994monotone}
+Paul Milgrom and Chris Shannon.
+\newblock Monotone comparative statics.
+\newblock \emph{Econometrica}, 62\penalty0 (1):\penalty0 157--180, 1994.
 
-\harvarditem[Bigio and La'O]{Bigio and La'O}{2020}{bigio2020distortions}
-{\bf Bigio, Saki and Jennifer La'O}, ``Distortions in Production Networks,''
-  {\it Quarterly Journal of Economics}, 2020, {\it 135} (4), 2187--2253.
+\bibitem[Milgrom and Weber(1982)]{milgrom1982theory}
+Paul Milgrom and Robert Weber.
+\newblock A theory of auctions and competitive bidding.
+\newblock \emph{Econometrica}, 50\penalty0 (5):\penalty0 1089--1122, 1982.
 
-\harvarditem[Bloom]{Bloom}{2009}{bloom2009impact}
-{\bf Bloom, Nicholas}, ``The Impact of Uncertainty Shocks,'' {\it
-  Econometrica}, 2009, {\it 77} (3), 623--685.
+\bibitem[Oberfield(2018)]{oberfield2018theory}
+Ezra Oberfield.
+\newblock A theory of input-output architecture.
+\newblock \emph{Econometrica}, 86\penalty0 (2):\penalty0 559--589, 2018.
 
-\harvarditem[Bloom]{Bloom}{2014}{bloom2014fluctuations}
-{\bf \bysame{}}, ``Fluctuations in Uncertainty,'' {\it Journal of Economic
-  Perspectives}, 2014, {\it 28} (2), 153--176.
+\bibitem[Topkis(1998)]{topkis1998supermodularity}
+Donald~M Topkis.
+\newblock \emph{Supermodularity and Complementarity}.
+\newblock Princeton University Press, 1998.
 
-\harvarditem[Bloom et al.]{Bloom, Floetotto, Jaimovich, Saporta-Eksten and
-  Terry}{2018}{bloom2018really}
-{\bf \bysame{}, Max Floetotto, Nir Jaimovich, Itay Saporta-Eksten, and
-  Stephen~J Terry}, ``Really Uncertain Business Cycles,'' {\it Econometrica},
-  2018, {\it 86} (3), 1031--1065.
-
-\harvarditem[Boehm et al.]{Boehm, Flaaen and
-  Pandalai-Nayar}{2019}{boehm2019input}
-{\bf Boehm, Christoph~E, Aaron Flaaen, and Nitya Pandalai-Nayar}, ``Input
-  Linkages and the Transmission of Shocks: Firm-Level Evidence From the 2011
-  T{\=o}hoku Earthquake,'' {\it Review of Economics and Statistics}, 2019, {\it
-  101} (1), 60--75.
-
-\harvarditem[Boehm and Oberfield]{Boehm and
-  Oberfield}{2020}{boehm2020misallocation}
-{\bf Boehm, Johannes and Ezra Oberfield}, ``Misallocation in the Market for
-  Inputs: Enforcement and the Organization of Production,'' {\it Quarterly
-  Journal of Economics}, 2020, {\it 135} (4), 2007--2058.
-
-\harvarditem[Carvalho et al.]{Carvalho, Nirei, Saito and
-  Tahbaz-Salehi}{2021}{carvalho2021supply}
-{\bf Carvalho, Vasco~M, Makoto Nirei, Yukiko~U Saito, and Alireza
-  Tahbaz-Salehi}, ``Supply Chain Disruptions: Evidence From the Great East
-  Japan Earthquake,'' {\it Quarterly Journal of Economics}, 2021, {\it 136}
-  (2), 1255--1321.
-
-\harvarditem[Dupor]{Dupor}{1999}{dupor1999aggregation}
-{\bf Dupor, Bill}, ``Aggregation and Irrelevance in Multi-Sector Models,'' {\it
-  Journal of Monetary Economics}, 1999, {\it 43} (2), 391--409.
-
-\harvarditem[Elliott et al.]{Elliott, Golub and Leduc}{2022}{elliott2022supply}
-{\bf Elliott, Matthew, Benjamin Golub, and Matthew~V Leduc}, ``Supply Network
-  Formation and Fragility,'' {\it American Economic Review}, 2022, {\it 112}
-  (8), 2701--2747.
-
-\harvarditem[Fajgelbaum et al.]{Fajgelbaum, Schaal and
-  Taschereau-Dumouchel}{2017}{fajgelbaum2017uncertainty}
-{\bf Fajgelbaum, Pablo~D, Edouard Schaal, and Mathieu Taschereau-Dumouchel},
-  ``Uncertainty Traps,'' {\it Quarterly Journal of Economics}, 2017, {\it 132}
-  (4), 1641--1692.
-
-\harvarditem[Foerster et al.]{Foerster, Sarte and
-  Watson}{2011}{foerster2011sectoral}
-{\bf Foerster, Andrew~T, Pierre-Daniel~G Sarte, and Mark~W Watson}, ``Sectoral
-  versus Aggregate Shocks: A Structural Factor Analysis of Industrial
-  Production,'' {\it Journal of Political Economy}, 2011, {\it 119} (1), 1--38.
-
-\harvarditem[Gabaix]{Gabaix}{2011}{gabaix2011granular}
-{\bf Gabaix, Xavier}, ``The Granular Origins of Aggregate Fluctuations,'' {\it
-  Econometrica}, 2011, {\it 79} (3), 733--772.
-
-\harvarditem[Herskovic]{Herskovic}{2018}{herskovic2018networks}
-{\bf Herskovic, Bernard}, ``Networks in Production: Asset Pricing
-  Implications,'' {\it Journal of Finance}, 2018, {\it 73} (4), 1785--1818.
-
-\harvarditem[Horvath]{Horvath}{2000}{horvath2000sectoral}
-{\bf Horvath, Michael}, ``Sectoral Shocks and Aggregate Fluctuations,'' {\it
-  Journal of Monetary Economics}, 2000, {\it 45} (1), 69--106.
-
-\harvarditem[Hulten]{Hulten}{1978}{hulten1978growth}
-{\bf Hulten, Charles~R}, ``Growth Accounting With Intermediate Inputs,'' {\it
-  Review of Economic Studies}, 1978, {\it 45} (3), 511--518.
-
-\harvarditem[Jones]{Jones}{2011}{jones2011intermediate}
-{\bf Jones, Charles~I}, ``Intermediate Goods and Weak Links in the Theory of
-  Economic Development,'' {\it American Economic Journal: Macroeconomics},
-  2011, {\it 3} (2), 1--28.
-
-\harvarditem[Jurado et al.]{Jurado, Ludvigson and
-  Ng}{2015}{jurado2015measuring}
-{\bf Jurado, Kyle, Sydney~C Ludvigson, and Serena Ng}, ``Measuring
-  Uncertainty,'' {\it American Economic Review}, 2015, {\it 105} (3),
-  1177--1216.
-
-\harvarditem[Kopytov et al.]{Kopytov, Mishra, Nimark and
-  Taschereau-Dumouchel}{2024}{kopytov2024endogenous}
-{\bf Kopytov, Alexandr, Bineet Mishra, Kristoffer~P Nimark, and Mathieu
-  Taschereau-Dumouchel}, ``Endogenous Production Networks under Supply Chain
-  Uncertainty,'' {\it Econometrica}, 2024, {\it 92} (5).
-
-\harvarditem[Liu]{Liu}{2019}{liu2019industrial}
-{\bf Liu, Ernest}, ``Industrial Policies in Production Networks,'' {\it
-  Quarterly Journal of Economics}, 2019, {\it 134} (4), 1883--1948.
-
-\harvarditem[Long and Plosser]{Long and Plosser}{1983}{long1983real}
-{\bf Long, John~B and Charles~I Plosser}, ``Real Business Cycles,'' {\it
-  Journal of Political Economy}, 1983, {\it 91} (1), 39--69.
-
-\harvarditem[Milgrom and Shannon]{Milgrom and
-  Shannon}{1994}{milgrom1994monotone}
-{\bf Milgrom, Paul and Chris Shannon}, ``Monotone Comparative Statics,'' {\it
-  Econometrica}, 1994, {\it 62} (1), 157--180.
-
-\harvarditem[Milgrom and Weber]{Milgrom and Weber}{1982}{milgrom1982theory}
-{\bf \bysame{} and Robert Weber}, ``A Theory of Auctions and Competitive
-  Bidding,'' {\it Econometrica}, 1982, {\it 50} (5), 1089--1122.
-
-\harvarditem[Morris and Shin]{Morris and Shin}{2002}{morris2002social}
-{\bf Morris, Stephen and Hyun~Song Shin}, ``Social Value of Public
-  Information,'' {\it American Economic Review}, 2002, {\it 92} (5),
-  1521--1534.
-
-\harvarditem[Nieuwerburgh and Veldkamp]{Nieuwerburgh and
-  Veldkamp}{2006}{nieuwerburgh2006learning}
-{\bf Nieuwerburgh, Stijn~Van and Laura Veldkamp}, ``Learning Asymmetries in
-  Real Business Cycles,'' {\it Journal of Monetary Economics}, 2006, {\it 53}
-  (4), 753--772.
-
-\harvarditem[Oberfield]{Oberfield}{2018}{oberfield2018theory}
-{\bf Oberfield, Ezra}, ``A Theory of Input-Output Architecture,'' {\it
-  Econometrica}, 2018, {\it 86} (2), 559--589.
-
-\harvarditem[Topkis]{Topkis}{1998}{topkis1998supermodularity}
-{\bf Topkis, Donald~M}, {\it Supermodularity and Complementarity}, Princeton
-  University Press, 1998.
-
-\harvarditem[Van~Zandt and Vives]{Van~Zandt and Vives}{2007}{van2007monotone}
-{\bf Zandt, Timothy~Van and Xavier Vives}, ``Monotone Equilibria in Bayesian
-  Games of Strategic Complementarities,'' {\it Journal of Economic Theory},
-  2007, {\it 134} (1), 339--360.
+\bibitem[Van~Zandt and Vives(2007)]{van2007monotone}
+Timothy Van~Zandt and Xavier Vives.
+\newblock Monotone equilibria in bayesian games of strategic complementarities.
+\newblock \emph{Journal of Economic Theory}, 134\penalty0 (1):\penalty0
+  339--360, 2007.
 
 \end{thebibliography}
